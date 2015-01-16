@@ -1,0 +1,16 @@
+form > input,
+form button {
+	display: block;
+}
+
+form > input,
+form textarea {
+	width: 500px;
+	line-height: 1.5em;
+	margin: 10px 0;
+}
+
+button {
+	width: 100px;
+	line-height: 1.5em;
+}

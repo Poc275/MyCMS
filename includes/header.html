@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+    <title>My CMS</title>
+
+    <link rel="stylesheet" type="text/css" href="css/header-styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/markdown-style.css" />
+
+    <script type="text/javascript" src="js/Markdown.Converter.js"></script>
+    <script type="text/javascript" src="js/Markdown.Sanitizer.js"></script>
+    <script type="text/javascript" src="js/Markdown.Editor.js"></script>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+	<h1>Welcome to MyCMS, your new simple, lightweight, easy to use CMS for blogs!</h1>
+
+	<h2>Add new blog entry</h2>
+
+	<form action="addBlogEntry.php" method="POST" class="wmd-panel">
+		<input type="text" name="title" placeholder="blog title" maxlength="50" required />
+		<input type="text" name="summary" placeholder="blog summary" maxlength="150" required />
+		<input type="text" name="tags" placeholder="blog tags" maxlength="50" required />
+		<textarea name="content" class="wmd-input" id="wmd-input" cols="100" rows="25" required></textarea>
+		<button type="submit">Submit</button>
+	</form>
+
+	<h3>HTML Preview</h3>
+	<div id="wmd-preview" class="wmd-panel wmd-preview"></div>
+
+	<h3>HTML Source</h3>
+	<div id="html-preview"></div>	
+	<button onclick="convertMarkdownToHTML()">Convert</button>
+
+	<h2>Current entries</h2>
