@@ -36,11 +36,13 @@ class Database
 	    }
 	    else
 	    {
-	        mysqli_stmt_bind_result($stmt, $titleCol, $summaryCol, $tagsCol, $contentCol, $pubDateCol);
+	        mysqli_stmt_bind_result($stmt, $titleCol, $summaryCol, $tagsCol, $contentMdCol, 
+	        	$contentHtmlCol, $pubDateCol);
 
 	        while (mysqli_stmt_fetch($stmt))
 	        {
-	        	$article = new Article($titleCol, $summaryCol, $tagsCol, $contentCol, $pubDateCol);
+	        	$article = new Article($titleCol, $summaryCol, $tagsCol, $contentMdCol, 
+	        		$contentHtmlCol, $pubDateCol);
 	        	array_push($articles, $article);
 	        }
 
