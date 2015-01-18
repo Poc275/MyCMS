@@ -27,7 +27,37 @@ class Article
 		}
 	}
 
-	public function toString()
+	public function getTitle()
+	{
+		return $this->mTitle;
+	}
+
+	public function getSummary()
+	{
+		return $this->mSummary;
+	}
+
+	public function getTags()
+	{
+		return $this->mTags;
+	}
+
+	public function getContentMd()
+	{
+		return $this->mContentMd;
+	}
+
+	public function getContentHtml()
+	{
+		return $this->mContentHtml;
+	}
+
+	public function getPubDate()
+	{
+		return $this->mPubDate->format('Y-m-d H:i:s');
+	}
+
+	public function __toString()
 	{
 		return $this->mTitle . "<br />" . $this->mSummary . "<br />" . $this->mTags . "<br />" . 
 			$this->mContentMd . "<br />" . $this->mContentHtml . "<br />" . $this->mPubDate->format('Y-m-d H:i:s');

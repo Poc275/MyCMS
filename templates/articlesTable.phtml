@@ -1,0 +1,36 @@
+<table>
+	<tr>
+		<th>Title</th>
+		<th>Summary</th>
+		<th>Tags</th>
+		<!--<th>Markdown</th>-->
+		<!--<th>HTML</th>-->
+		<th>Date</th>
+	</tr>
+	
+	<?php foreach($this->articles as $article): ?>
+		<tr>
+			<td>
+				<?=$article->getTitle(); ?>
+			</td>
+			<td>
+				<?=$article->getSummary(); ?>
+			</td>
+			<td>
+				<?=$article->getTags(); ?>
+			</td>
+			<!--
+			<td>
+				<?=$article->getContentMd(); ?>
+			</td>
+			<td>
+				<?=$article->getContentHtml(); ?>
+			</td>
+			-->
+			<td>
+				<?=$article->getPubDate(); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+
+</table>

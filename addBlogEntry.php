@@ -2,10 +2,10 @@
 // TODO - Check user is validated
 
 require "Database.php";
-//include "Article.php";
 require "includes/Parsedown.php";
 
 $db = new Database;
+$success = false;
 
 if ($db->openConnection())
 {
@@ -16,15 +16,12 @@ if ($db->openConnection())
 	$article = new Article($_POST["title"], $_POST["summary"], $_POST["tags"], $_POST["contentMd"], 
 		$contentHtml, $date);
 
-	// validate input?
-	// echo $article->toString();
-
-	// TODO - INSERT INTO DB
-
+	if ($db->addArticle($article))
+	{
+		$success = true;
+	}
 
 	$db->closeConnection();
 }
-else
-{
-	
-}
+
+header("Location: index.php?success=$success");
