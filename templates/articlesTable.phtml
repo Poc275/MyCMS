@@ -11,7 +11,10 @@
 	<?php foreach($this->articles as $article): ?>
 		<tr>
 			<td>
-				<?=$article->getTitle(); ?>
+				<!--<a href='viewArticle.php?article=<?=$article->getId(); ?>'>-->
+				<a href='articles/<?=$article->getId(); ?>'>
+					<?=$article->getTitle(); ?>
+				</a>
 			</td>
 			<td>
 				<?=$article->getSummary(); ?>

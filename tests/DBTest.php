@@ -31,4 +31,18 @@ class DBTest extends PHPUnit_Framework_TestCase
 		$db->closeConnection();
 	}
 
+	public function testGetArticle()
+	{
+		$db = new Database;
+		$db->openConnection();
+
+		$article = $db->getArticle(1);
+
+		$this->assertInternalType('array', $article);
+		// should only be 1 result
+		$this->assertEquals(1, count($article));
+
+		$db->closeConnection();
+	}
+
 }

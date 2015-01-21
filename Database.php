@@ -41,7 +41,35 @@ class Database
 
 	        while (mysqli_stmt_fetch($stmt))
 	        {
-	        	$article = new Article($titleCol, $summaryCol, $tagsCol, $contentMdCol, 
+	        	$article = new Article($idCol, $titleCol, $summaryCol, $tagsCol, $contentMdCol, 
+	        		$contentHtmlCol, date_create_from_format('Y-m-d H:i:s', $pubDateCol));
+	        	array_push($articles, $article);
+	        }
+
+	        mysqli_stmt_close($stmt);
+		}
+
+		return $articles;
+	}
+
+	public function getArticle($id)
+	{
+		$articles = array();
+		$query = "SELECT * FROM articles WHERE id = " . $id;
+		$stmt = mysqli_prepare($this->mConnection, $query);
+
+		if (!mysqli_stmt_execute($stmt))
+		{
+			throw new Exception("Database query failed");
+		}
+		else
+		{
+			mysqli_stmt_bind_result($stmt, $idCol, $titleCol, $summaryCol, $tagsCol, $contentMdCol, 
+	        	$contentHtmlCol, $pubDateCol);
+
+	        while (mysqli_stmt_fetch($stmt))
+	        {
+	        	$article = new Article($idCol, $titleCol, $summaryCol, $tagsCol, $contentMdCol, 
 	        		$contentHtmlCol, date_create_from_format('Y-m-d H:i:s', $pubDateCol));
 	        	array_push($articles, $article);
 	        }
