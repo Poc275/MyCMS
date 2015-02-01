@@ -1,6 +1,7 @@
 <?php
 
 require(dirname(__FILE__)."/../Database.php");
+//require(dirname(__FILE__)."/../User.php");
 
 class DBTest extends PHPUnit_Framework_TestCase
 {
@@ -41,6 +42,24 @@ class DBTest extends PHPUnit_Framework_TestCase
 		$this->assertInternalType('array', $article);
 		// should only be 1 result
 		$this->assertEquals(1, count($article));
+
+		$db->closeConnection();
+	}
+
+	public function testCheckUsernameExists()
+	{
+		$db = new Database;
+		$db->openConnection();
+
+		$user = $db->checkUsernameExists("poc275@gmail.com");
+		$this->assertInstanceOf('User', $user);
+		$this->assertEquals("poc275@gmail.com", $user->getUsername());
+		$this->assertEquals("9bf578735c81bf43213a8b748e29fb67aecc54f23d48f5c18e33fca3a9baffe5", $user->getHash());
+		$this->assertEquals("qj3eA+hg1/0LN65KnO16V2xHy51ModwIla/T73CCtkN1yukVq0IO2XGl4XJXSiNe", $user->getSalt());
+		$this->assertEquals("admin", $user->getRole());
+
+		$fakeUser = $db->checkUsernameExists("phoney@fraud.com");
+		$this->assertNull($fakeUser);
 
 		$db->closeConnection();
 	}

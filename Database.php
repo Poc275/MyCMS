@@ -1,6 +1,7 @@
 <?php
 
 require "Article.php";
+require "User.php";
 
 class Database
 {
@@ -24,6 +25,10 @@ class Database
 		mysqli_close($this->mConnection);
 	}
 
+
+	/*
+	** ARTICLE QUERIES
+	*/
 	public function getArticles()
 	{
 		$articles = array();
@@ -52,6 +57,7 @@ class Database
 		return $articles;
 	}
 
+	// TODO - Make a parameterised query
 	public function getArticle($id)
 	{
 		$articles = array();
@@ -105,5 +111,39 @@ class Database
 		mysqli_stmt_close($stmt);
 
 		return $created;
+	}
+
+
+	/*
+	** USER CREDENTIALS QUERIES
+	*/
+	public function checkUsernameExists($username)
+	{
+		$user = null;
+
+		$query = "SELECT * FROM users WHERE username = ?";
+
+		$stmt = mysqli_prepare($this->mConnection, $query);
+        mysqli_stmt_bind_param($stmt, 's', $username);
+
+        if (!mysqli_stmt_execute($stmt))
+        {
+            throw new Exception("Database query failed");
+        }
+        else
+        {
+            mysqli_stmt_store_result($stmt);
+
+            if (mysqli_stmt_num_rows($stmt) == 1)
+			{
+            	mysqli_stmt_bind_result($stmt, $username_col, $password_col, $salt_col, $role_col);
+            	mysqli_stmt_fetch($stmt);
+            	$user = new User($username_col, $password_col, $salt_col, $role_col);
+        	}
+		}
+
+		mysqli_stmt_close($stmt);
+
+		return $user;
 	}
 }
