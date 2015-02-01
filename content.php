@@ -2,7 +2,8 @@
 
 require "Database.php";
 require "ArticleView.php";
-require_once("session.php");
+require_once("includes/session.php");
+validateUser();
 
 include "includes/header.html";
 
@@ -15,8 +16,6 @@ if ($db->openConnection())
 	$articleView->render("articlesTable.phtml");
 
 	$db->closeConnection();
-
-	echo $_SESSION["username"];
 }
 else
 {

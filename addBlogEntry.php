@@ -3,6 +3,8 @@
 
 require "Database.php";
 require "includes/Parsedown.php";
+require_once("includes/session.php");
+validateUser();
 
 $db = new Database;
 $success = false;

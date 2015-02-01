@@ -1,34 +1,42 @@
 <?php
 
-require_once("session.php");
+require_once("includes/session.php");
 require "Database.php";
 
-$db = new Database;
-
-if ($db->openConnection())
+if (isset($_POST["username"]) && isset($_POST["credentials"]))
 {
-	$username = $_POST["username"];
-	$password = $_POST["credentials"];
+	$db = new Database;
 
-	$user = $db->checkUsernameExists($username);
-
-	// TODO - sanitise password input before checking
-	if ($user !== null)
+	if ($db->openConnection())
 	{
-		if ($user->checkPassword($password))
+		$username = $_POST["username"];
+		$password = $_POST["credentials"];
+
+		$user = $db->checkUsernameExists($username);
+
+		// TODO - sanitise password input before checking
+		if ($user !== null)
 		{
-			$_SESSION["username"] = $user->getUsername();
-			header("Location: content.php");
+			if ($user->checkPassword($password))
+			{
+				$_SESSION["username"] = $user->getUsername();
+				$_SESSION["role"] = $user->getRole();
+				header("Location: content.php");
+			}
+			else
+			{
+				echo "Invalid username/password combination";
+			}
 		}
 		else
 		{
 			echo "Invalid username/password combination";
 		}
-	}
-	else
-	{
-		echo "Invalid username/password combination";
-	}
 
-	$db->closeConnection();
+		$db->closeConnection();
+	}
+}
+else
+{
+	header("Location: index.html");
 }
