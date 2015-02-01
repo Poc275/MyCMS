@@ -1,6 +1,4 @@
 <?php
-// TODO - Check user is validated
-
 require "Database.php";
 require "includes/Parsedown.php";
 require_once("includes/session.php");
