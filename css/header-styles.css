@@ -5,7 +5,7 @@ form button {
 
 form > input,
 form textarea {
-	width: 500px;
+	width: 100%;
 	line-height: 1.5em;
 	margin: 10px 0;
 }
@@ -23,8 +23,9 @@ button {
 #markdown-syntax {
 	float: right;
 	width: 37.5%;
+	height: 0;
 }
 
-footer {
+#assets-panel {
 	clear: both;
 }

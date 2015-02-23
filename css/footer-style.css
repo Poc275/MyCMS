@@ -1,0 +1,20 @@
+#drop {
+	border: 10px dashed #ccc;
+	width: 300px;
+	min-height: 300px;
+	margin: 20px;
+}
+
+#drop.hover {
+	border: 10px dashed #0c0;
+}
+
+#drop img {
+	display: block;
+	margin: 10px auto;
+}
+
+#drop p {
+	margin: 10px;
+	font-size: 14px;
+}
