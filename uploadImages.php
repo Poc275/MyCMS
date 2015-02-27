@@ -1,5 +1,8 @@
 <?php
 
+require_once("includes/session.php");
+validateUser();
+
 //var_dump($_FILES['file']);
 
 if ($_FILES['file']['error'] == UPLOAD_ERR_OK)

@@ -33,7 +33,7 @@ function init() {
 				reader.onload = function(event) {
 					var image = new Image();
 					image.src = event.target.result;
-					image.width = 100;
+					image.height = 100;
 					drop.appendChild(image);
 				};
 
@@ -60,12 +60,47 @@ function uploadFiles(files) {
 		if (xhr.status === 200) {
 			console.log('all done: ' + xhr.status);
 			// TODO - render a preview now?
+			// display thumbnail in home page
+			updateThumbnailView();
 		} else {
 			console.log('something went awry...');
 		}
 	};
 
 	xhr.send(formData);
+}
+
+function updateThumbnailView() {
+	var httpRequest;
+
+	// cross browser AJAX test
+    if (window.XMLHttpRequest) {
+        // Firefox, Chrome, Safari, Opera
+        httpRequest = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        // IE
+        try {
+            httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+        }
+        catch (e) {
+            try {
+                httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            catch (e) { }
+        }
+    }
+
+    if (!httpRequest) {
+        // cannot create an AJAX instance
+    }
+
+    httpRequest.onreadystatechange = function() {
+    	if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+    		//document.writeln("AJAX REQUEST SUCCESSFUL!");
+    	}
+    }
+    httpRequest.open("GET", "updateImagesView.php");
+    httpRequest.send();
 }
 
 window.addEventListener('load', init, false);

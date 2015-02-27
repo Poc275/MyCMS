@@ -2,6 +2,7 @@
 
 require "Database.php";
 require "ArticleView.php";
+require "ImagesView.php";
 require_once("includes/session.php");
 validateUser();
 
@@ -14,8 +15,10 @@ if ($db->openConnection())
 	$articleView = new ArticleView();
 	$articleView->articles = $db->getArticles();
 	$articleView->render("articlesTable.phtml");
-
 	$db->closeConnection();
+
+	$imagesView = new ImagesView();
+	$imagesView->getImages();
 }
 else
 {
