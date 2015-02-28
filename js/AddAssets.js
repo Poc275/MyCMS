@@ -96,7 +96,7 @@ function updateThumbnailView() {
 
     httpRequest.onreadystatechange = function() {
     	if (httpRequest.readyState === 4 && httpRequest.status === 200) {
-    		//document.writeln("AJAX REQUEST SUCCESSFUL!");
+    		document.getElementById("assets").innerHTML = (httpRequest.responseText);
     	}
     }
     httpRequest.open("GET", "updateImagesView.php");

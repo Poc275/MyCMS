@@ -1,5 +1,7 @@
-<div>
+<div id="assets">
 	<?php foreach($this->images as $image): ?>
-		<img src='img/<?=$image; ?>' alt='<?=$image; ?>' title='<?=$image; ?>' height='100' />
+		<a href='img/<?=$image; ?>'>
+			<img src='img/<?=$image; ?>' alt='<?=$image; ?>' title='<?=$image; ?>' />
+		</a>
 	<?php endforeach; ?>
 </div>
