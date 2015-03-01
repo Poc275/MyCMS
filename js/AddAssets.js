@@ -47,6 +47,9 @@ function init() {
 		uploadFiles(acceptedFiles);
 		return false;
 	};
+
+	// add event handlers to image clicks
+	addImageClickEventHandlers();
 }
 
 /*
@@ -115,10 +118,29 @@ function updateThumbnailView() {
     httpRequest.onreadystatechange = function() {
     	if (httpRequest.readyState === 4 && httpRequest.status === 200) {
     		document.getElementById("assets").innerHTML = (httpRequest.responseText);
+    		addImageClickEventHandlers();
     	}
     }
+
     httpRequest.open("GET", "updateImagesView.php");
     httpRequest.send();
+}
+
+function addImageClickEventHandlers() {
+	var images = document.querySelectorAll('img.thumb');
+	//console.log(images);
+
+	for (var i = 0; i < images.length; i++) {
+		images[i].addEventListener('click', onImageClick, false);
+	}
+}
+
+function onImageClick(event) {
+	//console.log(event.target);
+	var mdInputTextArea = document.getElementById("wmd-input");
+	var mdOutput = "![alt text here](" + event.target.src + " \"Title here\")";
+
+	mdInputTextArea.value += mdOutput;
 }
 
 window.addEventListener('load', init, false);

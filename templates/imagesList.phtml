@@ -1,13 +1,11 @@
 <div id="asset-panel">
 	<ul id="assets">
 		<?php foreach($this->images as $image): ?>
-			<li>
+			<li class="image">
 				<div class="asset">
 					<div class="asset-img">
-						<a href='img/<?=$image; ?>'>
-							<img src='img/<?=$image; ?>' alt='<?=$image; ?>' title='<?=$image; ?>' />
-							<span><?=$image; ?></span>
-						</a>
+						<img class="thumb" src='img/<?=$image; ?>' alt='<?=$image; ?>' title='<?=$image; ?>' />
+						<span><?=$image; ?></span>
 					</div>
 				</div>
 			</li>

@@ -41,13 +41,14 @@
 	margin: 0 10px 10px 0;
 	padding: 3px;
 	border: 1px solid #000;
+	cursor: pointer;
 }
 
 div.asset {
 	position: relative;
 }
 
-#assets li div div a span {
+#assets li div div span {
 	position: absolute;
 	left: 0;
 	bottom: 0;
