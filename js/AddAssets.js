@@ -22,6 +22,7 @@ function init() {
 		this.className = '';
 
 		var files = event.dataTransfer.files;
+		var acceptedFiles = [];
 		//console.log(files);
 
 		// render a preview
@@ -29,25 +30,32 @@ function init() {
 			var file = files[i];
 
 			if (acceptedTypes[file.type] === true) {
+				acceptedFiles.push(file);
 				var reader = new FileReader();
 				reader.onload = function(event) {
 					var image = new Image();
 					image.src = event.target.result;
 					image.height = 100;
-					drop.appendChild(image);
+					//drop.appendChild(image);
+					
 				};
 
 				reader.readAsDataURL(file);
 			}
 		}
 
-		uploadFiles(files);
+		uploadFiles(acceptedFiles);
 		return false;
 	};
 }
 
+/*
+* Max file upload size is defined in php.ini - upload_max_filesize
+* default is 2MB
+*/
 function uploadFiles(files) {
 	var formData = new FormData();
+	var progress = document.getElementById('progress');
 
 	for (var i = 0; i < files.length; i++) {
 		formData.append('file', files[i]);
@@ -57,6 +65,7 @@ function uploadFiles(files) {
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', '/MyCMS/uploadImages.php');
 	xhr.onload = function() {
+		progress.value = progress.innerHTML = 100;
 		if (xhr.status === 200) {
 			console.log('all done: ' + xhr.status);
 			// TODO - render a preview now?
@@ -64,6 +73,15 @@ function uploadFiles(files) {
 			updateThumbnailView();
 		} else {
 			console.log('something went awry...');
+		}
+	};
+
+	// progress event listener
+	xhr.upload.onprogress = function(event) {
+		if (event.lengthComputable) {
+			// | 0 is a bitwise floor shift, E.g. 2.69 becomes 2
+			var complete = (event.loaded / event.total * 100 | 0);
+			progress.value = progress.innerHTML = complete;
 		}
 	};
 

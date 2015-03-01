@@ -1,7 +1,16 @@
-<div id="assets">
-	<?php foreach($this->images as $image): ?>
-		<a href='img/<?=$image; ?>'>
-			<img src='img/<?=$image; ?>' alt='<?=$image; ?>' title='<?=$image; ?>' />
-		</a>
-	<?php endforeach; ?>
+<div id="asset-panel">
+	<ul id="assets">
+		<?php foreach($this->images as $image): ?>
+			<li>
+				<div class="asset">
+					<div class="asset-img">
+						<a href='img/<?=$image; ?>'>
+							<img src='img/<?=$image; ?>' alt='<?=$image; ?>' title='<?=$image; ?>' />
+							<span><?=$image; ?></span>
+						</a>
+					</div>
+				</div>
+			</li>
+		<?php endforeach; ?>
+	</ul>
 </div>
