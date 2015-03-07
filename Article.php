@@ -64,6 +64,11 @@ class Article
 		return $this->mPubDate->format('Y-m-d H:i:s');
 	}
 
+	public function getPubDateRssFormat()
+	{
+		return $this->mPubDate->format(DATE_RSS);
+	}
+
 	public function __toString()
 	{
 		return $this->mTitle . "<br />" . $this->mSummary . "<br />" . $this->mTags . "<br />" . 
