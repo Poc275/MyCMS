@@ -1,16 +1,16 @@
 <?php
 require "Database.php";
-require "includes/Parsedown.php";
 require_once("includes/session.php");
+require_once("includes/MarkdownExtra.inc.php");
 validateUser();
 
 $db = new Database;
-//$success = false;
 
 if ($db->openConnection())
 {
-	$parsedown = new Parsedown();
-	$contentHtml = $parsedown->text($_POST["contentMd"]);
+	$mdExtra = new Michelf\MarkdownExtra();
+	$contentHtml = $mdExtra->defaultTransform($_POST["contentMd"]);
+
 	$date = new DateTime();
 
 	// TODO - does Article need 2 constructors? 1 with an id field for when the DB has generated it, 
@@ -21,7 +21,6 @@ if ($db->openConnection())
 
 	if ($db->addArticle($article))
 	{
-		//$success = true;
 		updateFeed($db->getArticles());
 	}
 
