@@ -69,6 +69,11 @@ class Article
 		return $this->mPubDate->format(DATE_RSS);
 	}
 
+	public function getNicePubDate()
+	{
+		return $this->mPubDate->format('D j M Y');
+	}
+
 	public function __toString()
 	{
 		return $this->mTitle . "<br />" . $this->mSummary . "<br />" . $this->mTags . "<br />" . 

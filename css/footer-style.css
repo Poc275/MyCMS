@@ -1,3 +1,11 @@
+footer {
+	clear: both;
+}
+
+
+/*
+* D&D STYLING
+*/
 #drop {
 	border: 10px dashed #ccc;
 	width: 300px;

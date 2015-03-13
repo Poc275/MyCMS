@@ -1,8 +1,9 @@
+<h2>Current Entries:</h2>
 <table>
 	<tr>
 		<th>Title</th>
-		<th>Summary</th>
-		<th>Tags</th>
+		<!-- <th>Summary</th> -->
+		<!-- <th>Tags</th> -->
 		<!--<th>Markdown</th>-->
 		<!--<th>HTML</th>-->
 		<th>Date</th>
@@ -16,13 +17,14 @@
 					<?=$article->getTitle(); ?>
 				</a>
 			</td>
+			<!--
 			<td>
 				<?=$article->getSummary(); ?>
 			</td>
+			
 			<td>
 				<?=$article->getTags(); ?>
 			</td>
-			<!--
 			<td>
 				<?=$article->getContentMd(); ?>
 			</td>
@@ -31,7 +33,7 @@
 			</td>
 			-->
 			<td>
-				<?=$article->getPubDate(); ?>
+				<?=$article->getNicePubDate(); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>

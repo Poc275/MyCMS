@@ -8,66 +8,141 @@
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
     <link rel="stylesheet" type="text/css" href="css/header-styles.css" />
     <link rel="stylesheet" type="text/css" href="css/footer-style.css" />
-    <link rel="stylesheet" type="text/css" href="css/markdown-style.css" />
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
 	<h1>Welcome to MyCMS, your new simple, lightweight, easy to use CMS for blogs!</h1>
 
-	<div id="markdown-syntax">
-		<h2>Markdown Syntax:</h2>
+	<div id="main-col">
+		<button class="nav-toggler toggle-slide-right">Menu</button>
 
-		<h3>Phrase Emphasis</h3>
-		<pre>
+		<h2>Add new blog entry</h2>
+
+		<form action="addBlogEntry.php" method="POST">
+			<input type="text" name="title" placeholder="blog title" maxlength="50" required />
+			<input type="text" name="summary" placeholder="blog summary" maxlength="150" required />
+			<input type="text" name="tags" placeholder="blog tags" maxlength="50" />
+			<textarea name="contentMd" id="wmd-input" cols="100" rows="20" required></textarea>
+			<button type="submit">Submit</button>
+		</form>
+
+		<button onclick="convertMarkdownToHTML()">Preview</button>
+
+		<h3>HTML Preview:</h3>
+		<div id="html-preview"></div>
+
+		<h3>HTML Source:</h3>
+		<div id="html-source"></div>
+
+		<div class="menu slide-menu-right">
+			<ul>
+				<li id="menu-item-assets" class="active"><a href="#">Assets</a></li>
+				<li id="menu-item-markdown"><a href="#">Markdown</a></li>
+				<li id="menu-item-syntax"><a href="#">Syntax</a></li>
+				<li><button class="close-menu">Close &rarr;</button></li>
+			</ul>
+
+			<div id="assets-panel">
+				<h3>Upload images here...</h3>
+				<div id="drop">
+				</div>
+				<p>Upload progress:</p>
+				<progress id="progress" min="0" max="100" value="0"></progress>
+			</div>
+
+			<div id="markdown-panel">
+				<h2>Markdown</h2>
+			</div>
+
+			<div id="syntax-panel">
+				<h2>Markdown Extra Syntax:</h2>
+				<h3>Markdown inside HTML Blocks</h3>
+				<p>Add content inside a block level element such as a &lt;div&gt;. Add a 'markdown' attribute to the 
+					tag with the value of 1.</p>
+				<pre>
+<code>&lt;div markdown="1"&gt;
+This is *true* markdown text
+&lt;/div&gt;</code>
+				</pre>
+
+				<h3>Special Attributes</h3>
+				<p>Set the id and class attributes on certain elements (headers, fenced code blocks, links, and images).</p>
+				<pre>
+<code>## Header 2 ##	{#header2}
+[link](url){.class}</code>
+				</pre>
+
+				<h3>Fenced code blocks</h3>
+				<p>As regular Markdown code blocks but without indentation.</p>
+				<p>You can also use backticks instead of tildes.</p>
+				<pre>
+<code>This is a paragraph introducing:
+~~~~~~~~~~~~~~~~~~~~~
+a one-line code block
+~~~~~~~~~~~~~~~~~~~~~</code>
+				</pre>
+
+				<h3>Tables</h3>
+				<pre>
+<code>Column Header 1 | Column Header 2
+----------------|----------------
+Content Cell    | Content Cell
+Content Cell    | Content Cell</code>
+				</pre>
+
+				<h2>Markdown Syntax:</h2>
+
+				<h3>Phrase Emphasis</h3>
+				<pre>
 <code>*italic* **bold** _italic_ __bold__</code>
-		</pre>
+				</pre>
 
-		<h3>Links</h3>
-		<p>Inline:</p>
-		<pre>
+				<h3>Links</h3>
+				<p>Inline:</p>
+				<pre>
 <code>An [example](http://url.com/ "Title")</code>
-		</pre>
-		<p>Reference-style labels (titles are optional)</p>
-		<pre>
+				</pre>
+				<p>Reference-style labels (titles are optional)</p>
+				<pre>
 <code>An [example][id]. Then, anywhere else in the doc, define the link:
 [id]: http://example.com/ "Title"</code>
-		</pre>
+				</pre>
 
-		<h3>Images</h3>
-		<p>Inline (titles are optional):</p>
-		<pre>
+				<h3>Images</h3>
+				<p>Inline (titles are optional):</p>
+				<pre>
 <code>![alt text](/path/img.jpg "Title")</code>
-		</pre>
-		<p>Reference-style:</p>
-		<pre>
+				</pre>
+				<p>Reference-style:</p>
+				<pre>
 <code>![alt text][id]
 [id]: /url/to/img.jpg "Title"</code>
-		</pre>
+				</pre>
 
-		<h3>Headers</h3>
-		<p>Closing #'s are optional:</p>
-		<pre>
+				<h3>Headers</h3>
+				<p>Closing #'s are optional:</p>
+				<pre>
 <code># Header 1 #
 ## Header 2 ##
 ###### Header 6 ######</code>
-		</pre>
+				</pre>
 
-		<h3>Lists</h3>
-		<p>Ordered, without paragraphs:</p>
-		<pre>
+				<h3>Lists</h3>
+				<p>Ordered, without paragraphs:</p>
+				<pre>
 <code>1.  Foo
 2.  Bar</code>
-		</pre>
-		<p>Unordered, with paragraphs:</p>
-		<pre>
+				</pre>
+				<p>Unordered, with paragraphs:</p>
+				<pre>
 <code>*   A list item.
 	With multiple paragraphs.
 *   Bar</code>
-		</pre>
-		<p>You can nest them:</p>
-		<pre>
+				</pre>
+				<p>You can nest them:</p>
+				<pre>
 <code>*   Abacus
 	*  answer
 *   Bubbles
@@ -76,10 +151,10 @@
 		*  BELITTLER
 	3.  burper
 * Cunning</code>
-		</pre>
+				</pre>
 
-		<h3>Blockquotes</h3>
-		<pre>
+				<h3>Blockquotes</h3>
+				<pre>
 <code>> Email-style angle brackets
 > are used for blockquotes
 
@@ -89,62 +164,45 @@
 >
 > * You can quote a list.
 > * Etc.</code>
-		</pre>
+				</pre>
 
-		<h3>Code Spans</h3>
-		<pre>
+				<h3>Code Spans</h3>
+				<pre>
 <code>`&lsaquo;code&rsaquo;` spans are delimited
 by backticks.
 
 You can include literal backticks
 like `` `this` ``.</code>
-		</pre>
+				</pre>
 
-		<h3>Preformatted Code Blocks</h3>
-		<p>Indent every line of a code block by at least 4 spaces or 1 tab.</p>
-		<pre>
+				<h3>Preformatted Code Blocks</h3>
+				<p>Indent every line of a code block by at least 4 spaces or 1 tab.</p>
+				<pre>
 <code>This is a normal paragraph
 
 	This is a preformatted 
 	code block.</code>
-		</pre>
+				</pre>
 
-		<h3>Horizontal Rules</h3>
-		<p>Three or more dashes or asterisks:</p>
-		<pre>
+				<h3>Horizontal Rules</h3>
+				<p>Three or more dashes or asterisks:</p>
+				<pre>
 <code>---
 
 * * *
 
 - - - -</code>
-		</pre>
+				</pre>
 
-		<h3>Manual Line Breaks</h3>
-		<p>End a line with two or more spaces:</p>
-		<pre>
+				<h3>Manual Line Breaks</h3>
+				<p>End a line with two or more spaces:</p>
+				<pre>
 <code>Roses are red,  
 Violets are blue.</code>
-		</pre>
+				</pre>
+			</div>
+
+		</div>
 	</div>
 
-
-	<div id="main-col">
-		<h2>Add new blog entry</h2>
-
-		<form action="addBlogEntry.php" method="POST" class="wmd-panel">
-			<input type="text" name="title" placeholder="blog title" maxlength="50" required />
-			<input type="text" name="summary" placeholder="blog summary" maxlength="150" required />
-			<input type="text" name="tags" placeholder="blog tags" maxlength="50" />
-			<textarea name="contentMd" id="wmd-input" cols="100" rows="25" required></textarea>
-			<button type="submit">Submit</button>
-		</form>
-
-		<h3>HTML Preview:</h3>
-		<div id="html-preview"></div>
-
-		<h3>HTML Source:</h3>
-		<div id="html-source"></div>
-
-		<button onclick="convertMarkdownToHTML()">Convert</button>
-
-		<h2>Current entries:</h2>
+	<div id="secondary-col">
