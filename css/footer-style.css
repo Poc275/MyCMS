@@ -4,7 +4,7 @@ footer {
 
 
 /*
-* D&D STYLING
+* DRAG & DROP
 */
 #drop {
 	border: 10px dashed #ccc;
@@ -36,8 +36,9 @@ footer {
 	width: 320px;
 }
 
+
 /*
-*  ASSETS STYLING
+*  ASSETS
 */
 #asset-panel {
 	float: left;

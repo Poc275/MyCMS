@@ -3,9 +3,10 @@
 
 <head>
 	<meta charset="utf-8" />
-    <title>My CMS</title>
+    <title>My CMS - Home</title>
 
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/header-styles.css" />
     <link rel="stylesheet" type="text/css" href="css/footer-style.css" />
 
@@ -13,29 +14,39 @@
 </head>
 
 <body>
-	<h1>Welcome to MyCMS, your new simple, lightweight, easy to use CMS for blogs!</h1>
+	<div id="header">
+		<h1>MyCMS</h1>
+		<div id="header-items">
+			<div id="header-menu" class="toggle-slide-right">
+				<span class="top"> </span>
+				<span class="middle"> </span>
+				<span class="bottom"> </span>
+			</div>
+			<p><a href="logoff.php">Sign out</a></p>
+		</div>
+	</div>
 
 	<div id="main-col">
-		<button class="nav-toggler toggle-slide-right">Menu</button>
-
 		<h2>Add new blog entry</h2>
 
 		<form action="addBlogEntry.php" method="POST">
 			<input type="text" name="title" placeholder="blog title" maxlength="50" required />
 			<input type="text" name="summary" placeholder="blog summary" maxlength="150" required />
 			<input type="text" name="tags" placeholder="blog tags" maxlength="50" />
-			<textarea name="contentMd" id="wmd-input" cols="100" rows="20" required></textarea>
+			<textarea name="contentMd" id="wmd-input" rows="16" required>blog content...</textarea>
+			<button type="button" onclick="convertMarkdownToHTML()">Preview</button>
 			<button type="submit">Submit</button>
 		</form>
 
-		<button onclick="convertMarkdownToHTML()">Preview</button>
+		<div id="preview-area">
+			<h3>HTML Preview:</h3>
+			<div id="html-preview"></div>
 
-		<h3>HTML Preview:</h3>
-		<div id="html-preview"></div>
+			<h3>HTML Source:</h3>
+			<div id="html-source"></div>
+		</div>
 
-		<h3>HTML Source:</h3>
-		<div id="html-source"></div>
-
+		<!-- Slide out menu code -->
 		<div class="menu slide-menu-right">
 			<ul>
 				<li id="menu-item-assets" class="active"><a href="#">Assets</a></li>
@@ -46,8 +57,7 @@
 
 			<div id="assets-panel">
 				<h3>Upload images here...</h3>
-				<div id="drop">
-				</div>
+				<div id="drop"></div>
 				<p>Upload progress:</p>
 				<progress id="progress" min="0" max="100" value="0"></progress>
 			</div>
@@ -227,7 +237,7 @@ Violets are blue.</code>
 				</pre>
 			</div>
 
-		</div>
-	</div>
+		</div><!-- end of slide out menu -->
+	</div><!-- end of main col -->
 
 	<div id="secondary-col">
