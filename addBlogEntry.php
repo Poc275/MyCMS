@@ -37,7 +37,7 @@ function updateFeed($articles)
 		<link>http://localhost:8080/MyCMS</link>
 		<description>A thoughtful approach to cookery from a pair of keen amateur cooks</description>
 		<category>Food</category>
-		<image><url>http://localhost:8080/MyCMS/img/3-sauce-wings.jpg</url>
+		<image><url>http://localhost:8080/MyCMS/assets/pensive.png</url>
 		<title>The Ponderer\'s Cookbook</title>
 		<link>http://localhost:8080/MyCMS</link></image>
 		<language>en-uk</language>

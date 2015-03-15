@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title><?php echo $this->article->getTitle() ?> - The Ponderers Cookbook</title>
+        <link rel="stylesheet" href="../css/reset.css">
+        <link rel="stylesheet" href="../css/article-style.css">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div id="page">
+            <div id="inner">
+                <header>
+                    <h1>The Ponderers Cookbook</h1>
+                    <h2><span>Musings from a couple of amateur cooks</span></h2>
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="#"><i>Visit</i>The Archives</a>
+                            </li>
+                            <li>
+                                <a href="#"><i>The</i>Lexicon</a>
+                            </li>
+                            <li>
+                                <a href="#"><i>About</i>Our Blog</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </header>
+
+                <article>
+                    <?php
+                        echo '<h3>' . $this->article->getTitle() . '</h3>';
+                        echo '<h4>tldr&#59; ' . $this->article->getSummary() . '</h4>';
+                    ?>
+
+                    <div id="share-links">
+                        <i class="fa fa-calendar-o">
+                            <?php echo $this->article->getNicePubDate(); ?>
+                        </i>
+                        <i class="fa fa-tags">
+                            <?php echo $this->article->getTags(); ?>
+                        </i>
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-via="poc275" data-hashtags="pondererscookbook">Tweet</a>
+                        <i class="g-plus" data-action="share" data-annotation="bubble"></i>
+                    </div>
+
+                    <?php
+                        echo $this->article->getContentHtml();
+                    ?>
+                </article>
+
+                <div id="comments">
+                    <div id="comments-form">
+                        <h3>Leave a reply</h3>
+                        <form action="addBlogComment.php" method="POST">
+                            <input type="text" name="author" placeholder="name" maxlength="50" required />
+                            <textarea name="comment" rows="3" required>comment...</textarea>
+                            <button type="submit">Post comment</button>
+                        </form>
+                    </div>
+                <div>
+
+                <footer>
+                    <p>The ponderers are <a href="http://www.pjfreeman.co.uk/">Phillip Freeman</a> &amp; 
+                        <a href="http://poc275.co.uk">Peter O'Connor</a></p>
+                    <p>Illustrations by <a href="http://en.wikipedia.org/wiki/Sidney_Paget">Sidney Paget</a></p>
+
+                    <address id="footer-social">
+                        <ul id="footer-logos">
+                            <li><a href="#" title="send us an email"><i class="fa fa-envelope-o fa-4x"></i></a></li>
+                            <li><a href="#" title="find us on facebook"><i class="fa fa-facebook-square fa-4x"></i></a></li>
+                            <li><a href="#" title="tweet us"><i class="fa fa-twitter fa-4x"></i></a></li>
+                            <li><a href="../rss.xml" title="follow our blog"><i class="fa fa-rss fa-4x"></i></a></li>
+                        </ul>
+                    </address>
+                </footer>
+
+            </div>
+        </div>
+
+        <script src="https://apis.google.com/js/platform.js" async defer>
+          {lang: 'en-GB'}
+        </script>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </body>
+</html>

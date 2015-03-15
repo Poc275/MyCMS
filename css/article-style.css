@@ -1,0 +1,232 @@
+body {
+    font-family: Garamond, 'Palatino Linotype', 'Times New Roman', serif;
+    font-weight: normal;
+    background: url('../assets/bg.png') repeat scroll 0 0 #A67440;
+    line-height: 1.5em;
+    font-size: 1em;
+}
+
+#inner {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#page {
+    background: url('../assets/border.png') repeat-x fixed 0 0 rgba(0, 0, 0, 0);
+    padding: 2em 0;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 1.4em;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+header h1 {
+    font-size: 2.5em;
+    background: url('../assets/pensive.png') no-repeat scroll 50% 0 rgba(0, 0, 0, 0);
+    height: 162px;
+    padding-top: 137px;
+}
+
+header h2 {
+    font-size: 1.4em;
+    background: url('../assets/header-break.png') repeat-x scroll 0 50% rgba(0, 0, 0, 0);
+}
+
+header h2 span {
+    background: url('../assets/bg.png') repeat scroll 0 0 rgba(0, 0, 0, 0);
+    padding: 0 1em;
+}
+
+nav {
+    margin: 1em 0 0 0;
+}
+
+nav ul li {
+    display: inline-block;
+    text-transform: uppercase;
+    font-family: 'Book Antiqua', 'Palatino Linotype', Georgia, serif;
+    font-size: 0.8em;
+    margin: 0 1em 0 0;
+}
+
+nav ul li a {
+    background: url('../assets/ornament.png') no-repeat scroll 0 50% rgba(0, 0, 0, 0);
+    display: block;
+    padding: 0 2.5em 5em;
+    text-decoration: none;
+    color: #890101;
+    transition: color 0.2s linear 0s;
+}
+
+nav ul li a:hover {
+    background-position: 50% 50%;
+    color: #df3030;
+}
+
+nav ul li i {
+    display: block;
+}
+
+article {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+article h3 {
+    font-size: 2.5em;
+    text-transform: uppercase;
+    margin-bottom: 1em;
+}
+
+article h4 {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+}
+
+article p {
+    font-size: 1.2em;
+    line-height: 1.5em;
+    padding: 10px;
+    margin: 0.5em 0;
+    /*background-color: #C19669;*/
+}
+
+div.phil img {
+    float: left;
+    border-radius: 25px;
+    margin: 0 10px 0 0;
+}
+
+div.phil p {
+    float: left;
+    text-align: left;
+    width: 90%;
+    border-radius: 0 25px 25px 0;
+}
+
+div.pete img {
+    float: right;
+    border-radius: 25px;
+    margin: 0 0 0 10px;
+}
+
+div.pete p {
+    float: right;
+    text-align: right;
+    width: 90%;
+    border-radius: 25px 0 0 25px;
+}
+
+
+/* SHARE LINKS
+------------------------------------------------------*/
+#share-links {
+    
+}
+
+#share-links > i {
+    margin: 0 15px 0 0;
+}
+
+/* COMMENTS
+------------------------------------------------------*/
+#comments {
+    clear: both;
+    background: url('../assets/header-break.png') repeat-x scroll 50% 0 rgba(0, 0, 0, 0);
+}
+
+#comments-form {
+    padding: 2.5em 0;
+    color: #890101;
+    margin: 0 auto;
+    width: 30%;
+}
+
+#comments-form h3 {
+    text-align: left;
+}
+
+#comments-form form {
+    margin: 10px 0 0 0;
+}
+
+#comments-form form > input,
+#comments-form form textarea {
+    display: block;
+    line-height: 1.5em;
+    width: 100%;
+}
+
+#comments-form form button {
+    line-height: 2em;
+    float: right;
+    color: #890101;
+    cursor: pointer;
+    margin: 0;
+}
+
+
+/* FOOTER STYLES 
+    --------------------------------------------------*/
+footer {
+    clear: both;
+    background: url('../assets/ornament.png') no-repeat scroll 50% 0 rgba(0, 0, 0, 0);
+    padding: 2.5em 0;
+    color: #890101;
+}
+
+#footer-social {
+    
+}
+
+#footer-logos {
+    text-align: center;
+    margin: 10px 0;
+}
+
+#footer-logos li {
+    display: inline;
+    margin: 0 15px;
+}
+
+#footer-logos a {
+    border: none;
+}
+
+#footer-logos a img {
+    opacity: 0.25;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#footer-logos a:hover img,
+#footer-logos a:focus img {
+    opacity: 0.7;
+}
+
+#footer-logos a i {
+    color: #C19669;
+    opacity: 0.25;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#footer-logos a:hover i,
+#footer-logos a:focus i {
+    opacity: 0.7;
+}

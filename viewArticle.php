@@ -1,6 +1,7 @@
 <?php
 
 require "Database.php";
+require "BlogEntryView.php";
 
 if (isset($_GET["article"]))
 {
@@ -12,7 +13,9 @@ if (isset($_GET["article"]))
 		if (count($db->getArticle($articleId)) == 1)
 		{
 			$article = $db->getArticle($articleId)[0];
-			echo $article->getContentHtml();
+			$blogEntryView = new BlogEntryView();
+			$blogEntryView->article = $db->getArticle($articleId)[0];
+			$blogEntryView->render("blogEntryView.phtml");
 		}
 		
 		$db->closeConnection();

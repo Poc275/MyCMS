@@ -71,7 +71,7 @@ class Article
 
 	public function getNicePubDate()
 	{
-		return $this->mPubDate->format('D j M Y');
+		return $this->mPubDate->format('F jS, Y');
 	}
 
 	public function __toString()
