@@ -37,7 +37,6 @@ function init() {
 					image.src = event.target.result;
 					image.height = 100;
 					//drop.appendChild(image);
-					
 				};
 
 				reader.readAsDataURL(file);

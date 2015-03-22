@@ -36,28 +36,39 @@
                     ?>
 
                     <div id="share-links">
+                        <i class="fa fa-archive"> No:
+                            <span id="article-num">
+                                <?php echo $this->article->getId(); ?>
+                            </span>
+                        </i>
                         <i class="fa fa-calendar-o">
                             <?php echo $this->article->getNicePubDate(); ?>
                         </i>
                         <i class="fa fa-tags">
                             <?php echo $this->article->getTags(); ?>
                         </i>
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-via="poc275" data-hashtags="pondererscookbook">Tweet</a>
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-via="poc275" 
+                            data-hashtags="pondererscookbook">Tweet</a>
                         <i class="g-plus" data-action="share" data-annotation="bubble"></i>
                     </div>
 
-                    <?php
-                        echo $this->article->getContentHtml();
-                    ?>
+                    <?php echo $this->article->getContentHtml(); ?>
                 </article>
 
                 <div id="comments">
+
+                    <?php foreach($this->article->getComments() as $comment): ?>
+                        <p><?=$comment->getName(); ?></p>
+                        <p><?=$comment->getComment(); ?></p>
+                        <p><?=$comment->getNiceDate(); ?></p>
+                    <?php endforeach; ?>
+
                     <div id="comments-form">
-                        <h3>Leave a reply</h3>
+                    <h3>Leave a reply</h3>
                         <form action="addBlogComment.php" method="POST">
-                            <input type="text" name="author" placeholder="name" maxlength="50" required />
-                            <textarea name="comment" rows="3" required>comment...</textarea>
-                            <button type="submit">Post comment</button>
+                            <input type="text" id="author" name="author" placeholder="your name" maxlength="50" required />
+                            <textarea id="comment" name="comment" rows="3" required>comment...</textarea>
+                            <button type="submit" id="post-comment-btn">Post comment</button>
                         </form>
                     </div>
                 <div>
@@ -69,10 +80,18 @@
 
                     <address id="footer-social">
                         <ul id="footer-logos">
-                            <li><a href="#" title="send us an email"><i class="fa fa-envelope-o fa-4x"></i></a></li>
-                            <li><a href="#" title="find us on facebook"><i class="fa fa-facebook-square fa-4x"></i></a></li>
-                            <li><a href="#" title="tweet us"><i class="fa fa-twitter fa-4x"></i></a></li>
-                            <li><a href="../rss.xml" title="follow our blog"><i class="fa fa-rss fa-4x"></i></a></li>
+                            <li>
+                                <a href="#" title="send us an email"><i class="fa fa-envelope-o fa-4x"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" title="find us on facebook"><i class="fa fa-facebook-square fa-4x"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" title="tweet us"><i class="fa fa-twitter fa-4x"></i></a>
+                            </li>
+                            <li>
+                                <a href="../rss.xml" title="follow our blog"><i class="fa fa-rss fa-4x"></i></a>
+                            </li>
                         </ul>
                     </address>
                 </footer>
@@ -80,9 +99,12 @@
             </div>
         </div>
 
+        <script type="text/javascript" src="../js/AddComment.js"></script>
         <script src="https://apis.google.com/js/platform.js" async defer>
           {lang: 'en-GB'}
         </script>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+        </script>
+
     </body>
 </html>

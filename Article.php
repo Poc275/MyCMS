@@ -10,6 +10,8 @@ class Article
 	private $mContentHtml;
 	private $mPubDate;
 
+	private $mComments;
+
 	public function __construct($id, $title, $summary, $tags, $contentMd, $contentHtml, $pubDate)
 	{
 		$this->mId = $id;
@@ -72,6 +74,16 @@ class Article
 	public function getNicePubDate()
 	{
 		return $this->mPubDate->format('F jS, Y');
+	}
+
+	public function getComments()
+	{
+		return $this->mComments;
+	}
+
+	public function setComments($comments)
+	{
+		$this->mComments = $comments;
 	}
 
 	public function __toString()

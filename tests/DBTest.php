@@ -64,4 +64,16 @@ class DBTest extends PHPUnit_Framework_TestCase
 		$db->closeConnection();
 	}
 
+	public function testGetArticleComments()
+	{
+		$db = new Database;
+		$db->openConnection();
+
+		$comments = $db->getArticleComments(10);
+
+		$this->assertInternalType('array', $comments);
+
+		$db->closeConnection();
+	}
+
 }

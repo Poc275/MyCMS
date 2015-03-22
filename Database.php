@@ -1,6 +1,7 @@
 <?php
 
 require "Article.php";
+require "Comment.php";
 require "User.php";
 
 class Database
@@ -57,12 +58,12 @@ class Database
 		return $articles;
 	}
 
-	// TODO - Make a parameterised query
 	public function getArticle($id)
 	{
 		$articles = array();
-		$query = "SELECT * FROM articles WHERE id = " . $id;
+		$query = "SELECT * FROM articles WHERE id = ?";
 		$stmt = mysqli_prepare($this->mConnection, $query);
+		mysqli_stmt_bind_param($stmt, 'i', $id);
 
 		if (!mysqli_stmt_execute($stmt))
 		{
@@ -81,9 +82,40 @@ class Database
 	        }
 
 	        mysqli_stmt_close($stmt);
+
+	        // get article comments
+	        $articles[0]->setComments($this->getArticleComments($id));
 		}
 
 		return $articles;
+	}
+
+	public function getArticleComments($id)
+	{
+		$comments = array();
+		$query = "SELECT * FROM comments WHERE article = ?";
+		$stmt = mysqli_prepare($this->mConnection, $query);
+		mysqli_stmt_bind_param($stmt, 'i', $id);
+
+		if (!mysqli_stmt_execute($stmt))
+		{
+			throw new Exception("Database query failed");
+		}
+		else
+		{
+			mysqli_stmt_bind_result($stmt, $idCol, $articleCol, $nameCol, $commentCol, $dateCol);
+
+	        while (mysqli_stmt_fetch($stmt))
+	        {
+	        	$comment = new Comment($idCol, $articleCol, $nameCol, $commentCol, 
+	        		date_create_from_format('Y-m-d H:i:s', $dateCol));
+	        	array_push($comments, $comment);
+	        }
+
+	        mysqli_stmt_close($stmt);
+		}
+
+		return $comments;
 	}
 
 	public function addArticle($article)
@@ -102,6 +134,31 @@ class Database
 		$contentMd = $article->getContentMd();
 		$contentHtml = $article->getContentHtml();
 		$pubDate = $article->getPubDate();
+
+		if (mysqli_stmt_execute($stmt))
+		{
+			$created = true;
+		}
+
+		mysqli_stmt_close($stmt);
+
+		return $created;
+	}
+
+	public function addArticleComment($comment)
+	{
+		$created = false;
+
+		$insert = "INSERT INTO comments (article, name, comment, date) 
+					VALUES (?, ?, ?, ?)";
+
+		$stmt = mysqli_prepare($this->mConnection, $insert);
+		mysqli_stmt_bind_param($stmt, 'ssss', $article, $name, $commentText, $date);
+
+		$article = $comment->getArticle();
+		$name = $comment->getName();
+		$commentText = $comment->getComment();
+		$date = $comment->getDate();
 
 		if (mysqli_stmt_execute($stmt))
 		{
