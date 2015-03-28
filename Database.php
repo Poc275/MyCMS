@@ -83,8 +83,11 @@ class Database
 
 	        mysqli_stmt_close($stmt);
 
-	        // get article comments
-	        $articles[0]->setComments($this->getArticleComments($id));
+	        // get article comments (if we have an article, URL could be entered incorrectly)
+	        if (count($articles) !== 0)
+	        {
+	        	$articles[0]->setComments($this->getArticleComments($id));
+	        }
 		}
 
 		return $articles;

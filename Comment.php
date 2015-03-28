@@ -52,6 +52,6 @@ class Comment
 
 	public function getNiceDate()
 	{
-		return $this->mDate->format('F jS, Y');
+		return $this->mDate->format('F jS, Y - g:i a');
 	}
 }

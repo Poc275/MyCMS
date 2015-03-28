@@ -76,6 +76,11 @@ class Article
 		return $this->mPubDate->format('F jS, Y');
 	}
 
+	public function getHtmlPubDate()
+	{
+		return $this->mPubDate->format('Y-m-d');
+	}
+
 	public function getComments()
 	{
 		return $this->mComments;

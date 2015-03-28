@@ -42,36 +42,46 @@
                             </span>
                         </i>
                         <i class="fa fa-calendar-o">
-                            <?php echo $this->article->getNicePubDate(); ?>
+                            <time datetime="<?php echo $this->article->getHtmlPubDate(); ?>">
+                                <?php echo $this->article->getNicePubDate(); ?>
+                            </time>
                         </i>
                         <i class="fa fa-tags">
                             <?php echo $this->article->getTags(); ?>
                         </i>
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-via="poc275" 
-                            data-hashtags="pondererscookbook">Tweet</a>
+                        <i><a href="https://twitter.com/share" class="twitter-share-button" data-via="poc275" 
+                            data-hashtags="pondererscookbook">Tweet</a></i>
                         <i class="g-plus" data-action="share" data-annotation="bubble"></i>
+                        <div class="fb-share-button" data-layout="button_count"></div>
                     </div>
 
                     <?php echo $this->article->getContentHtml(); ?>
+
                 </article>
 
-                <div id="comments">
+
+                <div id="comments-toggle">Other Ponderings</div>
+                
+                <div id="comments" class="comments-shrunk">
 
                     <?php foreach($this->article->getComments() as $comment): ?>
-                        <p><?=$comment->getName(); ?></p>
-                        <p><?=$comment->getComment(); ?></p>
-                        <p><?=$comment->getNiceDate(); ?></p>
+                        <article class="comment">
+                            <p><?=htmlspecialchars($comment->getName()); ?>, 
+                                <?=$comment->getNiceDate(); ?></p>
+                            <p><?=htmlspecialchars($comment->getComment()); ?></p>
+                        </article>
                     <?php endforeach; ?>
 
                     <div id="comments-form">
-                    <h3>Leave a reply</h3>
+                        <h3>Join the discussion</h3>
                         <form action="addBlogComment.php" method="POST">
                             <input type="text" id="author" name="author" placeholder="your name" maxlength="50" required />
                             <textarea id="comment" name="comment" rows="3" required>comment...</textarea>
-                            <button type="submit" id="post-comment-btn">Post comment</button>
+                            <button type="submit" id="post-comment-btn">Post</button>
                         </form>
                     </div>
                 <div>
+
 
                 <footer>
                     <p>The ponderers are <a href="http://www.pjfreeman.co.uk/">Phillip Freeman</a> &amp; 
@@ -98,13 +108,21 @@
 
             </div>
         </div>
-
-        <script type="text/javascript" src="../js/AddComment.js"></script>
-        <script src="https://apis.google.com/js/platform.js" async defer>
-          {lang: 'en-GB'}
+        
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.0";
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
         </script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
         </script>
+        <script type="text/javascript" src="../js/AddComment.js"></script>
+        <script type="text/javascript" src="../js/ShowComments.js"></script>
 
     </body>
 </html>
