@@ -54,4 +54,9 @@ class Comment
 	{
 		return $this->mDate->format('F jS, Y - g:i a');
 	}
+
+	public function getHtmlDate()
+	{
+		return $this->mDate->format('Y-m-d');
+	}
 }

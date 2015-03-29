@@ -1,14 +1,18 @@
 <!DOCTYPE html>
+
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title><?php echo $this->article->getTitle() ?> - The Ponderers Cookbook</title>
+        <title>
+            <?php echo $this->article->getTitle(); ?> - The Ponderers Cookbook
+        </title>
         <link rel="stylesheet" href="../css/reset.css">
         <link rel="stylesheet" href="../css/article-style.css">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
 
     <body>
+
         <div id="page">
             <div id="inner">
                 <header>
@@ -30,27 +34,31 @@
                 </header>
 
                 <article>
-                    <?php
-                        echo '<h3>' . $this->article->getTitle() . '</h3>';
-                        echo '<h4>tldr&#59; ' . $this->article->getSummary() . '</h4>';
-                    ?>
+                    <h3>
+                        <?php echo $this->article->getTitle(); ?>
+                    </h3>
+                    <h4 id="tldr">tldr&#59; 
+                        <?php echo $this->article->getSummary(); ?>
+                    </h4>
 
                     <div id="share-links">
-                        <i class="fa fa-archive"> No:
+                        <i class="fa fa-archive"> No: 
                             <span id="article-num">
                                 <?php echo $this->article->getId(); ?>
                             </span>
                         </i>
                         <i class="fa fa-calendar-o">
-                            <time datetime="<?php echo $this->article->getHtmlPubDate(); ?>">
+                            <time datetime="<?php echo $this->article->getHtmlPubDate(); ?>"> 
                                 <?php echo $this->article->getNicePubDate(); ?>
                             </time>
                         </i>
-                        <i class="fa fa-tags">
+                        <i class="fa fa-tags"> 
                             <?php echo $this->article->getTags(); ?>
                         </i>
-                        <i><a href="https://twitter.com/share" class="twitter-share-button" data-via="poc275" 
-                            data-hashtags="pondererscookbook">Tweet</a></i>
+                        <i>
+                            <a href="https://twitter.com/share" class="twitter-share-button" data-via="poc275" 
+                                data-hashtags="pondererscookbook">Tweet</a>
+                        </i>
                         <i class="g-plus" data-action="share" data-annotation="bubble"></i>
                         <div class="fb-share-button" data-layout="button_count"></div>
                     </div>
@@ -59,29 +67,35 @@
 
                 </article>
 
-
                 <div id="comments-toggle">Other Ponderings</div>
                 
                 <div id="comments" class="comments-shrunk">
 
                     <?php foreach($this->article->getComments() as $comment): ?>
                         <article class="comment">
-                            <p><?=htmlspecialchars($comment->getName()); ?>, 
-                                <?=$comment->getNiceDate(); ?></p>
-                            <p><?=htmlspecialchars($comment->getComment()); ?></p>
+                            <h5>
+                                <?=htmlspecialchars($comment->getName()); ?>
+                            </h5>
+                            <p>
+                                <time datetime="<?=$comment->getHtmlDate(); ?>">
+                                    <?=$comment->getNiceDate(); ?>
+                                </time>
+                            </p>
+                            <p>
+                                <?=htmlspecialchars($comment->getComment()); ?>
+                            </p>
                         </article>
                     <?php endforeach; ?>
 
                     <div id="comments-form">
                         <h3>Join the discussion</h3>
-                        <form action="addBlogComment.php" method="POST">
-                            <input type="text" id="author" name="author" placeholder="your name" maxlength="50" required />
-                            <textarea id="comment" name="comment" rows="3" required>comment...</textarea>
-                            <button type="submit" id="post-comment-btn">Post</button>
-                        </form>
+                            <form action="addBlogComment.php" method="POST">
+                                <input type="text" id="author" name="author" placeholder="your name" maxlength="50" required />
+                                <textarea id="comment" name="comment" rows="3" required>comment...</textarea>
+                                <button type="submit" id="post-comment-btn">Post</button>
+                            </form>
                     </div>
-                <div>
-
+                </div>
 
                 <footer>
                     <p>The ponderers are <a href="http://www.pjfreeman.co.uk/">Phillip Freeman</a> &amp; 
@@ -108,16 +122,15 @@
 
             </div>
         </div>
-        
+
         <div id="fb-root"></div>
         <script>(function(d, s, id) {
-              var js, fjs = d.getElementsByTagName(s)[0];
-              if (d.getElementById(id)) return;
-              js = d.createElement(s); js.id = id;
-              js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.0";
-              fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        </script>
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.0";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
         </script>
@@ -125,4 +138,5 @@
         <script type="text/javascript" src="../js/ShowComments.js"></script>
 
     </body>
+
 </html>
