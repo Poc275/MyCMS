@@ -1,5 +1,6 @@
 (function (window) {
     var commentsToggle = document.getElementById("comments-toggle");
+    var commentsToggleText = document.getElementById("comments-toggle-text");
     var comments = document.getElementById("comments");
     var visible = false;
 
@@ -9,10 +10,10 @@
 
         if (visible) {
             comments.className = "comments-expanded";
-            commentsToggle.textContent = "Hide Ponderings";
+            commentsToggleText.textContent = "Hide Comments";
         } else {
             comments.className = "comments-shrunk";
-            commentsToggle.textContent = "Other Ponderings";
+            commentsToggleText.textContent = "Comments";
         }
     });
 

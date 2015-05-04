@@ -4,73 +4,87 @@
     <head>
         <meta charset="utf-8" />
         <title>
-            <?php echo $this->article->getTitle(); ?> - The Ponderers Cookbook
+            <?php echo $this->article->getTitle(); ?> - A Food Odyssey
         </title>
         <link rel="stylesheet" href="../css/reset.css">
         <link rel="stylesheet" href="../css/article-style.css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,800' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400italic,400' rel='stylesheet' type='text/css'>
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
 
     <body>
 
-        <div id="page">
-            <div id="inner">
-                <header>
-                    <h1>The Ponderers Cookbook</h1>
-                    <h2><span>Musings from a couple of amateur cooks</span></h2>
-                    <nav>
-                        <ul>
-                            <li>
-                                <a href="#"><i>Visit</i>The Archives</a>
-                            </li>
-                            <li>
-                                <a href="#"><i>The</i>Lexicon</a>
-                            </li>
-                            <li>
-                                <a href="#"><i>About</i>Our Blog</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </header>
+        <div class="grid-container">
+            <header id="site-header">
+                <h1>A Food <i>Odyssey</i></h1>
+                <p id="tagline">Amateurs trawl through the world of food...</p>
+                <nav>
+                    <ul>
+                        <li><a href="#">THE Archives</a></li>
+                        <li><a href="#">THE Lexicon</a></li>
+                        <li><a href="#">ABOUT Us</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
 
-                <article>
-                    <h3>
-                        <?php echo $this->article->getTitle(); ?>
-                    </h3>
-                    <h4 id="tldr">tldr&#59; 
-                        <?php echo $this->article->getSummary(); ?>
-                    </h4>
 
-                    <div id="share-links">
-                        <i class="fa fa-archive"> No: 
-                            <span id="article-num">
-                                <?php echo $this->article->getId(); ?>
-                            </span>
-                        </i>
-                        <i class="fa fa-calendar-o">
-                            <time datetime="<?php echo $this->article->getHtmlPubDate(); ?>"> 
-                                <?php echo $this->article->getNicePubDate(); ?>
-                            </time>
-                        </i>
-                        <i class="fa fa-tags"> 
-                            <?php echo $this->article->getTags(); ?>
-                        </i>
-                        <i>
-                            <a href="https://twitter.com/share" class="twitter-share-button" data-via="poc275" 
-                                data-hashtags="pondererscookbook">Tweet</a>
-                        </i>
-                        <i class="g-plus" data-action="share" data-annotation="bubble"></i>
-                        <div class="fb-share-button" data-layout="button_count"></div>
-                    </div>
+        <header id="article-header">
+            <div class="article-header-container">
+                <h1>
+                    <?php echo $this->article->getTitle(); ?>
+                </h1>
+                <p>
+                    <abbr title="too long, didn't read. A quick summary for those who are in a rush">
+                        tldr&#59; 
+                    </abbr>
+                    <?php echo $this->article->getSummary(); ?>
+                </p>
+            </div>
+        </header>
 
-                    <?php echo $this->article->getContentHtml(); ?>
 
-                </article>
+        <div class="grid-container">
+            <aside id="article-info">
+                <p>
+                    <!-- TO DO - links to next and previous articles -->
+                    No: 
+                    <span id="article-num">
+                        <?php echo $this->article->getId(); ?>
+                    </span>
+                    <a href="#">&larr;</a> <a href="#">&rarr;</a>
+                </p>
+                <p>
+                    <i class="fa fa-calendar"></i> 
+                    <time datetime="<?php echo $this->article->getHtmlPubDate(); ?>"> 
+                        <?php echo $this->article->getNicePubDate(); ?>
+                    </time>
+                </p>
+                <p>
+                    <i class="fa fa-tags"></i> 
+                    <?php echo $this->article->getTags(); ?>
+                </p>
 
-                <div id="comments-toggle">Other Ponderings</div>
-                
+                <!-- TO DO - add a method to the Article class -->
+                <h4>What to do:</h4>
+                <ol>
+                    <li>Season beef and place in oven at mark 5 for 40 minutes.</li>
+                    <li>Blend 2 tbsp of Gochujang with 2 tbsp of soy, 1 tbsp rice wine vinegar, and 2 cloves of garlic.</li>
+                    <li>Fry off a couple of peppers, carrots and onions.</li>
+                    <li>Place sub or baguette in oven.</li>
+                    <li>Shred beef and mix into sauce.</li>
+                    <li>Fill subs, lay over some Emmenthal cheese and place back in oven until it has melted.</li>
+                    <li>EAT!</li>
+                </ol>
+            </aside>
+
+            <article id="main-article">
+                <?php echo $this->article->getContentHtml(); ?>
+
+                <div id="comments-toggle"><h3 id="comments-toggle-text">Comments</h3></div>
+
                 <div id="comments" class="comments-shrunk">
-
                     <?php foreach($this->article->getComments() as $comment): ?>
                         <article class="comment">
                             <h5>
@@ -86,57 +100,44 @@
                             </p>
                         </article>
                     <?php endforeach; ?>
-
-                    <div id="comments-form">
-                        <h3>Join the discussion</h3>
-                            <form action="addBlogComment.php" method="POST">
-                                <input type="text" id="author" name="author" placeholder="your name" maxlength="50" required />
-                                <textarea id="comment" name="comment" rows="3" required>comment...</textarea>
-                                <button type="submit" id="post-comment-btn">Post</button>
-                            </form>
-                    </div>
                 </div>
 
-                <footer>
-                    <p>The ponderers are <a href="http://www.pjfreeman.co.uk/">Phillip Freeman</a> &amp; 
-                        <a href="http://poc275.co.uk">Peter O'Connor</a></p>
-                    <p>Illustrations by <a href="http://en.wikipedia.org/wiki/Sidney_Paget">Sidney Paget</a></p>
+            </article>
 
-                    <address id="footer-social">
-                        <ul id="footer-logos">
-                            <li>
-                                <a href="#" title="send us an email"><i class="fa fa-envelope-o fa-4x"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" title="find us on facebook"><i class="fa fa-facebook-square fa-4x"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" title="tweet us"><i class="fa fa-twitter fa-4x"></i></a>
-                            </li>
-                            <li>
-                                <a href="../rss.xml" title="follow our blog"><i class="fa fa-rss fa-4x"></i></a>
-                            </li>
-                        </ul>
-                    </address>
-                </footer>
+            <aside id="article-share">
+                <h4>Share this article</h4>
+                <ul>
+                    <li id="share-twitter"><a href="#" class="no-decoration"><i class="fa fa-twitter fa-2x"></i></a></li>
+                    <li id="share-facebook"><a href="#" class="no-decoration"><i class="fa fa-facebook fa-2x"></i></a></li>
+                    <li id="share-google"><a href="#" class="no-decoration"><i class="fa fa-google-plus fa-2x"></i></a></li>
+                </ul>
 
-            </div>
+                <h5>Get involved</h5>
+                <form action="addBlogComment.php" method="POST">
+                    <input type="text" id="author" name="author" placeholder="your name" maxlength="50" required />
+                    <textarea id="comment" name="comment" placeholder="comment" rows="5" required></textarea>
+                    <button type="submit" id="post-comment-btn">Post</button>
+                </form>
+            </aside>
+
         </div>
+            
 
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.0";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-        </script>
+        <footer>
+            <p>A Food Odyssey is a journey by <a href="http://www.pjfreeman.co.uk/">Phil Freeman</a> &amp; 
+                <a href="http://poc275.co.uk">Peter O'Connor</a>
+            </p>
+            <address id="footer-social">
+                <ul id="footer-logos">
+                    <li><a href="#" title="send us an email" class="no-decoration"><i class="fa fa-envelope-o fa-4x"></i></a></li>
+                    <li><a href="../rss.xml" title="follow our blog" class="no-decoration"><i class="fa fa-rss fa-4x"></i></a></li>
+                </ul>
+            </address>
+        </footer>
+
+
         <script type="text/javascript" src="../js/AddComment.js"></script>
         <script type="text/javascript" src="../js/ShowComments.js"></script>
-
     </body>
 
 </html>
