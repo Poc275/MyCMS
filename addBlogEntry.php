@@ -17,7 +17,7 @@ if ($db->openConnection())
 	// and 1 without when it is first created and before it is submitted to the DB.
 	// PHP doesn't allow multiple constructors so must use static functions
 	$article = new Article(0, $_POST["title"], $_POST["summary"], $_POST["tags"], $_POST["contentMd"], 
-		$contentHtml, $date);
+		$contentHtml, $date, $_POST["banner-image-path"]);
 
 	if ($db->addArticle($article))
 	{

@@ -9,10 +9,11 @@ class Article
 	private $mContentMd;
 	private $mContentHtml;
 	private $mPubDate;
+	private $mBannerImagePath;
 
 	private $mComments;
 
-	public function __construct($id, $title, $summary, $tags, $contentMd, $contentHtml, $pubDate)
+	public function __construct($id, $title, $summary, $tags, $contentMd, $contentHtml, $pubDate, $bannerImagePath)
 	{
 		$this->mId = $id;
 		$this->mTitle = $title;
@@ -20,6 +21,7 @@ class Article
 		$this->mTags = $tags;
 		$this->mContentMd = $contentMd;
 		$this->mContentHtml = $contentHtml;
+		$this->mBannerImagePath = $bannerImagePath;
 
 		if ($pubDate instanceof DateTime)
 		{
@@ -79,6 +81,11 @@ class Article
 	public function getHtmlPubDate()
 	{
 		return $this->mPubDate->format('Y-m-d');
+	}
+
+	public function getBannerImagePath()
+	{
+		return $this->mBannerImagePath;
 	}
 
 	public function getComments()

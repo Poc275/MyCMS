@@ -42,13 +42,13 @@ class Database
 	    }
 	    else
 	    {
-	        mysqli_stmt_bind_result($stmt, $idCol, $titleCol, $summaryCol, $tagsCol, $contentMdCol, 
-	        	$contentHtmlCol, $pubDateCol);
+	        mysqli_stmt_bind_result($stmt, $idCol, $titleCol, $summaryCol, $tagsCol, $bannerImagePathCol, 
+	        	$contentMdCol, $contentHtmlCol, $pubDateCol);
 
 	        while (mysqli_stmt_fetch($stmt))
 	        {
 	        	$article = new Article($idCol, $titleCol, $summaryCol, $tagsCol, $contentMdCol, 
-	        		$contentHtmlCol, date_create_from_format('Y-m-d H:i:s', $pubDateCol));
+	        		$contentHtmlCol, date_create_from_format('Y-m-d H:i:s', $pubDateCol), $bannerImagePathCol);
 	        	array_push($articles, $article);
 	        }
 
@@ -71,13 +71,13 @@ class Database
 		}
 		else
 		{
-			mysqli_stmt_bind_result($stmt, $idCol, $titleCol, $summaryCol, $tagsCol, $contentMdCol, 
-	        	$contentHtmlCol, $pubDateCol);
+			mysqli_stmt_bind_result($stmt, $idCol, $titleCol, $summaryCol, $tagsCol, $bannerImagePathCol, 
+				$contentMdCol, $contentHtmlCol, $pubDateCol);
 
 	        while (mysqli_stmt_fetch($stmt))
 	        {
 	        	$article = new Article($idCol, $titleCol, $summaryCol, $tagsCol, $contentMdCol, 
-	        		$contentHtmlCol, date_create_from_format('Y-m-d H:i:s', $pubDateCol));
+	        		$contentHtmlCol, date_create_from_format('Y-m-d H:i:s', $pubDateCol), $bannerImagePathCol);
 	        	array_push($articles, $article);
 	        }
 
@@ -125,15 +125,16 @@ class Database
 	{
 		$created = false;
 
-		$insert = "INSERT INTO articles (title, summary, tags, content_md, content_html, pubDate) 
-					VALUES (?, ?, ?, ?, ?, ?)";
+		$insert = "INSERT INTO articles (title, summary, tags, banner_image_path, content_md, content_html, pubDate) 
+					VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		$stmt = mysqli_prepare($this->mConnection, $insert);
-		mysqli_stmt_bind_param($stmt, 'ssssss', $title, $summary, $tags, $contentMd, $contentHtml, $pubDate);
+		mysqli_stmt_bind_param($stmt, 'sssssss', $title, $summary, $tags, $bannerImagePath, $contentMd, $contentHtml, $pubDate);
 
 		$title = $article->getTitle();
 		$summary = $article->getSummary();
 		$tags = $article->getTags();
+		$bannerImagePath = $article->getBannerImagePath();
 		$contentMd = $article->getContentMd();
 		$contentHtml = $article->getContentHtml();
 		$pubDate = $article->getPubDate();
