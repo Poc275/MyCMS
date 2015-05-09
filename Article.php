@@ -10,10 +10,13 @@ class Article
 	private $mContentHtml;
 	private $mPubDate;
 	private $mBannerImagePath;
+	private $mDirectionsMd;
+	private $mDirectionsHtml;
 
 	private $mComments;
 
-	public function __construct($id, $title, $summary, $tags, $contentMd, $contentHtml, $pubDate, $bannerImagePath)
+	public function __construct($id, $title, $summary, $tags, $contentMd, $contentHtml, $pubDate, $bannerImagePath, 
+		$directionsMd, $directionsHtml)
 	{
 		$this->mId = $id;
 		$this->mTitle = $title;
@@ -22,6 +25,8 @@ class Article
 		$this->mContentMd = $contentMd;
 		$this->mContentHtml = $contentHtml;
 		$this->mBannerImagePath = $bannerImagePath;
+		$this->mDirectionsMd = $directionsMd;
+		$this->mDirectionsHtml = $directionsHtml;
 
 		if ($pubDate instanceof DateTime)
 		{
@@ -86,6 +91,16 @@ class Article
 	public function getBannerImagePath()
 	{
 		return $this->mBannerImagePath;
+	}
+
+	public function getDirectionsMd()
+	{
+		return $this->mDirectionsMd;
+	}
+
+	public function getDirectionsHtml()
+	{
+		return $this->mDirectionsHtml;
 	}
 
 	public function getComments()

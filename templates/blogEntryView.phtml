@@ -70,15 +70,7 @@
 
                 <!-- TO DO - add a method to the Article class -->
                 <h4>What to do:</h4>
-                <ol>
-                    <li>Season beef and place in oven at mark 5 for 40 minutes.</li>
-                    <li>Blend 2 tbsp of Gochujang with 2 tbsp of soy, 1 tbsp rice wine vinegar, and 2 cloves of garlic.</li>
-                    <li>Fry off a couple of peppers, carrots and onions.</li>
-                    <li>Place sub or baguette in oven.</li>
-                    <li>Shred beef and mix into sauce.</li>
-                    <li>Fill subs, lay over some Emmenthal cheese and place back in oven until it has melted.</li>
-                    <li>EAT!</li>
-                </ol>
+                <?php echo $this->article->getDirectionsHtml(); ?>
             </aside>
 
             <article id="main-article">

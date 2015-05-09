@@ -43,12 +43,13 @@ class Database
 	    else
 	    {
 	        mysqli_stmt_bind_result($stmt, $idCol, $titleCol, $summaryCol, $tagsCol, $bannerImagePathCol, 
-	        	$contentMdCol, $contentHtmlCol, $pubDateCol);
+	        	$directionsMdCol, $directionsHtmlCol, $contentMdCol, $contentHtmlCol, $pubDateCol);
 
 	        while (mysqli_stmt_fetch($stmt))
 	        {
 	        	$article = new Article($idCol, $titleCol, $summaryCol, $tagsCol, $contentMdCol, 
-	        		$contentHtmlCol, date_create_from_format('Y-m-d H:i:s', $pubDateCol), $bannerImagePathCol);
+	        		$contentHtmlCol, date_create_from_format('Y-m-d H:i:s', $pubDateCol), $bannerImagePathCol, 
+	        		$directionsMdCol, $directionsHtmlCol);
 	        	array_push($articles, $article);
 	        }
 
@@ -72,12 +73,13 @@ class Database
 		else
 		{
 			mysqli_stmt_bind_result($stmt, $idCol, $titleCol, $summaryCol, $tagsCol, $bannerImagePathCol, 
-				$contentMdCol, $contentHtmlCol, $pubDateCol);
+	        	$directionsMdCol, $directionsHtmlCol, $contentMdCol, $contentHtmlCol, $pubDateCol);
 
 	        while (mysqli_stmt_fetch($stmt))
 	        {
 	        	$article = new Article($idCol, $titleCol, $summaryCol, $tagsCol, $contentMdCol, 
-	        		$contentHtmlCol, date_create_from_format('Y-m-d H:i:s', $pubDateCol), $bannerImagePathCol);
+	        		$contentHtmlCol, date_create_from_format('Y-m-d H:i:s', $pubDateCol), $bannerImagePathCol, 
+	        		$directionsMdCol, $directionsHtmlCol);
 	        	array_push($articles, $article);
 	        }
 
@@ -125,16 +127,19 @@ class Database
 	{
 		$created = false;
 
-		$insert = "INSERT INTO articles (title, summary, tags, banner_image_path, content_md, content_html, pubDate) 
-					VALUES (?, ?, ?, ?, ?, ?, ?)";
+		$insert = "INSERT INTO articles (title, summary, tags, banner_image_path, directions_md, directions_html, 
+			content_md, content_html, pubDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		$stmt = mysqli_prepare($this->mConnection, $insert);
-		mysqli_stmt_bind_param($stmt, 'sssssss', $title, $summary, $tags, $bannerImagePath, $contentMd, $contentHtml, $pubDate);
+		mysqli_stmt_bind_param($stmt, 'sssssssss', $title, $summary, $tags, $bannerImagePath, 
+			$directionsMd, $directionsHtml, $contentMd, $contentHtml, $pubDate);
 
 		$title = $article->getTitle();
 		$summary = $article->getSummary();
 		$tags = $article->getTags();
 		$bannerImagePath = $article->getBannerImagePath();
+		$directionsMd = $article->getDirectionsMd();
+		$directionsHtml = $article->getDirectionsHtml();
 		$contentMd = $article->getContentMd();
 		$contentHtml = $article->getContentHtml();
 		$pubDate = $article->getPubDate();
