@@ -3,6 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>
             <?php echo $this->article->getTitle(); ?> - A Food Odyssey
         </title>
@@ -111,6 +112,7 @@
                     <textarea id="comment" name="comment" placeholder="comment" rows="5" required></textarea>
                     <button type="submit" id="post-comment-btn">Post</button>
                 </form>
+                <p id="comment-result"></p>
             </aside>
 
         </div>
@@ -122,7 +124,7 @@
             </p>
             <address id="footer-social">
                 <ul id="footer-logos">
-                    <li><a href="#" title="send us an email" class="no-decoration"><i class="fa fa-envelope-o fa-4x"></i></a></li>
+                    <li><a href="mailto:poc275@gmail.com?Subject=A%20Food%20Odyssey" title="send us an email" class="no-decoration"><i class="fa fa-envelope-o fa-4x"></i></a></li>
                     <li><a href="../rss.xml" title="follow our blog" class="no-decoration"><i class="fa fa-rss fa-4x"></i></a></li>
                 </ul>
             </address>

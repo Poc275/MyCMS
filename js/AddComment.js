@@ -36,8 +36,9 @@
 
 		    httpRequest.onreadystatechange = function() {
 		    	if (httpRequest.readyState === 4 && httpRequest.status === 200) {
-		    		// TODO - Clear form and output message to the user
-		    		document.getElementById("comments").innerHTML += httpRequest.responseText;
+		    		document.getElementById("author").value = "";
+		    		document.getElementById("comment").value = "";
+		    		document.getElementById("comment-result").innerHTML = httpRequest.responseText;
 		    	}
 		    }
 

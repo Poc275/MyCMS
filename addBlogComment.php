@@ -16,11 +16,11 @@ if (isset($_POST["author"]) && isset($_POST["comment"]) && isset($_POST["article
 
 		if ($db->addArticleComment($comment))
 		{
-			echo "Comment added";
+			echo "Thankyou for your comment";
 		}
 		else
 		{
-			echo "Comment not added";
+			echo "Apologies, an error has occurred. <a href='mailto:poc275@gmail.com?Subject=A%20Food%20Odyssey'>Report</a>";
 		}
 
 		$db->closeConnection();
