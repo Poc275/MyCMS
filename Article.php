@@ -13,7 +13,11 @@ class Article
 	private $mDirectionsMd;
 	private $mDirectionsHtml;
 
+	private $mNextArticleId;
+	private $mPreviousArticleId;
+
 	private $mComments;
+
 
 	public function __construct($id, $title, $summary, $tags, $contentMd, $contentHtml, $pubDate, $bannerImagePath, 
 		$directionsMd, $directionsHtml)
@@ -111,6 +115,26 @@ class Article
 	public function setComments($comments)
 	{
 		$this->mComments = $comments;
+	}
+
+	public function getNextArticleId()
+	{
+		return $this->mNextArticleId;
+	}
+
+	public function setNextArticleId($id)
+	{
+		$this->mNextArticleId = $id;
+	}
+
+	public function getPreviousArticleId()
+	{
+		return $this->mPreviousArticleId;
+	}
+
+	public function setPreviousArticleId($id)
+	{
+		$this->mPreviousArticleId = $id;
 	}
 
 	public function __toString()

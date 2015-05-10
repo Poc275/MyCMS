@@ -21,6 +21,7 @@ class Database
         return $result;
 	}
 
+
 	public function closeConnection()
 	{
 		mysqli_close($this->mConnection);
@@ -59,6 +60,7 @@ class Database
 		return $articles;
 	}
 
+
 	public function getArticle($id)
 	{
 		$articles = array();
@@ -85,15 +87,127 @@ class Database
 
 	        mysqli_stmt_close($stmt);
 
-	        // get article comments (if we have an article, URL could be entered incorrectly)
+	        // get article comments (if we have an article, URL could be entered incorrectly),
+	        // and get next and previous article ids for links to work
 	        if (count($articles) !== 0)
 	        {
 	        	$articles[0]->setComments($this->getArticleComments($id));
+	        	$articles[0]->setNextArticleId($this->getNextArticleId($id));
+	        	$articles[0]->setPreviousArticleId($this->getPreviousArticleId($id));
 	        }
 		}
 
 		return $articles;
 	}
+
+
+	public function getNextArticleId($id)
+	{
+		$nextArticleId = 0;
+
+		$query = "SELECT id FROM articles WHERE id = (SELECT min(id) FROM articles WHERE id > ?)";
+		$stmt = mysqli_prepare($this->mConnection, $query);
+		mysqli_stmt_bind_param($stmt, 'i', $id);
+
+		// Do not throw an error just because the links do not work
+		if (mysqli_stmt_execute($stmt))
+		{
+			mysqli_stmt_bind_result($stmt, $idCol);
+
+			while (mysqli_stmt_fetch($stmt))
+			{
+				$nextArticleId = $idCol;
+			}
+
+			mysqli_stmt_close($stmt);
+		}
+
+		// if there isn't a next article, go back to the beginning
+		if ($nextArticleId === 0)
+		{
+			$nextArticleId = $this->getFirstArticleId();
+		}
+
+		return $nextArticleId;
+	}
+
+
+	public function getPreviousArticleId($id)
+	{
+		$previousArticleId = 0;
+
+		$query = "SELECT id FROM articles WHERE id = (SELECT max(id) FROM articles WHERE id < ?)";
+		$stmt = mysqli_prepare($this->mConnection, $query);
+		mysqli_stmt_bind_param($stmt, 'i', $id);
+
+		// Do not throw an error just because the links do not work
+		if (mysqli_stmt_execute($stmt))
+		{
+			mysqli_stmt_bind_result($stmt, $idCol);
+
+			while (mysqli_stmt_fetch($stmt))
+			{
+				$previousArticleId = $idCol;
+			}
+
+			mysqli_stmt_close($stmt);
+		}
+
+		// if there isn't a previous article, go to the end
+		if ($previousArticleId === 0)
+		{
+			$previousArticleId = $this->getLastArticleId();
+		}
+
+		return $previousArticleId;
+	}
+
+
+	public function getFirstArticleId()
+	{
+		$firstArticleId = 0;
+
+		$query = "SELECT id FROM articles ORDER BY id ASC LIMIT 1";
+		$stmt = mysqli_prepare($this->mConnection, $query);
+
+		if (mysqli_stmt_execute($stmt))
+		{
+			mysqli_stmt_bind_result($stmt, $idCol);
+
+			while (mysqli_stmt_fetch($stmt))
+			{
+				$firstArticleId = $idCol;
+			}
+
+			mysqli_stmt_close($stmt);
+		}
+
+		return $firstArticleId;
+	}
+
+
+	public function getLastArticleId()
+	{
+		$lastArticleId = 0;
+
+		$query = "SELECT id FROM articles ORDER BY id DESC LIMIT 1";
+		$stmt = mysqli_prepare($this->mConnection, $query);
+
+		if (mysqli_stmt_execute($stmt))
+		{
+			mysqli_stmt_bind_result($stmt, $idCol);
+
+			while (mysqli_stmt_fetch($stmt))
+			{
+				$lastArticleId = $idCol;
+			}
+
+			mysqli_stmt_close($stmt);
+		}
+
+		return $lastArticleId;
+	}
+
 
 	public function getArticleComments($id)
 	{
@@ -122,6 +236,7 @@ class Database
 
 		return $comments;
 	}
+
 
 	public function addArticle($article)
 	{
@@ -153,6 +268,7 @@ class Database
 
 		return $created;
 	}
+
 
 	public function addArticleComment($comment)
 	{

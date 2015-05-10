@@ -1,7 +1,9 @@
 <?php
 
 require(dirname(__FILE__)."/../Database.php");
-//require(dirname(__FILE__)."/../User.php");
+
+const FIRST_ARTICLE = 1;
+const LAST_ARTICLE = 12;
 
 class DBTest extends PHPUnit_Framework_TestCase
 {
@@ -37,7 +39,7 @@ class DBTest extends PHPUnit_Framework_TestCase
 		$db = new Database;
 		$db->openConnection();
 
-		$article = $db->getArticle(1);
+		$article = $db->getArticle(FIRST_ARTICLE);
 
 		$this->assertInternalType('array', $article);
 		// should only be 1 result
@@ -69,11 +71,48 @@ class DBTest extends PHPUnit_Framework_TestCase
 		$db = new Database;
 		$db->openConnection();
 
-		$comments = $db->getArticleComments(10);
+		$comments = $db->getArticleComments(LAST_ARTICLE);
 
 		$this->assertInternalType('array', $comments);
 
 		$db->closeConnection();
 	}
 
+	public function testGetNeighbouringArticleIds()
+	{
+		$db = new Database;
+		$db->openConnection();
+
+		$article = $db->getArticle(8);
+
+		$this->assertEquals(11, $article[0]->getNextArticleId());
+		$this->assertEquals(7, $article[0]->getPreviousArticleId());
+
+		$db->closeConnection();
+	}
+
+	public function testGetEndArticleIds()
+	{
+		$db = new Database;
+		$db->openConnection();
+
+		$this->assertEquals(FIRST_ARTICLE, $db->getFirstArticleId());
+		$this->assertEquals(LAST_ARTICLE, $db->getLastArticleId());
+
+		$db->closeConnection();
+	}
+
+	public function testGetEdgeArticleIds()
+	{
+		$db = new Database;
+		$db->openConnection();
+
+		$article = $db->getArticle(FIRST_ARTICLE);
+		$this->assertEquals(LAST_ARTICLE, $article[0]->getPreviousArticleId());
+
+		$article = $db->getArticle(LAST_ARTICLE);
+		$this->assertEquals(FIRST_ARTICLE, $article[0]->getNextArticleId());
+
+		$db->closeConnection();
+	}
 }

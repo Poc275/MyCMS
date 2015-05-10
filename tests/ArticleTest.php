@@ -68,11 +68,18 @@ class ArticleTest extends PHPUnit_Framework_TestCase
 		array_push($comments, new Comment(2, 10, "Paul", "Agree!", $date));
 		$article->setComments($comments);
 
+		$article->setNextArticleId(3);
+		$article->setPreviousArticleId(7);
+
+
 		$this->assertInternalType('array', $article->getComments());
 		$this->assertEquals(2, count($article->getComments()));
 
 		$returnedComments = $article->getComments();
 		$firstComment = $returnedComments[0];
 		$this->assertInstanceOf('Comment', $firstComment);
+
+		$this->assertEquals(3, $article->getNextArticleId());
+		$this->assertEquals(7, $article->getPreviousArticleId());
 	}
 }

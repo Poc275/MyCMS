@@ -51,12 +51,12 @@
         <div class="grid-container">
             <aside id="article-info">
                 <p>
-                    <!-- TO DO - links to next and previous articles -->
                     No: 
                     <span id="article-num">
                         <?php echo $this->article->getId(); ?>
                     </span>
-                    <a href="#">&larr;</a> <a href="#">&rarr;</a>
+                    <a href="/MyCMS/articles/<?php echo $this->article->getPreviousArticleId();  ?>">&larr;</a> 
+                    <a href="/MyCMS/articles/<?php echo $this->article->getNextArticleId();  ?>">&rarr;</a>
                 </p>
                 <p>
                     <i class="fa fa-calendar"></i> 
