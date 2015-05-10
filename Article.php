@@ -42,6 +42,7 @@ class Article
 		}
 	}
 
+
 	public function getId()
 	{
 		return $this->mId;
@@ -136,6 +137,13 @@ class Article
 	{
 		$this->mPreviousArticleId = $id;
 	}
+
+
+	public function getTagsAsArray()
+	{
+		return explode(" ", $this->mTags);
+	}
+
 
 	public function __toString()
 	{

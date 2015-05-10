@@ -82,4 +82,28 @@ class ArticleTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(3, $article->getNextArticleId());
 		$this->assertEquals(7, $article->getPreviousArticleId());
 	}
+
+	public function testTagsAsArray()
+	{
+		$date = new DateTime();
+		$dateString = $date->format('Y-m-d H:i:s');
+		$article = new Article(1,
+								"Chicken Katsu Curry",
+								"Wagamama inspired Katsu Curry", 
+								"chicken curry japanese", 
+								"#h1##h2###h3[!this is a link]this is the main content",
+								"<h1></h1><h2></h2><h3></h3><img src='' /><p>content</p>", 
+								$date,
+								"banner-image-filename",
+								"1.   Step 1",
+								"<ol><li>Step 1</li></ol>");
+
+		$tagsAsArray = $article->getTagsAsArray();
+
+		$this->assertInternalType('array', $tagsAsArray);
+		$this->assertCount(3, $tagsAsArray);
+		$this->assertEquals("chicken", $tagsAsArray[0]);
+		$this->assertEquals("curry", $tagsAsArray[1]);
+		$this->assertEquals("japanese", $tagsAsArray[2]);
+	}
 }
