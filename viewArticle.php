@@ -8,7 +8,7 @@ if (isset($_GET["article"]))
 	$articleId = htmlspecialchars($_GET["article"]);
 	$db = new Database;
 
-	if ($db->openConnection())
+	if ($db->openReadOnlyConnection())
 	{
 		if (count($db->getArticle($articleId)) == 1)
 		{

@@ -7,7 +7,7 @@ if (isset($_POST["username"]) && isset($_POST["credentials"]))
 {
 	$db = new Database;
 
-	if ($db->openConnection())
+	if ($db->openReadOnlyConnection())
 	{
 		$username = $_POST["username"];
 		$password = $_POST["credentials"];

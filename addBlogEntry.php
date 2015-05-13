@@ -6,7 +6,7 @@ validateUser();
 
 $db = new Database;
 
-if ($db->openConnection())
+if ($db->openPrivilegedConnection())
 {
 	$mdExtra = new Michelf\MarkdownExtra();
 	$directionsHtml = $mdExtra->defaultTransform($_POST["directionsMd"]);

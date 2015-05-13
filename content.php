@@ -10,7 +10,7 @@ include "includes/header.html";
 
 $db = new Database;
 
-if ($db->openConnection())
+if ($db->openPrivilegedConnection())
 {
 	$articleView = new ArticleView();
 	$articleView->articles = $db->getArticles();

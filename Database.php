@@ -8,7 +8,7 @@ class Database
 {
 	private $mConnection;
 
-	public function openConnection()
+	public function openPrivilegedConnection()
 	{
 		$result = false;
 		$this->mConnection = new mysqli("localhost", "cmsAdmin", "h6tn2uCA5xpDraC8", "cms");
@@ -19,6 +19,32 @@ class Database
         }
 
         return $result;
+	}
+
+	public function openRestrictedConnection()
+	{
+		$result = false;
+		$this->mConnection = new mysqli("localhost", "cmsUser", "t8PhNs62fubWbW6U", "cms");
+
+		if ($this->mConnection)
+		{
+			$result = true;
+		}
+
+		return $result;
+	}
+
+	public function OpenReadOnlyConnection()
+	{
+		$result = false;
+		$this->mConnection = new mysqli("localhost", "cmsVisitor", "JxYZTwDxt2LyULpQ", "cms");
+
+		if ($this->mConnection)
+		{
+			$result = true;
+		}
+
+		return $result;
 	}
 
 

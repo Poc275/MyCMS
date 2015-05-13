@@ -15,11 +15,29 @@ class DBTest extends PHPUnit_Framework_TestCase
 		}
 	}
 
-	public function testConnection()
+	public function testPrivilegedConnection()
 	{
 		$db = new Database;
 
-		$this->assertEquals(true, $db->openConnection());
+		$this->assertEquals(true, $db->openPrivilegedConnection());
+
+		$db->closeConnection();
+	}
+
+	public function testRestrictedConnection()
+	{
+		$db = new Database;
+
+		$this->assertEquals(true, $db->openRestrictedConnection());
+
+		$db->closeConnection();
+	}
+
+	public function testReadOnlyConnection()
+	{
+		$db = new Database;
+
+		$this->assertEquals(true, $db->openReadOnlyConnection());
 
 		$db->closeConnection();
 	}
@@ -27,7 +45,7 @@ class DBTest extends PHPUnit_Framework_TestCase
 	public function testGetArticles()
 	{
 		$db = new Database;
-		$db->openConnection();
+		$db->openRestrictedConnection();
 
 		$this->assertInternalType('array', $db->getArticles());
 
@@ -37,7 +55,7 @@ class DBTest extends PHPUnit_Framework_TestCase
 	public function testGetArticle()
 	{
 		$db = new Database;
-		$db->openConnection();
+		$db->openRestrictedConnection();
 
 		$article = $db->getArticle(FIRST_ARTICLE);
 
@@ -51,7 +69,7 @@ class DBTest extends PHPUnit_Framework_TestCase
 	public function testCheckUsernameExists()
 	{
 		$db = new Database;
-		$db->openConnection();
+		$db->openRestrictedConnection();
 
 		$user = $db->checkUsernameExists("poc275@gmail.com");
 		$this->assertInstanceOf('User', $user);
@@ -69,7 +87,7 @@ class DBTest extends PHPUnit_Framework_TestCase
 	public function testGetArticleComments()
 	{
 		$db = new Database;
-		$db->openConnection();
+		$db->openRestrictedConnection();
 
 		$comments = $db->getArticleComments(LAST_ARTICLE);
 
@@ -81,7 +99,7 @@ class DBTest extends PHPUnit_Framework_TestCase
 	public function testGetNeighbouringArticleIds()
 	{
 		$db = new Database;
-		$db->openConnection();
+		$db->openRestrictedConnection();
 
 		$article = $db->getArticle(8);
 
@@ -94,7 +112,7 @@ class DBTest extends PHPUnit_Framework_TestCase
 	public function testGetEndArticleIds()
 	{
 		$db = new Database;
-		$db->openConnection();
+		$db->openRestrictedConnection();
 
 		$this->assertEquals(FIRST_ARTICLE, $db->getFirstArticleId());
 		$this->assertEquals(LAST_ARTICLE, $db->getLastArticleId());
@@ -105,7 +123,7 @@ class DBTest extends PHPUnit_Framework_TestCase
 	public function testGetEdgeArticleIds()
 	{
 		$db = new Database;
-		$db->openConnection();
+		$db->openRestrictedConnection();
 
 		$article = $db->getArticle(FIRST_ARTICLE);
 		$this->assertEquals(LAST_ARTICLE, $article[0]->getPreviousArticleId());
