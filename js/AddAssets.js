@@ -137,7 +137,7 @@ function addImageClickEventHandlers() {
 function onImageClick(event) {
 	//console.log(event.target);
 	var mdInputTextArea = document.getElementById("wmd-input");
-	var mdOutput = "![alt text here](" + event.target.src + " \"Title here\")";
+	var mdOutput = "![alt text here](/MyCMS/img/" + event.target.alt + " \"Title here\")";
 
 	mdInputTextArea.value += mdOutput;
 }
