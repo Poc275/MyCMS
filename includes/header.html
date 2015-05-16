@@ -3,19 +3,22 @@
 
 <head>
 	<meta charset="utf-8" />
-    <title>My CMS - Home</title>
+    <title>A Food Odyssey CMS</title>
 
 	<link rel="stylesheet" type="text/css" href="css/reset.css" />
-	<link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/header-styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/header-style.css" />
     <link rel="stylesheet" type="text/css" href="css/footer-style.css" />
+
+    <link rel="stylesheet" type="text/css" href="css/article-style.css" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,800' rel='stylesheet' type='text/css'>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
 	<div id="header">
-		<h1>MyCMS</h1>
+		<h1>A Food Odyssey CMS</h1>
 		<div id="header-items">
 			<div id="header-menu" class="toggle-slide-right">
 				<span class="top"> </span>
@@ -30,25 +33,19 @@
 		<h2>Add new blog entry</h2>
 
 		<form action="addBlogEntry.php" method="POST">
-			<input type="text" name="title" placeholder="title" maxlength="50" required />
-			<input type="text" name="summary" placeholder="summary" maxlength="150" required />
-			<input type="text" name="tags" placeholder="tags" maxlength="50" />
-			<input type="text" name="banner-image-path" placeholder="banner image filename (incl. extension)" maxlength="50" required />
-			<textarea name="directionsMd" rows="6" required>1.   Step 1
+			<input type="text" id="title" name="title" placeholder="title" maxlength="50" required />
+			<input type="text" id="summary" name="summary" placeholder="summary" maxlength="150" required />
+			<input type="text" id="tags" name="tags" placeholder="tags" maxlength="50" />
+			<input type="text" id="banner-image-path" name="banner-image-path" placeholder="banner image filename (incl. extension)" maxlength="50" required />
+			<textarea id="wmd-instructions" name="directionsMd" rows="6" required>1.   Step 1
 2.   Step 2
 3.   etc.</textarea>
-			<textarea name="contentMd" id="wmd-input" rows="16" required>content...</textarea>
+			<textarea id="wmd-input" name="contentMd" rows="16" required>content...</textarea>
 			<button type="button" onclick="convertMarkdownToHTML()">Preview</button>
 			<button type="submit">Submit</button>
 		</form>
 
-		<div id="preview-area">
-			<h3>HTML Preview:</h3>
-			<div id="html-preview"></div>
 
-			<h3>HTML Source:</h3>
-			<div id="html-source"></div>
-		</div>
 
 		<!-- Slide out menu code -->
 		<div class="menu slide-menu-right">

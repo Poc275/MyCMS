@@ -1,8 +1,10 @@
 function convertMarkdownToHTML() {
 	var httpRequest;
 	var mdTextArea = document.getElementById("wmd-input");
+    var mdInstructions = document.getElementById("wmd-instructions");
 	var htmlSource = document.getElementById("html-source");
-	var htmlPreview = document.getElementById("html-preview");
+	var htmlPreview = document.getElementById("main-article");
+    var instructions = document.getElementById("instructions");
 
 	// cross browser AJAX test
     if (window.XMLHttpRequest) {
@@ -27,12 +29,41 @@ function convertMarkdownToHTML() {
 
     httpRequest.onreadystatechange = function() {
     	if (httpRequest.readyState === 4 && httpRequest.status === 200) {
-    		htmlSource.textContent = httpRequest.responseText;
-    		htmlPreview.innerHTML = httpRequest.responseText;
+    		var responseJSON = JSON.parse(httpRequest.responseText);
+
+            instructions.innerHTML = responseJSON.instructions;
+
+            htmlSource.textContent = responseJSON.article;
+    		htmlPreview.innerHTML = responseJSON.article;
+            
+            updatePreview();
     	}
     }
 
     httpRequest.open("POST", "convertMarkdown.php", true);
     httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    httpRequest.send("markdown=" + mdTextArea.value);
+    httpRequest.send("markdown=" + mdTextArea.value + "&instructions=" + mdInstructions.value);
+}
+
+
+function updatePreview() {
+    var date = new Date();
+    var articleHeader = document.getElementById("article-header");
+    var articleInfoAside = document.getElementById("article-info");
+
+    // form values
+    var articleTitle = document.getElementById("title").value;
+    var articleSummary = document.getElementById("summary").value;
+    var articleTags = document.getElementById("tags").value;
+    var articleBannerImage = document.getElementById("banner-image-path").value;
+
+    // set header preview
+    articleHeader.style.backgroundImage = 
+        "linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url('img/" + articleBannerImage + "')";
+    articleHeader.getElementsByTagName("h1")[0].innerHTML = articleTitle;
+    articleHeader.getElementsByTagName("p")[0].innerHTML = articleSummary;
+
+    // set article info preview
+    document.getElementById("article-date").innerHTML = " " + date.toDateString();
+    document.getElementById("article-tags").innerHTML = " " + articleTags;
 }

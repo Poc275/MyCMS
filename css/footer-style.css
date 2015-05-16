@@ -1,5 +1,22 @@
-footer {
+/*
+* PREVIEW AREA
+*/
+#preview-area {
 	clear: both;
+}
+
+#html-preview,
+#html-source {
+	margin: 25px 0;
+}
+
+#html-source-area {
+	clear: both;
+}
+
+#instructions {
+	margin: 0;
+	padding: 0;
 }
 
 
@@ -10,7 +27,7 @@ footer {
 	border: 10px dashed #ccc;
 	width: 300px;
 	min-height: 300px;
-	margin: 20px;
+	margin: 20px 0;
 }
 
 #drop.hover {
@@ -23,16 +40,11 @@ footer {
 }
 
 #drop p {
-	margin: 10px;
+	margin: 10px 0;
 	font-size: 14px;
 }
 
-#assets-panel p {
-	margin-left: 20px;
-}
-
 #progress {
-	margin: 20px;
 	width: 320px;
 }
 
@@ -65,8 +77,9 @@ div.asset {
 	display: none;
 	background-color: rgba(0, 0, 0, 0.8);
 	color: #fff;
-	padding: 5px 0;
 	font-size: 1em;
+	box-sizing: border-box;
+	padding: 5px;
 }
 
 #assets a {

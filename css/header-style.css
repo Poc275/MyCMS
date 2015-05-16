@@ -7,6 +7,46 @@ body {
 }
 
 
+/* TYPOGRAPHY
+----------------------------------------------------*/
+html {
+    font-size: 1em;
+}
+
+body {
+    line-height: 1.75;
+}
+
+h1, h2, h3, h4 {
+  font-weight: inherit;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 3.157em;
+}
+
+h2 {
+    font-size: 2.369em;
+}
+
+h3 {
+    font-size: 1.777em;
+}
+
+h4 {
+    font-size: 1.333em;
+}
+
+small {
+    font-size: 0.75em;
+}
+
+p {
+    font-size: 1em;
+}
+
+
 /*
 * HEADER BAR
 */
@@ -31,6 +71,7 @@ body {
 
 #header-menu {
 	cursor: pointer;
+	padding-top: 5px;
 }
 
 #header-menu > span {
@@ -58,6 +99,10 @@ body {
 /*
 * FORM
 */
+form {
+	margin: 0 0 25px 0;
+}
+
 form > input {
 	display: block;
 }
@@ -67,11 +112,13 @@ form textarea {
 	width: 100%;
 	line-height: 1.5em;
 	margin: 10px 0;
+	font-family: 'Open Sans', sans-serif;
 }
 
 button {
 	width: 100px;
 	line-height: 1.5em;
+	font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -89,13 +136,12 @@ button {
 	width: 37.5%;
 }
 
-#preview-area {
-	margin: 15px 0;
+table {
+	width: 100%;
 }
 
-#html-preview,
-#html-source {
-	margin: 25px 0;
+table th {
+	font-weight: bold;
 }
 
 
@@ -125,13 +171,17 @@ div.menu {
 	-ms-transition: all 0.3s;
 	-o-transition: all 0.3s;
 	transition: all 0.3s;
-
-	padding: 10px;
+	padding: 0 10px;
 }
 
 div.menu ul {
 	list-style-type: none;
+	margin: 10px 0;
+	padding: 0;
+}
 
+div.menu ul li {
+	margin-right: 10px;
 }
 
 div.menu a {
@@ -140,7 +190,7 @@ div.menu a {
 
 div.slide-menu-right {
 	top: 0;
-	width: 800px;
+	width: 1200px;
 	height: 100%;
 	background-color: #fff;
 }
@@ -149,12 +199,8 @@ div.slide-menu-right li {
 	display: inline;
 }
 
-div.slide-menu-right a {
-
-}
-
 div.slide-menu-right {
-	right: -810px;
+	right: -1210px;
 }
 
 body.smr-open div.slide-menu-right {

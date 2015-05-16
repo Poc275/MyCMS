@@ -50,28 +50,30 @@
 
         <div class="grid-container">
             <aside id="article-info">
-                <p>
-                    No: 
-                    <span id="article-num">
-                        <?php echo $this->article->getId(); ?>
-                    </span>
-                    <a href="/MyCMS/articles/<?php echo $this->article->getPreviousArticleId();  ?>">&larr;</a> 
-                    <a href="/MyCMS/articles/<?php echo $this->article->getNextArticleId();  ?>">&rarr;</a>
-                </p>
-                <p>
-                    <i class="fa fa-calendar"></i> 
-                    <time datetime="<?php echo $this->article->getHtmlPubDate(); ?>"> 
-                        <?php echo $this->article->getNicePubDate(); ?>
-                    </time>
-                </p>
-                <p>
-                    <i class="fa fa-tags"></i> 
-                    <?php foreach($this->article->getTagsAsArray() as $tag): ?>
-                        <a href="/MyCMS/tags/<?=$tag ?>">
-                            <?=$tag ?>
-                        </a>
-                    <?php endforeach; ?>
-                </p>
+
+                <ul>
+                    <li id="article-number">
+                        <span id="article-num">No: 
+                            <?php echo $this->article->getId(); ?>
+                        </span>
+                        <a href="/MyCMS/articles/<?php echo $this->article->getPreviousArticleId();  ?>">&larr;</a> 
+                        <a href="/MyCMS/articles/<?php echo $this->article->getNextArticleId();  ?>">&rarr;</a>
+                    </li>
+
+                    <li id="article-date">
+                        <time datetime="<?php echo $this->article->getHtmlPubDate(); ?>"> 
+                            <?php echo $this->article->getNicePubDate(); ?>
+                        </time>
+                    </li>
+
+                    <li id="article-tags">
+                        <?php foreach($this->article->getTagsAsArray() as $tag): ?>
+                            <a href="/MyCMS/tags/<?=$tag ?>">
+                                <?=$tag ?>
+                            </a>
+                        <?php endforeach; ?>
+                    </li>
+                </ul>
 
                 <h4>What to do:</h4>
                 <?php echo $this->article->getDirectionsHtml(); ?>

@@ -1,37 +1,17 @@
-<h2>Current Entries:</h2>
+<h2>Current Entries</h2>
 <table>
 	<tr>
 		<th>Title</th>
-		<!-- <th>Summary</th> -->
-		<!-- <th>Tags</th> -->
-		<!--<th>Markdown</th>-->
-		<!--<th>HTML</th>-->
 		<th>Date</th>
 	</tr>
 	
 	<?php foreach($this->articles as $article): ?>
 		<tr>
 			<td>
-				<!--<a href='viewArticle.php?article=<?=$article->getId(); ?>'>-->
 				<a href='articles/<?=$article->getId(); ?>'>
 					<?=$article->getTitle(); ?>
 				</a>
 			</td>
-			<!--
-			<td>
-				<?=$article->getSummary(); ?>
-			</td>
-			
-			<td>
-				<?=$article->getTags(); ?>
-			</td>
-			<td>
-				<?=$article->getContentMd(); ?>
-			</td>
-			<td>
-				<?=$article->getContentHtml(); ?>
-			</td>
-			-->
 			<td>
 				<?=$article->getNicePubDate(); ?>
 			</td>

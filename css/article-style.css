@@ -153,6 +153,29 @@ p.pete {
     padding: 1.5em 0;
 }
 
+#article-info ul {
+    list-style: outside;
+    list-style-type: none;
+}
+
+#article-info ul li#article-number:before {
+    font-family: "FontAwesome";
+    content: "\f187";
+    margin: 0 0 0 -20px;
+}
+
+#article-info ul li#article-date:before {
+    font-family: "FontAwesome";
+    content: "\f133";
+    margin: 0 0 0 -20px;
+}
+
+#article-info ul li#article-tags:before {
+    font-family: "FontAwesome";
+    content: "\f02c";
+    margin: 0 0 0 -20px;
+}
+
 #article-info h4 {
     padding-top: 1.5em;
 }
