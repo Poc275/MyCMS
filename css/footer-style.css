@@ -1,4 +1,26 @@
 /*
+* QUICK PICKS
+*/
+#quick-picks {
+	margin: 10px 0;
+}
+
+#quick-picks div {
+	display: inline-block;
+	cursor: pointer;
+	background-color: rgba(120, 120, 120, 0.3);
+	text-align: center;
+	border-radius: 20px;
+	margin: 0 3px;
+	padding: 5px 10px;
+}
+
+#quick-picks div:hover {
+	background-color: rgba(120, 120, 120, 0.8);
+}
+
+
+/*
 * PREVIEW AREA
 */
 #preview-area {

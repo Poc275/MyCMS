@@ -61,9 +61,32 @@ function updatePreview() {
     articleHeader.style.backgroundImage = 
         "linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url('img/" + articleBannerImage + "')";
     articleHeader.getElementsByTagName("h1")[0].innerHTML = articleTitle;
-    articleHeader.getElementsByTagName("p")[0].innerHTML = articleSummary;
+    articleHeader.getElementsByTagName("p")[0].innerHTML = "tldr&#59; </abbr>" + articleSummary;
 
     // set article info preview
     document.getElementById("article-date").innerHTML = " " + date.toDateString();
     document.getElementById("article-tags").innerHTML = " " + articleTags;
+}
+
+
+function quickPick(pick) {
+    var mdInputTextArea = document.getElementById("wmd-input");
+    var mdOutput = "";
+
+    switch (pick) {
+
+        case 'phil':
+            mdOutput = "<p class=\"phil\">This is Phil...</p>";
+            break;
+
+        case 'pete':
+            mdOutput = "<p class=\"pete\">This is Pete...</p>";
+            break;
+
+        case 'img-caption':
+            mdOutput = "<p class=\"caption\">This is an image caption</p>";
+            break;
+    }
+
+    mdInputTextArea.value += mdOutput;
 }

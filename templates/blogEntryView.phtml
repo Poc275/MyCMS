@@ -52,8 +52,8 @@
             <aside id="article-info">
 
                 <ul>
-                    <li id="article-number">
-                        <span id="article-num">No: 
+                    <li id="article-number"> No: 
+                        <span id="article-num">
                             <?php echo $this->article->getId(); ?>
                         </span>
                         <a href="/MyCMS/articles/<?php echo $this->article->getPreviousArticleId();  ?>">&larr;</a> 
@@ -75,7 +75,7 @@
                     </li>
                 </ul>
 
-                <h4>What to do:</h4>
+                <h4>What to do</h4>
                 <?php echo $this->article->getDirectionsHtml(); ?>
             </aside>
 
