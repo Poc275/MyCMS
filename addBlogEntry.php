@@ -9,10 +9,13 @@ $db = new Database;
 if ($db->openPrivilegedConnection())
 {
 	$mdExtra = new Michelf\MarkdownExtra();
+	$date = new DateTime();
+
 	$directionsHtml = $mdExtra->defaultTransform($_POST["directionsMd"]);
 	$contentHtml = $mdExtra->defaultTransform($_POST["contentMd"]);
 
-	$date = new DateTime();
+	// filter article html to remove p tags from around img tags for better caption appearance
+	$contentHtml = filterHtmlForImageParagraphs($contentHtml);
 
 	// TODO - does Article need 2 constructors? 1 with an id field for when the DB has generated it, 
 	// and 1 without when it is first created and before it is submitted to the DB.
@@ -27,6 +30,13 @@ if ($db->openPrivilegedConnection())
 
 	$db->closeConnection();
 	header("Location: content.php");
+}
+
+
+function filterHtmlForImageParagraphs($input)
+{
+	// regex courtesty of https://css-tricks.com/snippets/wordpress/remove-paragraph-tags-from-around-images/
+	return preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $input);
 }
 
 

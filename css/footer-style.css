@@ -27,18 +27,8 @@
 	clear: both;
 }
 
-#html-preview,
-#html-source {
-	margin: 25px 0;
-}
-
 #html-source-area {
 	clear: both;
-}
-
-#instructions {
-	margin: 0;
-	padding: 0;
 }
 
 

@@ -12,6 +12,15 @@ $instructionsHtml = substr($instructionsHtml, 4);
 $instructionsHtml = substr($instructionsHtml, 0, -6);
 
 $articleHtml = $mdExtra->defaultTransform($_POST["markdown"]);
+// filter article html to remove p tags from around img tags for better caption appearance
+$articleHtml = filterHtmlForImageParagraphs($articleHtml);
 
 $responses = array('instructions'=>$instructionsHtml, 'article'=>$articleHtml);
 echo json_encode($responses);
+
+
+function filterHtmlForImageParagraphs($input)
+{
+	// regex courtesty of https://css-tricks.com/snippets/wordpress/remove-paragraph-tags-from-around-images/
+	return preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $input);
+}

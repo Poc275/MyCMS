@@ -76,15 +76,15 @@ function quickPick(pick) {
     switch (pick) {
 
         case 'phil':
-            mdOutput = "<p class=\"phil\">This is Phil...</p>";
+            mdOutput = "<p class=\"phil\" markdown=\"1\">This is Phil...</p>";
             break;
 
         case 'pete':
-            mdOutput = "<p class=\"pete\">This is Pete...</p>";
+            mdOutput = "<p class=\"pete\" markdown=\"1\">This is Pete...</p>";
             break;
 
         case 'img-caption':
-            mdOutput = "<p class=\"caption\">This is an image caption</p>";
+            mdOutput = "<p class=\"caption\" markdown=\"1\">This is an image caption</p>";
             break;
     }
 
