@@ -191,7 +191,7 @@ div.menu a {
 
 div.slide-menu-right {
 	top: 0;
-	width: 1200px;
+	width: 1000px;
 	height: 100%;
 	background-color: #fff;
 }
@@ -201,7 +201,7 @@ div.slide-menu-right li {
 }
 
 div.slide-menu-right {
-	right: -1210px;
+	right: -1010px;
 }
 
 body.smr-open div.slide-menu-right {

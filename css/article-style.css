@@ -121,23 +121,36 @@ nav ul > li {
 #main-article .caption {
     color: #808080;
     font-size: small;
+    border-left: none !important;
+    padding-left: 0 !important;
 }
 
 #main-article .caption:before {
     font-family: FontAwesome;
     content: "\f030";
-    margin-right: 0.25em;
+    margin-right: 0.5em;
 }
 
+/* alternate paragraph stylings between Phil and myself */
+#main-article p:nth-of-type(2n+1) {
+    border-left: 3px solid rgba(255, 206, 154, 1);
+    padding-left: 0.5em;
+}
+
+#main-article p:nth-of-type(2n) {
+    border-left: 3px solid rgba(152, 222, 245, 1);
+    padding-left: 0.5em;
+}
+
+/* additional paragraph stylings for versatility */
 p.phil {
-    border-left: 3px solid rgba(255, 206, 154, 1.0);
+    border-left: 3px solid rgba(255, 206, 154, 1) !important;
     padding-left: 0.5em;
 }
 
 p.pete {
-    border-left: 3px solid rgba(152, 222, 245, 1.0);
+    border-left: 3px solid rgba(152, 222, 245, 1) !important;
     padding-left: 0.5em;
-    /*text-align: right;*/
 }
 
 #main-article p {
@@ -313,6 +326,11 @@ p.pete {
 
 .comment {
     padding-top: 10px;
+}
+
+.comment p {
+    border-left: none !important;
+    padding-left: 0 !important;
 }
 
 .comment:after {
