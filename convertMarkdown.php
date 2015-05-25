@@ -21,6 +21,6 @@ echo json_encode($responses);
 
 function filterHtmlForImageParagraphs($input)
 {
-	// regex courtesty of https://css-tricks.com/snippets/wordpress/remove-paragraph-tags-from-around-images/
+	// regex courtesy of https://css-tricks.com/snippets/wordpress/remove-paragraph-tags-from-around-images/
 	return preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $input);
 }

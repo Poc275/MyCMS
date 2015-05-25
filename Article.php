@@ -175,6 +175,12 @@ class Article
 	}
 
 
+	public function getTitleAsUrl()
+	{
+		return strtolower(str_replace(' ', '-', $this->mTitle));
+	}
+
+
 	public function __toString()
 	{
 		return $this->mTitle . "<br />" . $this->mSummary . "<br />" . $this->mTags . "<br />" . 

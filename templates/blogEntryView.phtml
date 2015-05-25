@@ -7,8 +7,8 @@
         <title>
             <?php echo $this->article->getTitle(); ?> - A Food Odyssey
         </title>
-        <link rel="stylesheet" href="../css/reset.css">
-        <link rel="stylesheet" href="../css/article-style.css">
+        <link rel="stylesheet" href="../../css/reset.css">
+        <link rel="stylesheet" href="../../css/article-style.css">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,800' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400italic,400' rel='stylesheet' type='text/css'>
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
 
         <header id="article-header" 
                 style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), 
-                    url('../img/<?php echo $this->article->getBannerImagePath(); ?>')">
+                    url('../../img/<?php echo $this->article->getBannerImagePath(); ?>')">
             <div class="article-header-container">
                 <h1>
                     <?php echo $this->article->getTitle(); ?>
@@ -56,8 +56,8 @@
                         <span id="article-num">
                             <?php echo $this->article->getId(); ?>
                         </span>
-                        <a href="/MyCMS/articles/<?php echo $this->article->getPreviousArticleId();  ?>">&larr;</a> 
-                        <a href="/MyCMS/articles/<?php echo $this->article->getNextArticleId();  ?>">&rarr;</a>
+                        <a href="../../articles/<?php echo $this->article->getPreviousArticleId(); ?>/<?php echo $this->article->getTitleAsUrl(); ?>">&larr;</a> 
+                        <a href="../../articles/<?php echo $this->article->getNextArticleId(); ?>/<?php echo $this->article->getTitleAsUrl(); ?>">&rarr;</a>
                     </li>
 
                     <li id="article-date">
@@ -68,7 +68,7 @@
 
                     <li id="article-tags">
                         <?php foreach($this->article->getTagsAsArray() as $tag): ?>
-                            <a href="/MyCMS/tags/<?=$tag ?>">
+                            <a href="../../tags/<?=$tag ?>">
                                 <?=$tag ?>
                             </a>
                         <?php endforeach; ?>
@@ -131,15 +131,15 @@
             <address id="footer-social">
                 <ul id="footer-logos">
                     <li><a href="mailto:poc275@gmail.com?Subject=A%20Food%20Odyssey" title="send us an email" class="no-decoration"><i class="fa fa-envelope-o fa-4x"></i></a></li>
-                    <li><a href="../rss.xml" title="follow our blog" class="no-decoration"><i class="fa fa-rss fa-4x"></i></a></li>
+                    <li><a href="../../rss.xml" title="follow our blog" class="no-decoration"><i class="fa fa-rss fa-4x"></i></a></li>
                 </ul>
             </address>
         </footer>
 
 
-        <script type="text/javascript" src="../js/UpdateShareLinks.js"></script>
-        <script type="text/javascript" src="../js/AddComment.js"></script>
-        <script type="text/javascript" src="../js/ShowComments.js"></script>
+        <script type="text/javascript" src="../../js/UpdateShareLinks.js"></script>
+        <script type="text/javascript" src="../../js/AddComment.js"></script>
+        <script type="text/javascript" src="../../js/ShowComments.js"></script>
     </body>
 
 </html>

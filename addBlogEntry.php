@@ -57,7 +57,7 @@ if ($db->openPrivilegedConnection())
 
 function filterHtmlForImageParagraphs($input)
 {
-	// regex courtesty of https://css-tricks.com/snippets/wordpress/remove-paragraph-tags-from-around-images/
+	// regex courtesy of https://css-tricks.com/snippets/wordpress/remove-paragraph-tags-from-around-images/
 	return preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $input);
 }
 
@@ -66,12 +66,12 @@ function updateFeed($articles)
 {
 	$xml = '<?xml version="1.0" encoding="UTF-8" ?><rss version="2.0" 
 		xmlns:atom="http://www.w3.org/2005/Atom">
-		<channel><title>The Ponderer\'s Cookbook</title>
+		<channel><title>A Food Odyssey</title>
 		<link>http://localhost:8080/MyCMS</link>
-		<description>A thoughtful approach to cookery from a pair of keen amateur cooks</description>
+		<description>Amateurs trawl through the world of food</description>
 		<category>Food</category>
-		<image><url>http://localhost:8080/MyCMS/assets/pensive.png</url>
-		<title>The Ponderer\'s Cookbook</title>
+		<image><url>/assets/placeholder.jpg</url>
+		<title>A Food Odyssey</title>
 		<link>http://localhost:8080/MyCMS</link></image>
 		<language>en-uk</language>
 		<atom:link href="http://localhost:8080/MyCMS/rss.xml" rel="self" type="application/rss+xml" />';
@@ -79,9 +79,9 @@ function updateFeed($articles)
 	foreach ($articles as $article)
 	{
 		$xml = $xml . '<item><title>' . $article->getTitle() . '</title><link>http://localhost:8080/MyCMS/articles/' . 
-			$article->getId() . '</link><description>' . $article->getSummary() . '</description><pubDate>' . 
-			$article->getPubDateRssFormat() . '</pubDate><guid>http://localhost:8080/MyCMS/articles/' . 
-			$article->getId() . '</guid></item>';
+			$article->getId() . '/' . $article->getTitleAsUrl() . '</link><description>' . $article->getSummary() . 
+			'</description><pubDate>' . $article->getPubDateRssFormat() . '</pubDate><guid>http://localhost:8080/MyCMS/articles/' . 
+			$article->getId() . '/' . $article->getTitleAsUrl() '</guid></item>';
 	}
 
 	$xml .= "</channel></rss>";

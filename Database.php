@@ -234,6 +234,7 @@ class Database
 		return $lastArticleId;
 	}
 
+
 	public function getArticleIdFromTitle($title)
 	{
 		$id = 0;
