@@ -17,15 +17,37 @@ if ($db->openPrivilegedConnection())
 	// filter article html to remove p tags from around img tags for better caption appearance
 	$contentHtml = filterHtmlForImageParagraphs($contentHtml);
 
-	// TODO - does Article need 2 constructors? 1 with an id field for when the DB has generated it, 
-	// and 1 without when it is first created and before it is submitted to the DB.
-	// PHP doesn't allow multiple constructors so must use static functions
-	$article = new Article(0, $_POST["title"], $_POST["summary"], $_POST["tags"], $_POST["contentMd"], 
-		$contentHtml, $date, $_POST["banner-image-path"], $_POST["directionsMd"], $directionsHtml);
-
-	if ($db->addArticle($article))
+	// check if we are editing or creating new
+	if (isset($_POST["submit"]))
 	{
-		updateFeed($db->getArticles());
+		// TODO - does Article need 2 constructors? 1 with an id field for when the DB has generated it, 
+		// and 1 without when it is first created and before it is submitted to the DB.
+		// PHP doesn't allow multiple constructors so must use static functions
+		$article = new Article(0, $_POST["title"], $_POST["summary"], $_POST["tags"], $_POST["contentMd"], 
+			$contentHtml, $date, $_POST["banner-image-path"], $_POST["directionsMd"], $directionsHtml);
+
+		if ($db->addArticle($article))
+		{
+			updateFeed($db->getArticles());
+		}
+		else
+		{
+			throw new Exception("Database insertion failed");
+		}
+	}
+
+	if (isset($_POST["edit"]))
+	{
+		// get article id to enable SQL update
+		$id = $db->getArticleIdFromTitle($_POST["title"]);
+
+		$article = new Article($id, $_POST["title"], $_POST["summary"], $_POST["tags"], $_POST["contentMd"], 
+			$contentHtml, $date, $_POST["banner-image-path"], $_POST["directionsMd"], $directionsHtml);
+
+		if (!$db->updateArticle($article))
+		{
+			throw new Exception("Database update failed");
+		}
 	}
 
 	$db->closeConnection();

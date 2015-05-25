@@ -60,7 +60,7 @@ class Database
 	public function getArticles()
 	{
 		$articles = array();
-		$query = "SELECT * FROM articles";
+		$query = "SELECT * FROM articles ORDER BY pubDate DESC";
 	    $stmt = mysqli_prepare($this->mConnection, $query);
 
 	    if (!mysqli_stmt_execute($stmt))
@@ -234,6 +234,32 @@ class Database
 		return $lastArticleId;
 	}
 
+	public function getArticleIdFromTitle($title)
+	{
+		$id = 0;
+
+		$query = "SELECT id FROM articles WHERE title = ?";
+		$stmt = mysqli_prepare($this->mConnection, $query);
+		mysqli_stmt_bind_param($stmt, 's', $title);
+
+		if (!mysqli_stmt_execute($stmt))
+		{
+			throw new Exception("Database query failed");
+		}
+		else
+		{
+			mysqli_stmt_bind_result($stmt, $idCol);
+
+			while (mysqli_stmt_fetch($stmt))
+			{
+				$id = $idCol;
+			}
+
+			mysqli_stmt_close($stmt);
+		}
+
+		return $id;
+	}
 
 	public function getArticleComments($id)
 	{
@@ -319,6 +345,38 @@ class Database
 		mysqli_stmt_close($stmt);
 
 		return $created;
+	}
+
+
+	public function updateArticle($article)
+	{
+		$update = false;
+
+		$query = "UPDATE articles SET title = ?, summary = ?, tags = ?, banner_image_path = ?, directions_md = ?,
+			directions_html = ?, content_md = ?, content_html = ? WHERE id = ?";
+
+		$stmt = mysqli_prepare($this->mConnection, $query);
+		mysqli_stmt_bind_param($stmt, 'ssssssssi', $title, $summary, $tags, $bannerImagePath, $directionsMd,
+			$directionsHtml, $contentMd, $contentHtml, $id);
+
+		$title = $article->getTitle();
+		$summary = $article->getSummary();
+		$tags = $article->getTags();
+		$bannerImagePath = $article->getBannerImagePath();
+		$directionsMd = $article->getDirectionsMd();
+		$directionsHtml = $article->getDirectionsHtml();
+		$contentMd = $article->getContentMd();
+		$contentHtml = $article->getContentHtml();
+		$id = $article->getId();
+
+		if (mysqli_stmt_execute($stmt))
+		{
+			$update = true;
+		}
+
+		mysqli_stmt_close($stmt);
+
+		return $update;
 	}
 
 

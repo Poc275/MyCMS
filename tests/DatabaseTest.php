@@ -3,7 +3,7 @@
 require(dirname(__FILE__)."/../Database.php");
 
 const FIRST_ARTICLE = 1;
-const LAST_ARTICLE = 12;
+const LAST_ARTICLE = 15;
 
 class DBTest extends PHPUnit_Framework_TestCase
 {
@@ -130,6 +130,47 @@ class DBTest extends PHPUnit_Framework_TestCase
 
 		$article = $db->getArticle(LAST_ARTICLE);
 		$this->assertEquals(FIRST_ARTICLE, $article[0]->getNextArticleId());
+
+		$db->closeConnection();
+	}
+
+	public function testGetArticleIdByTitle()
+	{
+		$db = new Database;
+		$db->openReadOnlyConnection();
+
+		$id = $db->getArticleIdFromTitle("Bulgogi Beef Sandwich");
+		$this->assertEquals(8, $id);
+
+		$id = $db->getArticleIdFromTitle("Chicken and noodles");
+		$this->assertEquals(13, $id);
+
+		$id = $db->getArticleIdFromTitle("This doesn't exist");
+		$this->assertEquals(0, $id);
+
+		$db->closeConnection();
+	}
+
+	public function testUpdateArticle()
+	{
+		$db = new Database;
+		$db->openPrivilegedConnection();
+
+		// get an existing article
+		$article = $db->getArticle(FIRST_ARTICLE);
+
+		// modify it and update back into DB
+		$article[0]->setTitle("Chicken Katsu Curry");
+		$article[0]->setSummary("Wagamama inspired Katsu Curry");
+		$article[0]->setTags("Japanese chicken curry");
+
+		$this->assertEquals(true, $db->updateArticle($article[0]));
+
+		// check updated values have been applied
+		$article = $db->getArticle(FIRST_ARTICLE);
+		$this->assertEquals("Chicken Katsu Curry", $article[0]->getTitle());
+		$this->assertEquals("Wagamama inspired Katsu Curry", $article[0]->getSummary());
+		$this->assertEquals("Japanese chicken curry", $article[0]->getTags());
 
 		$db->closeConnection();
 	}

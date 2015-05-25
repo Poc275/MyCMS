@@ -53,9 +53,19 @@ class Article
 		return $this->mTitle;
 	}
 
+	public function setTitle($title)
+	{
+		$this->mTitle = $title;
+	}
+
 	public function getSummary()
 	{
 		return $this->mSummary;
+	}
+
+	public function setSummary($summary)
+	{
+		$this->mSummary = $summary;
 	}
 
 	public function getTags()
@@ -63,9 +73,19 @@ class Article
 		return $this->mTags;
 	}
 
+	public function setTags($tags)
+	{
+		$this->mTags = $tags;
+	}
+
 	public function getContentMd()
 	{
 		return $this->mContentMd;
+	}
+
+	public function setContentMd($contentMd)
+	{
+		$this->mContentMd = $contentMd;
 	}
 
 	public function getContentHtml()
@@ -98,9 +118,19 @@ class Article
 		return $this->mBannerImagePath;
 	}
 
+	public function setBannerImagePath($bannerImagePath)
+	{
+		$this->mBannerImagePath = $bannerImagePath;
+	}
+
 	public function getDirectionsMd()
 	{
 		return $this->mDirectionsMd;
+	}
+
+	public function setDirectionsMd($directionsMd)
+	{
+		$this->mDirectionsMd = $directionsMd;
 	}
 
 	public function getDirectionsHtml()

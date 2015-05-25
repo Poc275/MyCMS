@@ -71,7 +71,6 @@ class ArticleTest extends PHPUnit_Framework_TestCase
 		$article->setNextArticleId(3);
 		$article->setPreviousArticleId(7);
 
-
 		$this->assertInternalType('array', $article->getComments());
 		$this->assertEquals(2, count($article->getComments()));
 
@@ -81,6 +80,20 @@ class ArticleTest extends PHPUnit_Framework_TestCase
 
 		$this->assertEquals(3, $article->getNextArticleId());
 		$this->assertEquals(7, $article->getPreviousArticleId());
+
+		$article->setTitle("Wagamama Chicken Katsu Curry");
+		$article->setSummary("Wagamama inspired Katsu Curry is easier than you think");
+		$article->setTags("Japanese chicken curry Wagamama");
+		$article->setContentMd("#h1##h2###h3[!this is a link]this is the main blog entry");
+		$article->setBannerImagePath("new-banner-image-filename");
+		$article->setDirectionsMd("1.   Step 12.   Step 2");
+
+		$this->assertEquals("Wagamama Chicken Katsu Curry", $article->getTitle());
+		$this->assertEquals("Wagamama inspired Katsu Curry is easier than you think", $article->getSummary());
+		$this->assertEquals("Japanese chicken curry Wagamama", $article->getTags());
+		$this->assertEquals("#h1##h2###h3[!this is a link]this is the main blog entry", $article->getContentMd());
+		$this->assertEquals("new-banner-image-filename", $article->getBannerImagePath());
+		$this->assertEquals("1.   Step 12.   Step 2", $article->getDirectionsMd());
 	}
 
 	public function testTagsAsArray()
