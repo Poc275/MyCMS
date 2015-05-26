@@ -17,6 +17,9 @@ if ($db->openPrivilegedConnection())
 	// filter article html to remove p tags from around img tags for better caption appearance
 	$contentHtml = filterHtmlForImageParagraphs($contentHtml);
 
+	// form url from title
+	$url = strtolower(str_replace(' ', '-', $_POST["title"]));
+
 	// check if we are editing or creating new
 	if (isset($_POST["submit"]))
 	{
@@ -24,7 +27,7 @@ if ($db->openPrivilegedConnection())
 		// and 1 without when it is first created and before it is submitted to the DB.
 		// PHP doesn't allow multiple constructors so must use static functions
 		$article = new Article(0, $_POST["title"], $_POST["summary"], $_POST["tags"], $_POST["contentMd"], 
-			$contentHtml, $date, $_POST["banner-image-path"], $_POST["directionsMd"], $directionsHtml);
+			$contentHtml, $date, $_POST["banner-image-path"], $_POST["directionsMd"], $directionsHtml, $url);
 
 		if ($db->addArticle($article))
 		{
@@ -42,7 +45,7 @@ if ($db->openPrivilegedConnection())
 		$id = $db->getArticleIdFromTitle($_POST["title"]);
 
 		$article = new Article($id, $_POST["title"], $_POST["summary"], $_POST["tags"], $_POST["contentMd"], 
-			$contentHtml, $date, $_POST["banner-image-path"], $_POST["directionsMd"], $directionsHtml);
+			$contentHtml, $date, $_POST["banner-image-path"], $_POST["directionsMd"], $directionsHtml, $url);
 
 		if (!$db->updateArticle($article))
 		{
@@ -79,9 +82,9 @@ function updateFeed($articles)
 	foreach ($articles as $article)
 	{
 		$xml = $xml . '<item><title>' . $article->getTitle() . '</title><link>http://localhost:8080/MyCMS/articles/' . 
-			$article->getId() . '/' . $article->getTitleAsUrl() . '</link><description>' . $article->getSummary() . 
+			$article->getUrl() . '</link><description>' . $article->getSummary() . 
 			'</description><pubDate>' . $article->getPubDateRssFormat() . '</pubDate><guid>http://localhost:8080/MyCMS/articles/' . 
-			$article->getId() . '/' . $article->getTitleAsUrl() '</guid></item>';
+			$article->getUrl() . '</guid></item>';
 	}
 
 	$xml .= "</channel></rss>";

@@ -12,15 +12,16 @@ class Article
 	private $mBannerImagePath;
 	private $mDirectionsMd;
 	private $mDirectionsHtml;
+	private $mUrl;
 
-	private $mNextArticleId;
-	private $mPreviousArticleId;
+	private $mNextArticleUrl;
+	private $mPreviousArticleUrl;
 
 	private $mComments;
 
 
 	public function __construct($id, $title, $summary, $tags, $contentMd, $contentHtml, $pubDate, $bannerImagePath, 
-		$directionsMd, $directionsHtml)
+		$directionsMd, $directionsHtml, $url)
 	{
 		$this->mId = $id;
 		$this->mTitle = $title;
@@ -31,6 +32,7 @@ class Article
 		$this->mBannerImagePath = $bannerImagePath;
 		$this->mDirectionsMd = $directionsMd;
 		$this->mDirectionsHtml = $directionsHtml;
+		$this->mUrl = $url;
 
 		if ($pubDate instanceof DateTime)
 		{
@@ -138,6 +140,16 @@ class Article
 		return $this->mDirectionsHtml;
 	}
 
+	public function getUrl()
+	{
+		return $this->mUrl;
+	}
+
+	public function setUrl($url)
+	{
+		$this->mUrl = $url;
+	}
+
 	public function getComments()
 	{
 		return $this->mComments;
@@ -148,36 +160,33 @@ class Article
 		$this->mComments = $comments;
 	}
 
-	public function getNextArticleId()
+	public function getNextArticleUrl()
 	{
-		return $this->mNextArticleId;
+		return $this->mNextArticleUrl;
 	}
 
-	public function setNextArticleId($id)
+	public function setNextArticleUrl($nextUrl)
 	{
-		$this->mNextArticleId = $id;
+		$this->mNextArticleUrl = $nextUrl;
 	}
 
-	public function getPreviousArticleId()
+	public function getPreviousArticleUrl()
 	{
-		return $this->mPreviousArticleId;
+		return $this->mPreviousArticleUrl;
 	}
 
-	public function setPreviousArticleId($id)
+	public function setPreviousArticleUrl($prevUrl)
 	{
-		$this->mPreviousArticleId = $id;
+		$this->mPreviousArticleUrl = $prevUrl;
 	}
 
 
+	/*
+	*  METHODS
+	*/
 	public function getTagsAsArray()
 	{
 		return explode(" ", $this->mTags);
-	}
-
-
-	public function getTitleAsUrl()
-	{
-		return strtolower(str_replace(' ', '-', $this->mTitle));
 	}
 
 

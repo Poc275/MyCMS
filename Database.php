@@ -70,13 +70,13 @@ class Database
 	    else
 	    {
 	        mysqli_stmt_bind_result($stmt, $idCol, $titleCol, $summaryCol, $tagsCol, $bannerImagePathCol, 
-	        	$directionsMdCol, $directionsHtmlCol, $contentMdCol, $contentHtmlCol, $pubDateCol);
+	        	$directionsMdCol, $directionsHtmlCol, $contentMdCol, $contentHtmlCol, $pubDateCol, $urlCol);
 
 	        while (mysqli_stmt_fetch($stmt))
 	        {
 	        	$article = new Article($idCol, $titleCol, $summaryCol, $tagsCol, $contentMdCol, 
 	        		$contentHtmlCol, date_create_from_format('Y-m-d H:i:s', $pubDateCol), $bannerImagePathCol, 
-	        		$directionsMdCol, $directionsHtmlCol);
+	        		$directionsMdCol, $directionsHtmlCol, $urlCol);
 	        	array_push($articles, $article);
 	        }
 
@@ -101,13 +101,13 @@ class Database
 		else
 		{
 			mysqli_stmt_bind_result($stmt, $idCol, $titleCol, $summaryCol, $tagsCol, $bannerImagePathCol, 
-	        	$directionsMdCol, $directionsHtmlCol, $contentMdCol, $contentHtmlCol, $pubDateCol);
+	        	$directionsMdCol, $directionsHtmlCol, $contentMdCol, $contentHtmlCol, $pubDateCol, $urlCol);
 
 	        while (mysqli_stmt_fetch($stmt))
 	        {
 	        	$article = new Article($idCol, $titleCol, $summaryCol, $tagsCol, $contentMdCol, 
 	        		$contentHtmlCol, date_create_from_format('Y-m-d H:i:s', $pubDateCol), $bannerImagePathCol, 
-	        		$directionsMdCol, $directionsHtmlCol);
+	        		$directionsMdCol, $directionsHtmlCol, $urlCol);
 	        	array_push($articles, $article);
 	        }
 
@@ -118,8 +118,8 @@ class Database
 	        if (count($articles) !== 0)
 	        {
 	        	$articles[0]->setComments($this->getArticleComments($id));
-	        	$articles[0]->setNextArticleId($this->getNextArticleId($id));
-	        	$articles[0]->setPreviousArticleId($this->getPreviousArticleId($id));
+	        	$articles[0]->setNextArticleUrl($this->getNextArticleUrl($id));
+	        	$articles[0]->setPreviousArticleUrl($this->getPreviousArticleUrl($id));
 	        }
 		}
 
@@ -127,111 +127,152 @@ class Database
 	}
 
 
-	public function getNextArticleId($id)
+	public function getArticleByUrl($url)
 	{
-		$nextArticleId = 0;
+		$articles = array();
+		$query = "SELECT * FROM articles WHERE url = ?";
+		$stmt = mysqli_prepare($this->mConnection, $query);
 
-		$query = "SELECT id FROM articles WHERE id = (SELECT min(id) FROM articles WHERE id > ?)";
+		mysqli_stmt_bind_param($stmt, 's', $url);
+
+		if (!mysqli_stmt_execute($stmt))
+		{
+			throw new Exception("Database query failed");
+		}
+		else
+		{
+			mysqli_stmt_bind_result($stmt, $idCol, $titleCol, $summaryCol, $tagsCol, $bannerImagePathCol, 
+	        	$directionsMdCol, $directionsHtmlCol, $contentMdCol, $contentHtmlCol, $pubDateCol, $urlCol);
+
+	        while (mysqli_stmt_fetch($stmt))
+	        {
+	        	$article = new Article($idCol, $titleCol, $summaryCol, $tagsCol, $contentMdCol, 
+	        		$contentHtmlCol, date_create_from_format('Y-m-d H:i:s', $pubDateCol), $bannerImagePathCol, 
+	        		$directionsMdCol, $directionsHtmlCol, $urlCol);
+	        	array_push($articles, $article);
+	        }
+
+	        mysqli_stmt_close($stmt);
+
+	        // get article comments (if we have an article, URL could be entered incorrectly),
+	        // and get next and previous article ids for links to work
+	        if (count($articles) !== 0)
+	        {
+	        	$articles[0]->setComments($this->getArticleComments($articles[0]->getId()));
+	        	$articles[0]->setNextArticleUrl($this->getNextArticleUrl($articles[0]->getId()));
+	        	$articles[0]->setPreviousArticleUrl($this->getPreviousArticleUrl($articles[0]->getId()));
+	        }
+		}
+
+		return $articles;
+	}
+
+
+	public function getNextArticleUrl($id)
+	{
+		$nextArticleUrl = 0;
+
+		$query = "SELECT url FROM articles WHERE id = (SELECT min(id) FROM articles WHERE id > ?)";
 		$stmt = mysqli_prepare($this->mConnection, $query);
 		mysqli_stmt_bind_param($stmt, 'i', $id);
 
 		// Do not throw an error just because the links do not work
 		if (mysqli_stmt_execute($stmt))
 		{
-			mysqli_stmt_bind_result($stmt, $idCol);
+			mysqli_stmt_bind_result($stmt, $urlCol);
 
 			while (mysqli_stmt_fetch($stmt))
 			{
-				$nextArticleId = $idCol;
+				$nextArticleUrl = $urlCol;
 			}
 
 			mysqli_stmt_close($stmt);
 		}
 
 		// if there isn't a next article, go back to the beginning
-		if ($nextArticleId === 0)
+		if ($nextArticleUrl === 0)
 		{
-			$nextArticleId = $this->getFirstArticleId();
+			$nextArticleUrl = $this->getFirstArticleUrl();
 		}
 
-		return $nextArticleId;
+		return $nextArticleUrl;
 	}
 
 
-	public function getPreviousArticleId($id)
+	public function getPreviousArticleUrl($id)
 	{
-		$previousArticleId = 0;
+		$previousArticleUrl = 0;
 
-		$query = "SELECT id FROM articles WHERE id = (SELECT max(id) FROM articles WHERE id < ?)";
+		$query = "SELECT url FROM articles WHERE id = (SELECT max(id) FROM articles WHERE id < ?)";
 		$stmt = mysqli_prepare($this->mConnection, $query);
 		mysqli_stmt_bind_param($stmt, 'i', $id);
 
 		// Do not throw an error just because the links do not work
 		if (mysqli_stmt_execute($stmt))
 		{
-			mysqli_stmt_bind_result($stmt, $idCol);
+			mysqli_stmt_bind_result($stmt, $urlCol);
 
 			while (mysqli_stmt_fetch($stmt))
 			{
-				$previousArticleId = $idCol;
+				$previousArticleUrl = $urlCol;
 			}
 
 			mysqli_stmt_close($stmt);
 		}
 
 		// if there isn't a previous article, go to the end
-		if ($previousArticleId === 0)
+		if ($previousArticleUrl === 0)
 		{
-			$previousArticleId = $this->getLastArticleId();
+			$previousArticleUrl = $this->getLastArticleUrl();
 		}
 
-		return $previousArticleId;
+		return $previousArticleUrl;
 	}
 
 
-	public function getFirstArticleId()
+	public function getFirstArticleUrl()
 	{
-		$firstArticleId = 0;
+		$firstArticleUrl = 0;
 
-		$query = "SELECT id FROM articles ORDER BY id ASC LIMIT 1";
+		$query = "SELECT url FROM articles ORDER BY id ASC LIMIT 1";
 		$stmt = mysqli_prepare($this->mConnection, $query);
 
 		if (mysqli_stmt_execute($stmt))
 		{
-			mysqli_stmt_bind_result($stmt, $idCol);
+			mysqli_stmt_bind_result($stmt, $urlCol);
 
 			while (mysqli_stmt_fetch($stmt))
 			{
-				$firstArticleId = $idCol;
+				$firstArticleUrl = $urlCol;
 			}
 
 			mysqli_stmt_close($stmt);
 		}
 
-		return $firstArticleId;
+		return $firstArticleUrl;
 	}
 
 
-	public function getLastArticleId()
+	public function getLastArticleUrl()
 	{
-		$lastArticleId = 0;
+		$lastArticleUrl = 0;
 
-		$query = "SELECT id FROM articles ORDER BY id DESC LIMIT 1";
+		$query = "SELECT url FROM articles ORDER BY id DESC LIMIT 1";
 		$stmt = mysqli_prepare($this->mConnection, $query);
 
 		if (mysqli_stmt_execute($stmt))
 		{
-			mysqli_stmt_bind_result($stmt, $idCol);
+			mysqli_stmt_bind_result($stmt, $urlCol);
 
 			while (mysqli_stmt_fetch($stmt))
 			{
-				$lastArticleId = $idCol;
+				$lastArticleUrl = $urlCol;
 			}
 
 			mysqli_stmt_close($stmt);
 		}
 
-		return $lastArticleId;
+		return $lastArticleUrl;
 	}
 
 
@@ -261,6 +302,7 @@ class Database
 
 		return $id;
 	}
+
 
 	public function getArticleComments($id)
 	{
@@ -296,11 +338,11 @@ class Database
 		$created = false;
 
 		$insert = "INSERT INTO articles (title, summary, tags, banner_image_path, directions_md, directions_html, 
-			content_md, content_html, pubDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			content_md, content_html, pubDate, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		$stmt = mysqli_prepare($this->mConnection, $insert);
-		mysqli_stmt_bind_param($stmt, 'sssssssss', $title, $summary, $tags, $bannerImagePath, 
-			$directionsMd, $directionsHtml, $contentMd, $contentHtml, $pubDate);
+		mysqli_stmt_bind_param($stmt, 'ssssssssss', $title, $summary, $tags, $bannerImagePath, 
+			$directionsMd, $directionsHtml, $contentMd, $contentHtml, $pubDate, $url);
 
 		$title = $article->getTitle();
 		$summary = $article->getSummary();
@@ -311,6 +353,7 @@ class Database
 		$contentMd = $article->getContentMd();
 		$contentHtml = $article->getContentHtml();
 		$pubDate = $article->getPubDate();
+		$url = $article->getUrl();
 
 		if (mysqli_stmt_execute($stmt))
 		{
@@ -354,11 +397,11 @@ class Database
 		$update = false;
 
 		$query = "UPDATE articles SET title = ?, summary = ?, tags = ?, banner_image_path = ?, directions_md = ?,
-			directions_html = ?, content_md = ?, content_html = ? WHERE id = ?";
+			directions_html = ?, content_md = ?, content_html = ?, url = ? WHERE id = ?";
 
 		$stmt = mysqli_prepare($this->mConnection, $query);
-		mysqli_stmt_bind_param($stmt, 'ssssssssi', $title, $summary, $tags, $bannerImagePath, $directionsMd,
-			$directionsHtml, $contentMd, $contentHtml, $id);
+		mysqli_stmt_bind_param($stmt, 'sssssssssi', $title, $summary, $tags, $bannerImagePath, $directionsMd,
+			$directionsHtml, $contentMd, $contentHtml, $url, $id);
 
 		$title = $article->getTitle();
 		$summary = $article->getSummary();
@@ -368,6 +411,7 @@ class Database
 		$directionsHtml = $article->getDirectionsHtml();
 		$contentMd = $article->getContentMd();
 		$contentHtml = $article->getContentHtml();
+		$url = $article->getUrl();
 		$id = $article->getId();
 
 		if (mysqli_stmt_execute($stmt))

@@ -9,7 +9,7 @@
 	<?php foreach($this->articles as $article): ?>
 		<tr>
 			<td>
-				<a href='articles/<?=$article->getId(); ?>/<?=$article->getTitleAsUrl(); ?>'>
+				<a href='articles/<?=$article->getUrl(); ?>'>
 					<?=$article->getTitle(); ?>
 				</a>
 			</td>

@@ -1,3 +1,3 @@
 RewriteEngine on
-RewriteRule ^articles/([^/]+)/([A-Za-z0-9-]+)/?$			viewArticle.php?article=$1&title=$2 		[L]				# handle requests for article ids
+RewriteRule ^articles/([A-Za-z0-9-]+)/?$					viewArticle.php?url=$1 						[L]				# handle requests for articles by title
 RewriteRule ^tags/([A-Za-z0-9-]+)/?$						viewArticlesByTags.php?tag=$1 				[NC,L]			# handle requests to get articles by tag

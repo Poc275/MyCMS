@@ -8,7 +8,7 @@ class ArticleTest extends PHPUnit_Framework_TestCase
 	{
 		$date = new DateTime();
 		$article = new Article(1, "Title", "Summary", "Tags", "ContentMd", "ContentHtml", $date, 
-			"banner-image-filename", "DirectionsMd", "DirectionsHtml");
+			"banner-image-filename", "DirectionsMd", "DirectionsHtml", "title");
 
 		$this->assertInstanceOf('Article', $article);
 	}
@@ -19,7 +19,7 @@ class ArticleTest extends PHPUnit_Framework_TestCase
 	public function testExceptionIsRaisedForInvalidConstructorArguments()
 	{
 		new Article(1, "Title", "Summary", "Tags", "ContentMd", "ContentHtml", "now", 
-			"banner-image-filename", "DirectionsMd", "DirectionsHtml");
+			"banner-image-filename", "DirectionsMd", "DirectionsHtml", "title");
 	}
 
 	public function testGetters()
@@ -35,7 +35,8 @@ class ArticleTest extends PHPUnit_Framework_TestCase
 								$date,
 								"banner-image-filename",
 								"1.   Step 1",
-								"<ol><li>Step 1</li></ol>");
+								"<ol><li>Step 1</li></ol>",
+								"chicken-katsu-curry");
 
 		$this->assertEquals("Chicken Katsu Curry", $article->getTitle());
 		$this->assertEquals("Wagamama inspired Katsu Curry", $article->getSummary());
@@ -45,6 +46,7 @@ class ArticleTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($dateString, $article->getPubDate());
 		$this->assertEquals("1.   Step 1", $article->getDirectionsMd());
 		$this->assertEquals("<ol><li>Step 1</li></ol>", $article->getDirectionsHtml());
+		$this->assertEquals("chicken-katsu-curry", $article->getUrl());
 	}
 
 	public function testSetters()
@@ -61,15 +63,16 @@ class ArticleTest extends PHPUnit_Framework_TestCase
 								$date,
 								"banner-image-filename",
 								"1.   Step 1",
-								"<ol><li>Step 1</li></ol>");
+								"<ol><li>Step 1</li></ol>",
+								"chicken-katsu-curry");
 
 
 		array_push($comments, new Comment(1, 10, "Steve", "Nice recipe!", $date));
 		array_push($comments, new Comment(2, 10, "Paul", "Agree!", $date));
 		$article->setComments($comments);
 
-		$article->setNextArticleId(3);
-		$article->setPreviousArticleId(7);
+		$article->setNextArticleUrl("next-article-url");
+		$article->setPreviousArticleUrl("prev-article-url");
 
 		$this->assertInternalType('array', $article->getComments());
 		$this->assertEquals(2, count($article->getComments()));
@@ -78,8 +81,8 @@ class ArticleTest extends PHPUnit_Framework_TestCase
 		$firstComment = $returnedComments[0];
 		$this->assertInstanceOf('Comment', $firstComment);
 
-		$this->assertEquals(3, $article->getNextArticleId());
-		$this->assertEquals(7, $article->getPreviousArticleId());
+		$this->assertEquals("next-article-url", $article->getNextArticleUrl());
+		$this->assertEquals("prev-article-url", $article->getPreviousArticleUrl());
 
 		$article->setTitle("Wagamama Chicken Katsu Curry");
 		$article->setSummary("Wagamama inspired Katsu Curry is easier than you think");
@@ -87,6 +90,7 @@ class ArticleTest extends PHPUnit_Framework_TestCase
 		$article->setContentMd("#h1##h2###h3[!this is a link]this is the main blog entry");
 		$article->setBannerImagePath("new-banner-image-filename");
 		$article->setDirectionsMd("1.   Step 12.   Step 2");
+		$article->setUrl("wagamama-chicken-katsu-curry");
 
 		$this->assertEquals("Wagamama Chicken Katsu Curry", $article->getTitle());
 		$this->assertEquals("Wagamama inspired Katsu Curry is easier than you think", $article->getSummary());
@@ -94,6 +98,7 @@ class ArticleTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals("#h1##h2###h3[!this is a link]this is the main blog entry", $article->getContentMd());
 		$this->assertEquals("new-banner-image-filename", $article->getBannerImagePath());
 		$this->assertEquals("1.   Step 12.   Step 2", $article->getDirectionsMd());
+		$this->assertEquals("wagamama-chicken-katsu-curry", $article->getUrl());
 	}
 
 	public function testTagsAsArray()
@@ -109,7 +114,8 @@ class ArticleTest extends PHPUnit_Framework_TestCase
 								$date,
 								"banner-image-filename",
 								"1.   Step 1",
-								"<ol><li>Step 1</li></ol>");
+								"<ol><li>Step 1</li></ol>",
+								"chicken-katsu-curry");
 
 		$tagsAsArray = $article->getTagsAsArray();
 
@@ -120,21 +126,4 @@ class ArticleTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals("japanese", $tagsAsArray[2]);
 	}
 
-	public function testGetTitleAsUrl()
-	{
-		$date = new DateTime();
-		$dateString = $date->format('Y-m-d H:i:s');
-		$article = new Article(1,
-								"Chicken Katsu Curry",
-								"Wagamama inspired Katsu Curry", 
-								"chicken curry japanese", 
-								"#h1##h2###h3[!this is a link]this is the main content",
-								"<h1></h1><h2></h2><h3></h3><img src='' /><p>content</p>", 
-								$date,
-								"banner-image-filename",
-								"1.   Step 1",
-								"<ol><li>Step 1</li></ol>");
-
-		$this->assertEquals("chicken-katsu-curry", $article->getTitleAsUrl());
-	}
 }

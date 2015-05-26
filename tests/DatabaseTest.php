@@ -2,8 +2,10 @@
 
 require(dirname(__FILE__)."/../Database.php");
 
-const FIRST_ARTICLE = 1;
-const LAST_ARTICLE = 15;
+const FIRST_ARTICLE_URL = "chicken-katsu-curry";
+const LAST_ARTICLE_URL = "pork-fennel-ragu";
+const FIRST_ARTICLE_ID = 1;
+const LAST_ARTICLE_ID = 15;
 
 class DBTest extends PHPUnit_Framework_TestCase
 {
@@ -57,7 +59,7 @@ class DBTest extends PHPUnit_Framework_TestCase
 		$db = new Database;
 		$db->openRestrictedConnection();
 
-		$article = $db->getArticle(FIRST_ARTICLE);
+		$article = $db->getArticle(FIRST_ARTICLE_ID);
 
 		$this->assertInternalType('array', $article);
 		// should only be 1 result
@@ -89,7 +91,7 @@ class DBTest extends PHPUnit_Framework_TestCase
 		$db = new Database;
 		$db->openRestrictedConnection();
 
-		$comments = $db->getArticleComments(LAST_ARTICLE);
+		$comments = $db->getArticleComments(LAST_ARTICLE_ID);
 
 		$this->assertInternalType('array', $comments);
 
@@ -103,8 +105,8 @@ class DBTest extends PHPUnit_Framework_TestCase
 
 		$article = $db->getArticle(8);
 
-		$this->assertEquals(11, $article[0]->getNextArticleId());
-		$this->assertEquals(7, $article[0]->getPreviousArticleId());
+		$this->assertEquals("pizza-al-forno", $article[0]->getNextArticleUrl());
+		$this->assertEquals("creme-fraiche-pasta", $article[0]->getPreviousArticleUrl());
 
 		$db->closeConnection();
 	}
@@ -114,8 +116,8 @@ class DBTest extends PHPUnit_Framework_TestCase
 		$db = new Database;
 		$db->openRestrictedConnection();
 
-		$this->assertEquals(FIRST_ARTICLE, $db->getFirstArticleId());
-		$this->assertEquals(LAST_ARTICLE, $db->getLastArticleId());
+		$this->assertEquals(FIRST_ARTICLE_URL, $db->getFirstArticleUrl());
+		$this->assertEquals(LAST_ARTICLE_URL, $db->getLastArticleUrl());
 
 		$db->closeConnection();
 	}
@@ -125,11 +127,11 @@ class DBTest extends PHPUnit_Framework_TestCase
 		$db = new Database;
 		$db->openRestrictedConnection();
 
-		$article = $db->getArticle(FIRST_ARTICLE);
-		$this->assertEquals(LAST_ARTICLE, $article[0]->getPreviousArticleId());
+		$article = $db->getArticle(FIRST_ARTICLE_ID);
+		$this->assertEquals(LAST_ARTICLE_URL, $article[0]->getPreviousArticleUrl());
 
-		$article = $db->getArticle(LAST_ARTICLE);
-		$this->assertEquals(FIRST_ARTICLE, $article[0]->getNextArticleId());
+		$article = $db->getArticle(LAST_ARTICLE_ID);
+		$this->assertEquals(FIRST_ARTICLE_URL, $article[0]->getNextArticleUrl());
 
 		$db->closeConnection();
 	}
@@ -157,7 +159,7 @@ class DBTest extends PHPUnit_Framework_TestCase
 		$db->openPrivilegedConnection();
 
 		// get an existing article
-		$article = $db->getArticle(FIRST_ARTICLE);
+		$article = $db->getArticle(FIRST_ARTICLE_ID);
 
 		// modify it and update back into DB
 		$article[0]->setTitle("Chicken Katsu Curry");
@@ -167,10 +169,28 @@ class DBTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(true, $db->updateArticle($article[0]));
 
 		// check updated values have been applied
-		$article = $db->getArticle(FIRST_ARTICLE);
+		$article = $db->getArticle(FIRST_ARTICLE_ID);
 		$this->assertEquals("Chicken Katsu Curry", $article[0]->getTitle());
 		$this->assertEquals("Wagamama inspired Katsu Curry", $article[0]->getSummary());
 		$this->assertEquals("Japanese chicken curry", $article[0]->getTags());
+
+		$db->closeConnection();
+	}
+
+	public function testGetArticleByTitle()
+	{
+		$db = new Database;
+		$db->openReadOnlyConnection();
+
+		$article = $db->getArticleByUrl("chicken-katsu-curry");
+		$this->assertInternalType('array', $article);
+		$this->assertEquals(1, count($article));
+		$this->assertEquals("Chicken Katsu Curry", $article[0]->getTitle());
+
+		$article = $db->getArticleByUrl("quesa-enchi-rrito");
+		$this->assertInternalType('array', $article);
+		$this->assertEquals(1, count($article));
+		$this->assertEquals("Quesa-enchi-rrito", $article[0]->getTitle());
 
 		$db->closeConnection();
 	}

@@ -3,20 +3,21 @@
 require "Database.php";
 require "BlogEntryView.php";
 
-if (isset($_GET["article"]))
+if (isset($_GET["url"]))
 {
-	$articleId = htmlspecialchars($_GET["article"]);
+	$url = htmlspecialchars($_GET["url"]);
 	$db = new Database;
 
 	if ($db->openReadOnlyConnection())
 	{
-		if (count($db->getArticle($articleId)) == 1)
+		$article = $db->getArticleByUrl($url);
+		$db->closeConnection();
+
+		if (count($article) == 1)
 		{
 			$blogEntryView = new BlogEntryView();
-			$blogEntryView->article = $db->getArticle($articleId)[0];
+			$blogEntryView->article = $article[0];
 			$blogEntryView->render("blogEntryView.phtml");
 		}
-		
-		$db->closeConnection();
 	}
 }
