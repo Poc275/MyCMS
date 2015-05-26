@@ -41,11 +41,9 @@ if ($db->openPrivilegedConnection())
 
 	if (isset($_POST["edit"]))
 	{
-		// get article id to enable SQL update
-		$id = $db->getArticleIdFromTitle($_POST["title"]);
-
-		$article = new Article($id, $_POST["title"], $_POST["summary"], $_POST["tags"], $_POST["contentMd"], 
-			$contentHtml, $date, $_POST["banner-image-path"], $_POST["directionsMd"], $directionsHtml, $url);
+		$article = new Article($_POST["article-id"], $_POST["title"], $_POST["summary"], $_POST["tags"], 
+			$_POST["contentMd"], $contentHtml, $date, $_POST["banner-image-path"], $_POST["directionsMd"], 
+			$directionsHtml, $url);
 
 		if (!$db->updateArticle($article))
 		{

@@ -136,23 +136,6 @@ class DBTest extends PHPUnit_Framework_TestCase
 		$db->closeConnection();
 	}
 
-	public function testGetArticleIdByTitle()
-	{
-		$db = new Database;
-		$db->openReadOnlyConnection();
-
-		$id = $db->getArticleIdFromTitle("Bulgogi Beef Sandwich");
-		$this->assertEquals(8, $id);
-
-		$id = $db->getArticleIdFromTitle("Chicken and noodles");
-		$this->assertEquals(13, $id);
-
-		$id = $db->getArticleIdFromTitle("This doesn't exist");
-		$this->assertEquals(0, $id);
-
-		$db->closeConnection();
-	}
-
 	public function testUpdateArticle()
 	{
 		$db = new Database;

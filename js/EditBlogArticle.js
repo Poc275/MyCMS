@@ -1,5 +1,6 @@
 function editBlogEntry(id) {
 	var httpRequest;
+    var articleIdInput = document.getElementById("article-id");
 	var titleInput = document.getElementById("title");
 	var summaryInput = document.getElementById("summary");
 	var tagsInput = document.getElementById("tags");
@@ -33,6 +34,7 @@ function editBlogEntry(id) {
     		var responseJSON = JSON.parse(httpRequest.responseText);
 
     		// populate form with article info we are editing
+            articleIdInput.value = responseJSON.articleId;
     		titleInput.value = responseJSON.articleTitle;
     		summaryInput.value = responseJSON.articleSummary;
     		tagsInput.value = responseJSON.articleTags;

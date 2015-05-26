@@ -13,7 +13,8 @@ if ($db->openReadOnlyConnection())
 
 	$db->closeConnection();
 
-	$response = array('articleTitle'=>$article[0]->getTitle(), 
+	$response = array('articleId'=>$article[0]->getId(),
+					  'articleTitle'=>$article[0]->getTitle(), 
 					  'articleSummary'=>$article[0]->getSummary(),
 					  'articleTags'=>$article[0]->getTags(),
 					  'articleBannerImage'=>$article[0]->getBannerImagePath(),

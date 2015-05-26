@@ -276,34 +276,6 @@ class Database
 	}
 
 
-	public function getArticleIdFromTitle($title)
-	{
-		$id = 0;
-
-		$query = "SELECT id FROM articles WHERE title = ?";
-		$stmt = mysqli_prepare($this->mConnection, $query);
-		mysqli_stmt_bind_param($stmt, 's', $title);
-
-		if (!mysqli_stmt_execute($stmt))
-		{
-			throw new Exception("Database query failed");
-		}
-		else
-		{
-			mysqli_stmt_bind_result($stmt, $idCol);
-
-			while (mysqli_stmt_fetch($stmt))
-			{
-				$id = $idCol;
-			}
-
-			mysqli_stmt_close($stmt);
-		}
-
-		return $id;
-	}
-
-
 	public function getArticleComments($id)
 	{
 		$comments = array();
