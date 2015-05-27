@@ -80,6 +80,7 @@ p {
 	background: none repeat scroll 0 0 #000;
 	display: block;
 	transition: transform 200ms cubic-bezier(0.63, 0.62, 0.48, 1.64) 0s;
+	-webkit-transition: -webkit-transform 200ms cubic-bezier(0.63, 0.62, 0.48, 1.64) 0s;
 }
 
 #header-menu .top,
@@ -89,10 +90,12 @@ p {
 
 #header-menu:hover .top {
 	transform: rotateZ(0deg) translateX(0px) translateY(-3px);
+	-webkit-transform: rotateZ(0deg) translateX(0px) translateY(-3px);
 }
 
 #header-menu:hover .bottom {
 	transform: rotateZ(0deg) translateX(0px) translateY(3px);
+	-webkit-transform: rotateZ(0deg) translateX(0px) translateY(3px);
 }
 
 
