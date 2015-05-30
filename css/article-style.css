@@ -133,27 +133,31 @@ nav ul > li {
 
 /* alternate paragraph stylings between Phil and myself */
 #main-article p:nth-of-type(2n+1) {
-    border-left: 3px solid rgba(255, 206, 154, 1);
+    border-left: 3px solid;
+    border-color: #FF7676;
     padding-left: 0.5em;
 }
 
 #main-article p:nth-of-type(2n) {
-    border-left: 3px solid rgba(152, 222, 245, 1);
+    border-left: 3px solid;
+    border-color: #69E369;
     padding-left: 0.5em;
 }
 
 /* additional paragraph stylings for versatility */
 p.phil {
-    border-left: 3px solid rgba(255, 206, 154, 1) !important;
+    border-left: 3px solid !important;
+    border-color: #FF7676 !important;
     padding-left: 0.5em;
 }
 
 p.pete {
-    border-left: 3px solid rgba(152, 222, 245, 1) !important;
+    border-left: 3px solid !important;
+    border-color: #69E369 !important;
     padding-left: 0.5em;
 }
 
-#main-article p {
+#main-article {
     max-width: 600px;
 }
 
@@ -164,6 +168,7 @@ p.pete {
 #article-info {
     color: #808080;
     padding: 1.5em 0;
+    max-width: 600px;
 }
 
 #article-info ul {
@@ -204,6 +209,7 @@ p.pete {
 #article-share {
     color: #808080;
     padding: 1.5em 0;
+    max-width: 600px;
 }
 
 #article-share h4 {
