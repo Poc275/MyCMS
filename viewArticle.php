@@ -1,7 +1,7 @@
 <?php
 
-require "Database.php";
-require "BlogEntryView.php";
+require_once "Database.php";
+require_once "BlogEntryView.php";
 
 if (isset($_GET["url"]))
 {

@@ -1,6 +1,6 @@
 <?php
 
-require "Database.php";
+require_once "Database.php";
 require_once "Comment.php";
 
 if (isset($_POST["author"]) && isset($_POST["comment"]) && isset($_POST["article"]))

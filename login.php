@@ -1,7 +1,7 @@
 <?php
 
 require_once("includes/session.php");
-require "Database.php";
+require_once "Database.php";
 
 if (isset($_POST["username"]) && isset($_POST["credentials"]))
 {

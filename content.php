@@ -1,8 +1,8 @@
 <?php
 
-require "Database.php";
-require "ArticleView.php";
-require "ImagesView.php";
+require_once "Database.php";
+require_once "ArticleView.php";
+require_once "ImagesView.php";
 require_once("includes/session.php");
 validateUser();
 

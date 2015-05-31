@@ -1,6 +1,6 @@
 <?php
 
-require "ImagesView.php";
+require_once "ImagesView.php";
 require_once("includes/session.php");
 validateUser();
 

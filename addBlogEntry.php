@@ -1,5 +1,6 @@
 <?php
-require "Database.php";
+require_once "Database.php";
+require_once "RssFeed.php";
 require_once("includes/session.php");
 require_once("includes/MarkdownExtra.inc.php");
 validateUser();
@@ -9,6 +10,7 @@ $db = new Database;
 if ($db->openPrivilegedConnection())
 {
 	$mdExtra = new Michelf\MarkdownExtra();
+	$rssFeed = new RssFeed;
 	$date = new DateTime();
 
 	$directionsHtml = $mdExtra->defaultTransform($_POST["directionsMd"]);
@@ -31,7 +33,7 @@ if ($db->openPrivilegedConnection())
 
 		if ($db->addArticle($article))
 		{
-			updateFeed($db->getArticles());
+			$rssFeed->updateFeed();
 		}
 		else
 		{
@@ -45,7 +47,11 @@ if ($db->openPrivilegedConnection())
 			$_POST["contentMd"], $contentHtml, $date, $_POST["banner-image-path"], $_POST["directionsMd"], 
 			$directionsHtml, $url);
 
-		if (!$db->updateArticle($article))
+		if ($db->updateArticle($article))
+		{
+			$rssFeed->updateFeed();
+		}
+		else
 		{
 			throw new Exception("Database update failed");
 		}
@@ -60,34 +66,4 @@ function filterHtmlForImageParagraphs($input)
 {
 	// regex courtesy of https://css-tricks.com/snippets/wordpress/remove-paragraph-tags-from-around-images/
 	return preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $input);
-}
-
-
-function updateFeed($articles)
-{
-	$xml = '<?xml version="1.0" encoding="UTF-8" ?><rss version="2.0" 
-		xmlns:atom="http://www.w3.org/2005/Atom">
-		<channel><title>A Food Odyssey</title>
-		<link>http://localhost:8080/MyCMS</link>
-		<description>Amateurs trawl through the world of food</description>
-		<category>Food</category>
-		<image><url>/assets/placeholder.jpg</url>
-		<title>A Food Odyssey</title>
-		<link>http://localhost:8080/MyCMS</link></image>
-		<language>en-uk</language>
-		<atom:link href="http://localhost:8080/MyCMS/rss.xml" rel="self" type="application/rss+xml" />';
-
-	foreach ($articles as $article)
-	{
-		$xml = $xml . '<item><title>' . $article->getTitle() . '</title><link>http://localhost:8080/MyCMS/articles/' . 
-			$article->getUrl() . '</link><description>' . $article->getSummary() . 
-			'</description><pubDate>' . $article->getPubDateRssFormat() . '</pubDate><guid>http://localhost:8080/MyCMS/articles/' . 
-			$article->getUrl() . '</guid></item>';
-	}
-
-	$xml .= "</channel></rss>";
-
-	$handle = fopen("rss.xml", "w+");
-	fwrite($handle, $xml);
-	fclose($handle);
 }

@@ -1,8 +1,8 @@
 <?php
 
-require "Article.php";
-require "Comment.php";
-require "User.php";
+require_once "Article.php";
+require_once "Comment.php";
+require_once "User.php";
 
 class Database
 {
