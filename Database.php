@@ -397,6 +397,26 @@ class Database
 	}
 
 
+	public function deleteArticle($id)
+	{
+		$deleted = false;
+
+		$query = "DELETE FROM articles WHERE id = ?";
+
+		$stmt = mysqli_prepare($this->mConnection, $query);
+		mysqli_stmt_bind_param($stmt, 'i', $id);
+
+		if (mysqli_stmt_execute($stmt))
+		{
+			$deleted = true;
+		}
+
+		mysqli_stmt_close($stmt);
+
+		return $deleted;
+	}
+
+
 	/*
 	** USER CREDENTIALS QUERIES
 	*/

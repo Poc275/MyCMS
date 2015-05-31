@@ -4,6 +4,7 @@
 		<th>Title</th>
 		<th>Date</th>
 		<th>Edit</th>
+		<th>Delete</th>
 	</tr>
 	
 	<?php foreach($this->articles as $article): ?>
@@ -13,12 +14,20 @@
 					<?=$article->getTitle(); ?>
 				</a>
 			</td>
+
 			<td>
 				<?=$article->getNicePubDate(); ?>
 			</td>
+
 			<td>
 				<a href='#' onclick='editBlogEntry(<?=$article->getId(); ?>)'>
 					<i class="fa fa-pencil-square-o"></i>
+				</a>
+			</td>
+
+			<td>
+				<a href='#' onclick='deleteBlogEntry(<?=$article->getId(); ?>)'>
+					<i class="fa fa-times fa-lg"></i>
 				</a>
 			</td>
 		</tr>

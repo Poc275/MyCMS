@@ -148,6 +148,11 @@ table th {
 	font-weight: bold;
 }
 
+table td:nth-of-type(3n),
+table td:nth-of-type(4n) {
+	text-align: center;
+}
+
 
 /*
 * SLIDE OUT MENU
