@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>A Food Odyssey</title>
+        <link rel="stylesheet" href="/MyCMS/css/reset.css">
+        <link rel="stylesheet" href="/MyCMS/css/article-style.css">
+        <link rel="stylesheet" href="/MyCMS/css/home-page-style.css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,800' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400italic,400' rel='stylesheet' type='text/css'>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <div class="grid-container">
+            <header id="site-header">
+                <h1>A Food <i>Odyssey</i></h1>
+                <!-- <p id="tagline">Amateurs trawl through the world of food...</p> -->
+                <nav>
+                    <ul>
+                        <li><a href="#">THE Archives</a></li>
+                        <li><a href="#">THE Lexicon</a></li>
+                        <li><a href="#">ABOUT Us</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+
+
+        <!-- <header id="home-page-header">
+            <div class="home-page-header-container">
+                <h1>
+                    A Food Odyssey
+                </h1>
+                <p>
+                    Amateurs trawl through the world of food
+                </p>
+            </div>
+        </header> -->
+
+        <header id="home-page-header">
+            <div class="home-page-header-container">
+                <video autoplay loop poster="#" id="home-page-vid">
+                    <source src="/MyCMS/vid/video-placeholder.mp4" type="video/mp4">
+                </video>
+                <h1>A Food Odyssey</h1>
+            </div>
+        </header>
+
+
+        <?php foreach($this->articles as $article): ?>
+            <article class="comment">
+                <h5>
+                    <?=$article->getTitle(); ?>
+                </h5>
+                <p>
+                    <time datetime="<?=$article->getNicePubDate(); ?>">
+                        <?=$article->getNicePubDate(); ?>
+                    </time>
+                </p>
+                <p>
+                    <?=$article->getSummary(); ?>
+                </p>
+            </article>
+        <?php endforeach; ?>
+
+
+        <footer>
+            <p>A Food Odyssey is a journey by <a href="http://www.pjfreeman.co.uk/">Phil Freeman</a> &amp; 
+                <a href="http://poc275.co.uk">Peter O'Connor</a>
+            </p>
+            <address id="footer-social">
+                <ul id="footer-logos">
+                    <li><a href="mailto:poc275@gmail.com?Subject=A%20Food%20Odyssey" title="send us an email" class="no-decoration"><i class="fa fa-envelope-o fa-4x"></i></a></li>
+                    <li><a href="../rss.xml" title="follow our blog" class="no-decoration"><i class="fa fa-rss fa-4x"></i></a></li>
+                </ul>
+            </address>
+        </footer>
+
+
+    </body>
+
+</html>

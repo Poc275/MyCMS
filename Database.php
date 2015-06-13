@@ -87,6 +87,37 @@ class Database
 	}
 
 
+	public function getArticleRange($offset, $number)
+	{
+		$articles = array();
+		$query = "SELECT * FROM articles ORDER BY pubDate DESC LIMIT ?, ?";
+		$stmt = mysqli_prepare($this->mConnection, $query);
+		mysqli_stmt_bind_param($stmt, 'ii', $offset, $number);
+
+		if (!mysqli_stmt_execute($stmt))
+		{
+			throw new Exception("Database query failed");
+		}
+		else
+		{
+			mysqli_stmt_bind_result($stmt, $idCol, $titleCol, $summaryCol, $tagsCol, $bannerImagePathCol, 
+	        	$directionsMdCol, $directionsHtmlCol, $contentMdCol, $contentHtmlCol, $pubDateCol, $urlCol);
+
+			while (mysqli_stmt_fetch($stmt))
+	        {
+	        	$article = new Article($idCol, $titleCol, $summaryCol, $tagsCol, $contentMdCol, 
+	        		$contentHtmlCol, date_create_from_format('Y-m-d H:i:s', $pubDateCol), $bannerImagePathCol, 
+	        		$directionsMdCol, $directionsHtmlCol, $urlCol);
+	        	array_push($articles, $article);
+	        }
+
+	        mysqli_stmt_close($stmt);
+		}
+
+		return $articles;
+	}
+
+
 	public function getArticle($id)
 	{
 		$articles = array();
