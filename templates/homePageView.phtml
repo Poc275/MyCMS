@@ -21,7 +21,7 @@
                 <!-- <p id="tagline">Amateurs trawl through the world of food...</p> -->
                 <nav>
                     <ul>
-                        <li><a href="#">THE Archives</a></li>
+                        <li><a href="/MyCMS/index.php">THE Archives</a></li>
                         <li><a href="#">THE Lexicon</a></li>
                         <li><a href="#">ABOUT Us</a></li>
                     </ul>
@@ -41,21 +41,30 @@
         </header>
 
 
-        <?php foreach($this->articles as $article): ?>
-            <article class="comment">
-                <h5>
-                    <?=$article->getTitle(); ?>
-                </h5>
-                <p>
-                    <time datetime="<?=$article->getNicePubDate(); ?>">
-                        <?=$article->getNicePubDate(); ?>
-                    </time>
-                </p>
-                <p>
-                    <?=$article->getSummary(); ?>
-                </p>
-            </article>
-        <?php endforeach; ?>
+        <div class="grid-articles">
+            <?php foreach($this->articles as $article): ?>
+
+                <article style="background-image: url('/MyCMS/img/<?php echo $article->getBannerImagePath(); ?>')">
+
+                    <a href="/MyCMS/articles/<?=$article->getUrl(); ?>">
+                        <div class="article-info">
+                            <h3>
+                                <?=$article->getTitle(); ?>
+                            </h3>
+                            <p>
+                                <?=$article->getSummary(); ?>
+                            </p>
+                            <!-- <p>
+                                <time datetime="<?=$article->getNicePubDate(); ?>">
+                                    <?=$article->getNicePubDate(); ?>
+                                </time>
+                            </p> -->
+                        </div>
+                    </a>
+                </article>
+
+            <?php endforeach; ?>
+        </div>
 
 
         <footer>
@@ -65,7 +74,7 @@
             <address id="footer-social">
                 <ul id="footer-logos">
                     <li><a href="mailto:poc275@gmail.com?Subject=A%20Food%20Odyssey" title="send us an email" class="no-decoration"><i class="fa fa-envelope-o fa-4x"></i></a></li>
-                    <li><a href="../rss.xml" title="follow our blog" class="no-decoration"><i class="fa fa-rss fa-4x"></i></a></li>
+                    <li><a href="/MyCMS/rss.xml" title="follow our blog" class="no-decoration"><i class="fa fa-rss fa-4x"></i></a></li>
                 </ul>
             </address>
         </footer>
