@@ -50,7 +50,7 @@ video {
     max-width: 1500px;
 }
 
-.grid-articles article {
+.grid-articles a {
     display: inline-block;
     background-position: center center;
     background-repeat: no-repeat;
@@ -61,8 +61,9 @@ video {
     margin-bottom: 1em;
 }
 
-.grid-articles article a {
-    color: #fff;
+.grid-articles a {
+    
+    
 }
 
 .article-info h3 {
@@ -79,34 +80,32 @@ video {
     box-sizing: border-box;
 }
 
-article:first-child {
-    width: 55.62%;
+/* width = 95% to allow for guttering */
+.grid-articles a:first-child {
+    width: 58.71%;
     /* padding percentages are calculated with respect to the width of the parent
      enabling the aspect ratio to be calculated */
-    padding-bottom: 34.37316%;
+    padding-bottom: 36.28278%;
 }
 
-article:nth-of-type(2) {
-    width: 34.38%;
-    padding-bottom: 34.37316%;
+.grid-articles a:nth-of-type(2) {
+    width: 38.29%;
+    padding-bottom: 36.28278%;
+    float: right;
 }
 
-article:nth-of-type(3) {
-    width: 34.37316%;
-    padding-bottom: 21.24261288%;
+.grid-articles a:nth-of-type(3) {
+    width: 38.29%;
+    padding-bottom: 23.66322%;
 }
 
-article:nth-of-type(4) {
-    width: 21.24684%;
-    padding-bottom: 21.24261288%;
+.grid-articles a:nth-of-type(4) {
+    width: 36.28278%;
+    padding-bottom: 23.66322%;
 }
 
-article:nth-of-type(5) {
-    width: 21.24684%;
-    padding-bottom: 21.24261288%;
-}
-
-article:nth-of-type(6) {
-    width: 13.13316%;
-    padding-bottom: 21.24261288%;
+.grid-articles a:nth-of-type(5) {
+    width: 21.42722%;
+    padding-bottom: 23.66322%;
+    float: right;
 }

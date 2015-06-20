@@ -44,24 +44,29 @@
         <div class="grid-articles">
             <?php foreach($this->articles as $article): ?>
 
-                <article style="background-image: url('/MyCMS/img/<?php echo $article->getBannerImagePath(); ?>')">
+            <a href="/MyCMS/articles/<?=$article->getUrl(); ?>" 
+                style="background-image: url('/MyCMS/img/<?php echo $article->getBannerImagePath(); ?>')">
 
-                    <a href="/MyCMS/articles/<?=$article->getUrl(); ?>">
-                        <div class="article-info">
-                            <h3>
-                                <?=$article->getTitle(); ?>
-                            </h3>
-                            <p>
-                                <?=$article->getSummary(); ?>
-                            </p>
-                            <!-- <p>
-                                <time datetime="<?=$article->getNicePubDate(); ?>">
-                                    <?=$article->getNicePubDate(); ?>
-                                </time>
-                            </p> -->
-                        </div>
-                    </a>
+                <article>
+                    <div class="article-info">
+                        <h3>
+                            <?=$article->getTitle(); ?>
+                        </h3>
+
+                        <p>
+                            <?=$article->getSummary(); ?>
+                        </p>
+
+                        <!-- <p>
+                            <time datetime="<?=$article->getNicePubDate(); ?>">
+                                <?=$article->getNicePubDate(); ?>
+                            </time>
+                        </p> -->
+                        
+                    </div>
                 </article>
+
+            </a>
 
             <?php endforeach; ?>
         </div>
