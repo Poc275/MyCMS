@@ -44,7 +44,7 @@
         <div class="grid-articles">
             <?php foreach($this->articles as $article): ?>
 
-            <a href="/MyCMS/articles/<?=$article->getUrl(); ?>" 
+            <a class="no-decoration" href="/MyCMS/articles/<?=$article->getUrl(); ?>" 
                 style="background-image: url('/MyCMS/img/<?php echo $article->getBannerImagePath(); ?>')">
 
                 <article>
