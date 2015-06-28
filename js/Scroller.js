@@ -41,19 +41,39 @@ function getMoreArticles(offset) {
 
     httpRequest.onreadystatechange = function() {
     	if (httpRequest.readyState === 4 && httpRequest.status === 200) {
-    		// document.getElementById("author").value = "";
-    		// document.getElementById("comment").value = "";
-    		// document.getElementById("grid-articles").innerHTML += httpRequest.responseText;
+    		var gridArticles = document.getElementById("grid-articles");
     		var responseJSON = JSON.parse(httpRequest.responseText);
-    		// alert(JSON.parse(httpRequest.responseText).length);
 
     		for (var i = 0; i < responseJSON.length; i++) {
-				alert(Object.keys(responseJSON[i]));    			
+   				var bgImageUrl = "url(/MyCMS/img/" + responseJSON[i].articleBannerImage;
+   				var url = "/MyCMS/articles/" + responseJSON[i].articleUrl;
 
-    			// for (var key in responseJSON[i]) {
-   				// 	// alert(' name=' + key + ' value=' + responseJSON[i][key]);
-   				// 	alert(key);
-   				// }
+   				var newAnchorTag = document.createElement('a');
+   				newAnchorTag.setAttribute('href', url);
+   				newAnchorTag.style.backgroundImage = bgImageUrl;
+   				newAnchorTag.className = "no-decoration";
+
+   				var newArticleTag = document.createElement('article');
+
+   				var newDivTag = document.createElement('div');
+   				newDivTag.className = "article-info";
+
+   				var newHeaderTag = document.createElement('h3');
+   				var headerText = document.createTextNode(responseJSON[i].articleTitle);
+   				newHeaderTag.appendChild(headerText);
+
+   				var newParaTag = document.createElement('p');
+   				var paraText = document.createTextNode(responseJSON[i].articleSummary);
+   				newParaTag.appendChild(paraText);
+
+   				newDivTag.appendChild(newHeaderTag);
+   				newDivTag.appendChild(newParaTag);
+
+   				newArticleTag.appendChild(newDivTag);
+
+   				newAnchorTag.appendChild(newArticleTag);
+
+   				gridArticles.appendChild(newAnchorTag);
     		}
     	}
     }
