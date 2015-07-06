@@ -7,7 +7,6 @@ $db = new Database;
 
 if ($db->openReadOnlyConnection())
 {
-	// TODO - use url to paginate
 	$articles = $db->getArticleRange(0, 6);
 	$db->closeConnection();
 

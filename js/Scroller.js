@@ -45,8 +45,8 @@ function getMoreArticles(offset) {
     		var responseJSON = JSON.parse(httpRequest.responseText);
 
     		for (var i = 0; i < responseJSON.length; i++) {
-   				var bgImageUrl = "url(/MyCMS/img/" + responseJSON[i].articleBannerImage;
-   				var url = "/MyCMS/articles/" + responseJSON[i].articleUrl;
+   				var bgImageUrl = "url('/MyCMS/img/" + responseJSON[i].articleBannerImage + "')";
+   				var url = '/MyCMS/articles/' + responseJSON[i].articleUrl;
 
    				var newAnchorTag = document.createElement('a');
    				newAnchorTag.setAttribute('href', url);

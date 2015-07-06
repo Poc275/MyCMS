@@ -1,7 +1,6 @@
 <?php
 
 require_once "Database.php";
-require_once "HomePageView.php";
 
 $db = new Database;
 
