@@ -58,7 +58,7 @@ video {
     background-size: cover;
     color: #fff;
     position: relative;
-    margin-bottom: 1em;
+    margin-bottom: 2%;
     font-size: initial;
     float: left;
     box-sizing: border-box;
@@ -76,32 +76,26 @@ video {
 }
 
 #grid-articles a:first-child {
-    width: 100%;
     /* padding percentages are calculated with respect to the width of the parent
      enabling the aspect ratio to be calculated */
-    padding-bottom: 61.8%;
+    width: 49%;
+    padding-bottom: 30.282%;
+    margin-right: 2%;
 }
 
 #grid-articles a:nth-of-type(2) {
-    width: 49.5%;
-    padding-bottom: 30.282%;
-    margin-right: 1%;
-}
-
-#grid-articles a:nth-of-type(3) {
-    width: 49.5%;
+    width: 49%;
     padding-bottom: 30.282%;
 }
 
-#grid-articles a:nth-of-type(3) ~ a {
-    width: 32.66667%;
-    padding-bottom: 19.9305%;
-    margin-right: 1%;
+#grid-articles a:nth-of-type(2) ~ a {
+    width: 32%;
+    padding-bottom: 19.776%;
+    margin-right: 2%;
 }
 
-#grid-articles a:nth-of-type(3n+0) {
+#grid-articles a:nth-of-type(3n+5) {
     margin-right: 0 !important;
-    /*float: right !important;*/
 }
 
 #grid-articles a:hover {

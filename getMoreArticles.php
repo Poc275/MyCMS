@@ -6,7 +6,20 @@ $db = new Database;
 
 if ($db->openReadOnlyConnection())
 {
-	$offset = $_POST["offset"] * 6;
+	$offsetPost = $_POST["offset"];
+	$offset = 0;
+
+	// first retrieval fetches 5 articles, due to layouts
+	// the next fetch needs to get 6 articles for a smooth appearance
+	if ($offsetPost == 1)
+	{
+		$offset = 5;
+	}
+	else
+	{
+		$offset = $offsetPost * 6;
+	}
+
 	$articles = $db->getArticleRange($offset, 6);
 	$db->closeConnection();
 

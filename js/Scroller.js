@@ -3,10 +3,9 @@
 
 	window.onscroll = function(event) {
 		if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-			// console.log(window.screen.height);
-			// alert("Bottom of page");
 			var chefHat = document.getElementById("chef-hat");
-			// chefHat.style.transform = 'rotate(360deg)';
+      chefHat.classList.remove("rotate-chef-hat");
+      chefHat.offsetWidth = chefHat.offsetWidth;
 			chefHat.className = "rotate-chef-hat";
 
 			getMoreArticles(offset);
