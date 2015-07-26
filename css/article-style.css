@@ -81,6 +81,11 @@ nav {
 nav ul > li {
     display: inline-block;
     margin: 0 1em 0 0;
+    text-align: center;
+}
+
+nav ul li a span {
+    display: block;
 }
 
 
@@ -295,6 +300,71 @@ p.pete {
 }
 
 
+/* THE LEXICON PAGE
+------------------------------------------------------*/
+#lexicon-header {
+    display: table;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url('../img/food-lexicon.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*background-attachment: fixed;*/
+    width: 100%;
+    height: 20em;
+    color: #fff;
+}
+
+#lexicon-header h1 {
+    font-weight: 800;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    line-height: 1.5;
+}
+
+.lexicon-header-container {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#lexicon-info {
+    color: #808080;
+    padding: 1.5em 0;
+    max-width: 600px;
+}
+
+#lexicon-info h4 {
+    padding: 0 0 0.25em 0;
+}
+
+#lexicon-info h5 {
+    padding: 0 0 0.5em 0;
+}
+
+#main-lexicon {
+    /*max-width: 600px;*/
+}
+
+#main-lexicon ol li {
+    padding: 0 0 1em 0;
+}
+
+#alphabet a {
+    color: #fff;
+}
+
+.letter-header {
+    color: #808080;
+}
+
+.hyphen-odd {
+    color: #FF7676;
+}
+
+.hyphen {
+    color: #69E369;
+}
+
+
 /* COMMENT STYLES
     --------------------------------------------------*/
 #comments-toggle {
@@ -374,7 +444,6 @@ a img {
 ------------------------------------------------------------------*/
 @media screen and (min-width: 1000px) {
     nav {
-        margin: 1.4em 0 0 0;
         float: right;
         padding-left: 0.5em;
     }
@@ -404,6 +473,23 @@ a img {
         width: 30%;
         padding-top: 3em;
         padding-left: 3em;
+        padding-bottom: 3em;
+        box-sizing: border-box;
+    }
+
+    #lexicon-info {
+        float: left;
+        width: 30%;
+        padding-top: 3em;
+        padding-right: 3em;
+        padding-bottom: 3em;
+        box-sizing: border-box;
+    }
+
+    #main-lexicon {
+        float: left;
+        width: 70%;
+        padding-top: 3em;
         padding-bottom: 3em;
         box-sizing: border-box;
     }
