@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full" width="800" height="600" viewBox="0 0 800.00 600.00" enable-background="new 0 0 800.00 600.00" xml:space="preserve">
+	<path fill="#BEA073" fill-opacity="1" stroke-width="6" stroke-linejoin="round" stroke="#646464" stroke-opacity="1" d="M 203.333,142L 597.5,142C 620.696,142 639.5,160.804 639.5,184L 639.5,415.5C 639.5,438.696 620.696,457.5 597.5,457.5L 203.333,457.5C 180.138,457.5 161.333,438.696 161.333,415.5L 161.333,184C 161.333,160.804 180.138,142 203.333,142 Z "/>
+	<rect x="456.244" y="223.939" fill="#505050" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" width="142" height="120.083"/>
+	<radialGradient id="SVGID_Fill1_" cx="340.479" cy="300.563" r="141.021" gradientUnits="userSpaceOnUse">
+		<stop offset="0" stop-color="#000000" stop-opacity="1"/>
+		<stop offset="0.419349" stop-color="#656565" stop-opacity="1"/>
+		<stop offset="0.857759" stop-color="#CACACA" stop-opacity="1"/>
+		<stop offset="1" stop-color="#C8C8C8" stop-opacity="1"/>
+		
+	</radialGradient>
+	<filter id="Filter_DropShadow1_" filterUnits="userSpaceOnUse">
+		<feGaussianBlur in="SourceAlpha" stdDeviation="6" result="blur"/>
+		<feOffset dx="0" dy="-0" in="blur" result="offsetBlurredAlpha"/>
+		<feMerge>
+			<feMergeNode in="offsetBlurredAlpha"/>
+			<feMergeNode in="SourceGraphic"/>
+		</feMerge>
+	</filter>
+	<ellipse fill="url(#SVGID_Fill1_)" stroke-linejoin="round" stroke="#C8C8C8" stroke-opacity="1" filter="url(#Filter_DropShadow1_)" cx="340.479" cy="300.563" rx="140.521" ry="140.521"/>
+	<path fill="#808080" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" d="M 597.625,261.417L 494.75,261.417C 494.438,261.448 493.859,261.26 493.166,261.958C 492.472,262.655 492.641,263.589 492.625,263.833C 492.625,274.929 492.641,294.089 492.641,294.385C 492.641,294.682 492.516,296.073 493.5,296.87C 494.484,297.667 495.75,297.776 496.234,297.792C 496.719,297.807 562.828,297.75 597.625,297.75L 597.625,261.417 Z "/>
+	<rect x="584.958" y="376.083" fill="#342B1E" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" width="11.3334" height="64.6667"/>
+	<rect x="577" y="380.083" fill="#C8C8C8" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" width="27.625" height="11.3334"/>
+	<path fill="#000000" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" d="M 510.084,317.375C 511.464,317.375 512.584,318.494 512.584,319.875C 512.584,321.256 511.464,322.375 510.084,322.375C 508.703,322.375 507.584,321.256 507.584,319.875C 507.584,318.494 508.703,317.375 510.084,317.375 Z "/>
+	<path fill="#000000" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" d="M 496,317.375C 497.381,317.375 498.5,318.494 498.5,319.875C 498.5,321.256 497.381,322.375 496,322.375C 494.619,322.375 493.5,321.256 493.5,319.875C 493.5,318.494 494.619,317.375 496,317.375 Z "/>
+	<rect x="522.917" y="322.917" fill="#646464" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" width="24.1667" height="4.16669"/>
+	<ellipse fill="none" stroke-linejoin="round" stroke="#000000" stroke-opacity="1" cx="570.958" cy="316.125" rx="14.125" ry="14.125"/>
+	<ellipse fill="none" stroke-linejoin="round" stroke="#000000" stroke-opacity="1" cx="571.292" cy="316.708" rx="6.95831" ry="6.95831"/>
+	<rect x="568.417" y="323.167" fill="none" stroke-linejoin="round" stroke="#000000" stroke-opacity="1" width="6.25" height="7"/>
+	<radialGradient id="SVGID_Stroke1_" cx="340.479" cy="300.563" r="127.75" gradientUnits="userSpaceOnUse">
+		<stop offset="0" stop-color="#000000" stop-opacity="1"/>
+		<stop offset="0.215517" stop-color="#050505" stop-opacity="1"/>
+		<stop offset="0.547414" stop-color="#0A0A0A" stop-opacity="1"/>
+		<stop offset="1" stop-color="#363636" stop-opacity="1"/>
+	</radialGradient>
+	<radialGradient id="SVGID_Fill2_" cx="340.479" cy="300.563" r="127.75" gradientUnits="userSpaceOnUse">
+		<stop offset="0" stop-color="#000000" stop-opacity="1"/>
+		<stop offset="0.999287" stop-color="#1B1B1B" stop-opacity="1"/>
+		<stop offset="1" stop-color="#363636" stop-opacity="1"/>
+	</radialGradient>
+
+	<!-- record -->
+	<ellipse fill="url(#SVGID_Fill2_)" stroke-linejoin="round" stroke="url(#SVGID_Stroke1_)" cx="340.479" cy="300.563" rx="127.75" ry="127.75">
+		<animateTransform attributeType="XML"
+				 		  attributeName="transform"
+				 		  type="rotate"
+				 		  from="0 340.479 300.563"
+				 		  to=" 360 340.479 300.563"
+				 		  dur="10s"
+				 		  repeatCount="indefinite" />
+	</ellipse>
+
+	<ellipse fill="#FF5000" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" cx="340.479" cy="300.563" rx="48.5" ry="48.5">
+
+		<animateTransform attributeType="XML"
+				 		  attributeName="transform"
+				 		  type="rotate"
+				 		  from="0 340.479 300.563"
+				 		  to=" 360 340.479 300.563"
+				 		  dur="10s"
+				 		  repeatCount="indefinite" />
+
+	</ellipse>
+
+
+	<filter id="Filter_DropShadow2_" filterUnits="userSpaceOnUse">
+		<feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/>
+		<feOffset dx="-6.54581e-016" dy="3.56337" in="blur" result="offsetBlurredAlpha"/>
+		<feMerge>
+			<feMergeNode in="offsetBlurredAlpha"/>
+			<feMergeNode in="SourceGraphic"/>
+		</feMerge>
+	</filter>
+
+	<!-- centre pin -->
+	<path fill="#C8C8C8" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" filter="url(#Filter_DropShadow2_)" d="M 340.479,296.229C 342.872,296.229 344.813,298.169 344.813,300.563C 344.813,302.956 342.872,304.896 340.479,304.896C 338.086,304.896 336.146,302.956 336.146,300.563C 336.146,298.169 338.086,296.229 340.479,296.229 Z "/>
+
+	<g>
+		<rect x="512.958" y="156.417" fill="#808080" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" width="44.3334" height="32.6667"/>
+		<rect x="519.625" y="189.417" fill="#808080" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" width="31" height="7.33334"/>
+		<rect x="530.958" y="196.417" fill="#808080" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" width="8.33337" height="15"/>
+		<ellipse fill="#808080" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" cx="535.125" cy="234.083" rx="24.1667" ry="24.1667"/>
+		<ellipse fill="#808080" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" cx="535.125" cy="234.083" rx="12.0001" ry="12.0001"/>
+		<path fill="#808080" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" d="M 535.125,225.917C 539.635,225.917 543.292,229.573 543.292,234.083C 543.292,238.594 539.635,242.25 535.125,242.25C 530.615,242.25 526.958,238.594 526.958,234.083C 526.958,229.573 530.615,225.917 535.125,225.917 Z "/>
+		<path fill="#808080" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" d="M 530.792,257.833L 530.833,316.479C 530.813,316.688 530.728,322.424 530.542,324.583C 530.333,327 529.917,330.333 529.083,333C 528.25,335.667 527.25,340.167 526.583,342.167C 525.883,344.267 524.685,347.194 524.083,349C 523.625,350.375 522.379,353.942 521.583,355.833C 521.25,356.625 519.432,361.052 518.75,362.667C 517.958,364.542 517.384,365.564 515.917,368.5C 515.021,370.292 513.438,373.875 512.208,375.917C 511.209,377.577 509.875,380.271 509.083,381.542C 508.354,382.713 506.955,385.081 505.896,386.729C 504.771,388.479 503.635,389.963 502.583,391.5C 502.042,392.292 501.054,393.835 499.5,395.5C 497.75,397.375 496.333,398.667 496.333,398.667L 502.708,404.667C 502.708,404.667 505.434,401.328 505.958,400.729C 507.731,398.706 510.411,395.549 512.083,393.25C 514.083,390.5 517.521,385.042 518.917,382.5C 520.231,380.107 523.083,374.333 524.75,370.667C 526.417,367 528.417,363 529.583,359.667C 530.75,356.333 531.417,354.667 532.583,350.5C 533.75,346.333 534.75,344.167 535.75,340.167C 536.75,336.167 537.545,334.093 538.417,329.833C 538.885,327.542 539.312,322.505 539.417,320.667C 539.5,319.208 539.542,314.375 539.542,312.542C 539.542,310.701 539.25,257.667 539.25,257.667L 530.792,257.833 Z "/>
+		<path fill="#808080" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" d="M 490.238,389.87L 456.886,423.84L 478.819,445.374L 512.171,411.403L 490.238,389.87 Z "/>
+		<path fill="#808080" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" d="M 478.333,417.333C 481.785,417.333 484.583,420.132 484.583,423.583C 484.583,427.035 481.785,429.833 478.333,429.833C 474.881,429.833 472.083,427.035 472.083,423.583C 472.083,420.132 474.881,417.333 478.333,417.333 Z "/>
+
+		<animateTransform attributeType="XML"
+				 		  attributeName="transform"
+				 		  type="rotate"
+				 		  from="0 535.125 234.083"
+				 		  to="40 535.125 234.083"
+				 		  dur="5s"
+				 		  repeatCount="1"
+				 		  fill="freeze" />
+	</g>
+</svg>

@@ -365,6 +365,22 @@ p.pete {
 }
 
 
+/* SOUNDTRACK PAGE
+------------------------------------------------------*/
+#bg {
+    background: url('../assets/soundtrack-bg.jpg') no-repeat 0 50% rgba(0, 0, 0, 0);
+    background-size: cover;
+}
+
+#record-player {
+    /*float: left;*/
+}
+
+#spotify-playlist {
+    /*float: right;*/
+}
+
+
 /* COMMENT STYLES
     --------------------------------------------------*/
 #comments-toggle {
