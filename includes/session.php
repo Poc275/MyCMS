@@ -10,12 +10,12 @@ function validateUser()
 {
     if (!loggedOn())
     {
-        header("Location: login.php");
+        header("Location: login.html");
     }
 
     if (isAdmin() !== "admin")
     {
-        header("Location: login.php");
+        header("Location: login.html");
     }
 }
 

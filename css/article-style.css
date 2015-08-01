@@ -43,6 +43,10 @@ p {
     margin-bottom: 1.3em;
 }
 
+#main-article h4 {
+    margin-bottom: 0.8em;
+}
+
 i {
     font-style: italic;
 }
@@ -135,6 +139,19 @@ nav ul li a span {
     content: "\f030";
     margin-right: 0.5em;
 }
+
+#main-article .pull-quote {
+    border-top: 1px solid #808080 !important;
+    border-bottom: 1px solid #808080 !important;
+    border-left: none !important;
+    color: #808080;
+    padding: 1em 0;
+}
+
+#main-article .pull-quote i {
+    margin-right: 0.5em;
+}
+
 
 /* alternate paragraph stylings between Phil and myself */
 #main-article p:nth-of-type(2n+1) {

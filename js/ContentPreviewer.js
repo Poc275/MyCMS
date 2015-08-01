@@ -86,6 +86,10 @@ function quickPick(pick) {
         case 'img-caption':
             mdOutput = "<p class=\"caption\" markdown=\"1\">This is an image caption</p>";
             break;
+
+        case 'pull-quote':
+            mdOutput = "<p class=\"pull-quote\"><i class=\"fa fa-quote-left fa-2x fa-pull-left\"></i>Quote goes here</p>";
+            break;
     }
 
     mdInputTextArea.value += mdOutput;

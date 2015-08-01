@@ -38,5 +38,5 @@ if (isset($_POST["username"]) && isset($_POST["credentials"]))
 }
 else
 {
-	header("Location: index.html");
+	header("Location: index.php");
 }
