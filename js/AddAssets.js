@@ -65,7 +65,7 @@ function uploadFiles(files) {
 
 	// post a XHR request
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', '/MyCMS/uploadImages.php');
+	xhr.open('POST', 'uploadImages.php');
 	xhr.onload = function() {
 		progress.value = progress.innerHTML = 100;
 		if (xhr.status === 200) {
@@ -127,7 +127,6 @@ function updateThumbnailView() {
 
 function addImageClickEventHandlers() {
 	var images = document.querySelectorAll('img.thumb');
-	//console.log(images);
 
 	for (var i = 0; i < images.length; i++) {
 		images[i].addEventListener('click', onImageClick, false);
@@ -135,9 +134,9 @@ function addImageClickEventHandlers() {
 }
 
 function onImageClick(event) {
-	//console.log(event.target);
 	var mdInputTextArea = document.getElementById("wmd-input");
-	var mdOutput = "![alt text here](/MyCMS/img/" + event.target.alt + " \"Title here\")";
+	// [![alt text here](img/Bulgogi-Cheesesteak-Sandwich.jpg "Title here")](img/Bulgogi-Cheesesteak-Sandwich.jpg "Title")
+	var mdOutput = "[![alt text here](img/" + event.target.alt + " \"Title here\")](img/" + event.target.alt + ")";
 
 	mdInputTextArea.value += mdOutput;
 }

@@ -321,7 +321,7 @@ p.pete {
 ------------------------------------------------------*/
 #lexicon-header {
     display: table;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url('../img/food-lexicon.jpg');
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url('../assets/food-lexicon.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -467,8 +467,10 @@ a:hover {
     color: #2b3033;
 }
 
-a img {
-    border: none;
+/* remove link styling from a tags with images inside */
+a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=jpe], a[href$=png], a[href$=gif] {
+    text-decoration: none;
+    border: 0 none;
 }
 
 

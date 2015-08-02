@@ -44,8 +44,8 @@ function getMoreArticles(offset) {
     		var responseJSON = JSON.parse(httpRequest.responseText);
 
     		for (var i = 0; i < responseJSON.length; i++) {
-   				var bgImageUrl = "url('/MyCMS/img/" + responseJSON[i].articleBannerImage + "')";
-   				var url = '/MyCMS/articles/' + responseJSON[i].articleUrl;
+   				var bgImageUrl = "url('img/" + responseJSON[i].articleBannerImage + "')";
+   				var url = 'articles/' + responseJSON[i].articleUrl;
 
    				var newAnchorTag = document.createElement('a');
    				newAnchorTag.setAttribute('href', url);
@@ -77,7 +77,7 @@ function getMoreArticles(offset) {
     	}
     }
 
-    httpRequest.open("POST", "/MyCMS/getMoreArticles.php");
+    httpRequest.open("POST", "getMoreArticles.php");
     httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     httpRequest.send("offset=" + offset);
 }

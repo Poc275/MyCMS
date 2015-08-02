@@ -9,16 +9,16 @@ class RssFeed
 				<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 				<channel>
 				<title>A Food Odyssey</title>
-				<link>http://localhost:8080/MyCMS</link>
+				<link>http://localhost:8080/a-food-odyssey</link>
 				<description>Amateurs trawl through the world of food</description>
 				<category>Food</category>
 				<image>
-				<url>img/placeholder.jpg</url>
+				<url>assets/a-food-odyssey-logo.jpg</url>
 				<title>A Food Odyssey</title>
-				<link>http://localhost:8080/MyCMS</link>
+				<link>http://localhost:8080/a-food-odyssey</link>
 				</image>
 				<language>en-uk</language>
-				<atom:link href="http://localhost:8080/MyCMS/rss.xml" rel="self" type="application/rss+xml" />';
+				<atom:link href="http://localhost:8080/a-food-odyssey/rss.xml" rel="self" type="application/rss+xml" />';
 
 
 	public function updateFeed()
@@ -34,9 +34,9 @@ class RssFeed
 			foreach ($articles as $article)
 			{
 				$xml .= '<item><title>' . $article->getTitle() . 
-					'</title><link>http://localhost:8080/MyCMS/articles/' . $article->getUrl() . 
+					'</title><link>http://localhost:8080/a-food-odyssey/articles/' . $article->getUrl() . 
 					'</link><description>' . $article->getSummary() . '</description><pubDate>' . 
-					$article->getPubDateRssFormat() . '</pubDate><guid>http://localhost:8080/MyCMS/articles/' . 
+					$article->getPubDateRssFormat() . '</pubDate><guid>http://localhost:8080/a-food-odyssey/articles/' . 
 					$article->getUrl() . '</guid></item>';
 			}
 

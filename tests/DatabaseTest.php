@@ -3,10 +3,10 @@
 require(dirname(__FILE__)."/../Database.php");
 
 const FIRST_ARTICLE_URL = "chicken-katsu-curry";
-const LAST_ARTICLE_URL = "creamy-gnocchi";
+const LAST_ARTICLE_URL = "this-is-a-tasty-burger";
 const MID_ARTICLE_URL = "bulgogi-beef-sandwich";
 const FIRST_ARTICLE_ID = 1;
-const LAST_ARTICLE_ID = 16;
+const LAST_ARTICLE_ID = 19;
 const MID_ARTICLE_ID = 8;
 
 class DBTest extends PHPUnit_Framework_TestCase
@@ -192,7 +192,7 @@ class DBTest extends PHPUnit_Framework_TestCase
 		$articles = $db->getArticleRange(5, 3);
 		$this->assertInternalType('array', $articles);
 		$this->assertEquals(3, count($articles));
-		$this->assertEquals("Bulgogi Beef Sandwich", $articles[0]->getTitle());
+		$this->assertEquals("Spicy Chicken and zesty noodles", $articles[0]->getTitle());
 
 		$db->closeConnection();
 	}

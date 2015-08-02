@@ -42,7 +42,7 @@
 		    	}
 		    }
 
-		    httpRequest.open("POST", "/MyCMS/addBlogComment.php");
+		    httpRequest.open("POST", "addBlogComment.php");
 		    httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		    httpRequest.send("author=" + commentAuthor + "&comment=" + comment + "&article=" + articleNumber);
 		}
