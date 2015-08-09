@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <base href="/a-food-odyssey/"; />
+        <base href="http://localhost:8080/a-food-odyssey/" />
         <title>
             <?php echo $this->article->getTitle(); ?> - A Food Odyssey
         </title>
@@ -72,7 +72,7 @@
                         <?php foreach($this->article->getTagsAsArray() as $tag): ?>
                             <a href="tags/<?=$tag ?>">
                                 <?=$tag ?>
-                            </a>
+                            </a>/
                         <?php endforeach; ?>
                     </li>
                 </ul>
@@ -109,9 +109,9 @@
             <aside id="article-share">
                 <h4>Share this article</h4>
                 <ul>
-                    <li id="share-twitter"><a href="https://twitter.com/share?hashtags=A%20Food%20Odyssey" class="no-decoration"><i class="fa fa-twitter fa-2x"></i></a></li>
-                    <li id="share-facebook"><a href="#" class="no-decoration" id="fb-link"><i class="fa fa-facebook fa-2x"></i></a></li>
-                    <li id="share-google"><a href="#" class="no-decoration" id="google-link"><i class="fa fa-google-plus fa-2x"></i></a></li>
+                    <li id="share-twitter"><a href="https://twitter.com/share?hashtags=A%20Food%20Odyssey" class="no-decoration" target="_blank"><i class="fa fa-twitter fa-2x"></i></a></li>
+                    <li id="share-facebook"><a href="#" class="no-decoration" id="fb-link" target="_blank"><i class="fa fa-facebook fa-2x"></i></a></li>
+                    <li id="share-google"><a href="#" class="no-decoration" id="google-link" target="_blank"><i class="fa fa-google-plus fa-2x"></i></a></li>
                 </ul>
 
                 <h5>Get involved</h5>

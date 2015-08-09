@@ -12,7 +12,7 @@ body {
 
 h1, h2, h3, h4 {
   font-weight: inherit;
-  line-height: 1.2;
+  line-height: 1.5;
 }
 
 h1 {
@@ -39,11 +39,13 @@ p {
     font-size: 1em;
 }
 
-#main-article p {
+#main-article p,
+#soundtrack-article p {
     margin-bottom: 1.3em;
 }
 
-#main-article h4 {
+#main-article h4,
+#soundtrack-article h4 {
     margin-bottom: 0.8em;
 }
 
@@ -63,10 +65,6 @@ i {
 
 /* SITE HEADER
 ----------------------------------------------------------*/
-#site-header {
-    padding: 1em 0;
-}
-
 #site-header h1 {
     font-family: 'Gentium Book Basic', serif;
 }
@@ -78,7 +76,7 @@ i {
 }
 
 nav {
-    float: left;
+    /*float: left;*/
     margin: 0.5em 0;
 }
 
@@ -89,7 +87,7 @@ nav ul > li {
 }
 
 nav ul li a span {
-    display: block;
+    /*display: block;*/
 }
 
 
@@ -111,6 +109,11 @@ nav ul li a span {
     font-weight: 800;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     line-height: 1.5;
+    padding: 0 1em;
+}
+
+#article-header p {
+    padding: 0 1em;
 }
 
 .article-header-container {
@@ -179,7 +182,8 @@ p.pete {
     padding-left: 0.5em;
 }
 
-#main-article {
+#main-article,
+#soundtrack-article {
     max-width: 600px;
 }
 
@@ -304,6 +308,18 @@ p.pete {
     color: #fff;
 }
 
+#share-spotify {
+    border: 1px solid #2EBD59;
+}
+
+#share-spotify:hover {
+    background-color: #2EBD59;
+}
+
+#share-spotify:hover a i.fa-spotify {
+    color: #fff;
+}
+
 #article-share ul li a i.fa-facebook {
     color: #3067a3;
 }
@@ -314,6 +330,10 @@ p.pete {
 
 #article-share ul li a i.fa-google-plus {
     color: #e15440;
+}
+
+#article-share ul li a i.fa-spotify {
+    color: #2EBD59;
 }
 
 
@@ -335,12 +355,14 @@ p.pete {
     font-weight: 800;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     line-height: 1.5;
+    padding: 0 1em;
 }
 
 .lexicon-header-container {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
+    padding: 0 1em;
 }
 
 #lexicon-info {
@@ -358,7 +380,7 @@ p.pete {
 }
 
 #main-lexicon {
-    /*max-width: 600px;*/
+    max-width: 800px;
 }
 
 #main-lexicon ol li {
@@ -384,17 +406,48 @@ p.pete {
 
 /* SOUNDTRACK PAGE
 ------------------------------------------------------*/
-#bg {
-    background: url('../assets/soundtrack-bg.jpg') no-repeat 0 50% rgba(0, 0, 0, 0);
+#soundtrack-header {
+    display: table;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6)), url('../assets/soundtrack-bg.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
     background-size: cover;
+    /*background-attachment: fixed;*/
+    width: 100%;
+    height: 20em;
+    color: #fff;
 }
 
-#record-player {
-    /*float: left;*/
+#soundtrack-header h1 {
+    font-weight: 800;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    line-height: 1.5;
+    padding: 0 1em;
 }
 
-#spotify-playlist {
-    /*float: right;*/
+#soundtrack-header p {
+    padding: 0 1em;
+}
+
+.soundtrack-header-container {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#soundtrack-info {
+    color: #808080;
+    padding: 1.5em 0;
+    max-width: 600px;
+}
+
+#soundtrack-article iframe {
+    display: block;
+    margin: 0 auto 0.8em;
+}
+
+#soundtrack-article p {
+    margin-bottom: 1.5em;
 }
 
 
@@ -478,15 +531,16 @@ a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=jpe], a[href$=png], a[href$=g
     RESPONSIVE VIEWS
 ------------------------------------------------------------------*/
 @media screen and (min-width: 1000px) {
-    nav {
+    /*nav {
         float: right;
         padding-left: 0.5em;
-    }
+    }*/
 }
 
 
 @media screen and (min-width: 1200px) {
-    #article-info {
+    #article-info,
+    #soundtrack-info {
         float: left;
         width: 30%;
         padding-top: 3em;
@@ -495,7 +549,8 @@ a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=jpe], a[href$=png], a[href$=g
         box-sizing: border-box;
     }
 
-    #main-article {
+    #main-article,
+    #soundtrack-article {
         float: left;
         width: 40%;
         padding-top: 3em;
@@ -527,6 +582,14 @@ a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=jpe], a[href$=png], a[href$=g
         padding-top: 3em;
         padding-bottom: 3em;
         box-sizing: border-box;
+    }
+
+    nav ul li a span {
+        display: block;
+    }
+
+    nav {
+        float: right;
     }
 }
 
