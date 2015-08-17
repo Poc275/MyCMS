@@ -31,6 +31,14 @@ h4 {
     font-size: 1.333em;
 }
 
+h5 {
+    font-size: 1.2em;
+}
+
+h6 {
+    font-size: 1em;
+}
+
 small {
     font-size: 0.75em;
 }
@@ -468,7 +476,7 @@ p.pete {
 }
 
 #comments-toggle:hover {
-    background-color: rgba(128, 128, 128, 0.4);
+    background-color: rgba(128, 128, 128, 0.7);
 }
 
 .comments-shrunk {
@@ -490,16 +498,37 @@ p.pete {
     padding-top: 10px;
 }
 
+.comment h5 {
+    display: inline-block;
+}
+
 .comment p {
     border-left: none !important;
     padding-left: 0 !important;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.comment p.comment-text {
+    clear: both;
+}
+
+.comment p.comment-meta:before {
+    font-family: "FontAwesome";
+    content: "\f017";
+}
+
+.comment p.comment-meta {
+    float: right;
+    margin-top: 8px;
+    color: #BE3C3C;
 }
 
 .comment:after {
     content: "";
     display: block;
     background: url('../assets/header-break.png') repeat-x scroll 0 50% rgba(0, 0, 0, 0);
-    height: 10px;
+    height: 2px;
 }
 
 

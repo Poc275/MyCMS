@@ -52,7 +52,7 @@ class Comment
 
 	public function getNiceDate()
 	{
-		return $this->mDate->format('F jS, Y - g:i a');
+		return $this->mDate->format('F jS, Y @ g:i a');
 	}
 
 	public function getHtmlDate()

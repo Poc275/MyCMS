@@ -95,7 +95,26 @@
             <article id="main-article">
                 <?php echo $this->article->getContentHtml(); ?>
 
-                <div id="comments-toggle"><h3 id="comments-toggle-text">Comments</h3></div>
+                <div id="comments-toggle">
+                    <h3 id="comments-toggle-text">
+                        <?php
+                            $nComments = count($this->article->getComments()); 
+
+                            if ($nComments === 0)
+                            {
+                                echo "No comments yet, be the first?";
+                            }
+                            else if ($nComments === 1)
+                            {
+                                echo "1 comment";
+                            }
+                            else
+                            {
+                                echo $nComments . " comments";
+                            }
+                        ?>
+                    </h3>
+                </div>
 
                 <div id="comments" class="comments-shrunk">
                     <?php foreach($this->article->getComments() as $comment): ?>
@@ -103,12 +122,12 @@
                             <h5>
                                 <?=htmlspecialchars($comment->getName()); ?>
                             </h5>
-                            <p>
+                            <p class="comment-meta">
                                 <time datetime="<?=$comment->getHtmlDate(); ?>">
                                     <?=$comment->getNiceDate(); ?>
                                 </time>
                             </p>
-                            <p>
+                            <p class="comment-text">
                                 <?=htmlspecialchars($comment->getComment()); ?>
                             </p>
                         </article>
