@@ -6,6 +6,7 @@
 
 		var httpRequest;
 	    var commentAuthor = document.getElementById("author").value;
+	    var commentEmail = document.getElementById("email").value;
 		var comment = document.getElementById("comment").value;
 		var articleNumber = document.getElementById("article-num").innerHTML.trim();
 
@@ -37,6 +38,7 @@
 		    httpRequest.onreadystatechange = function() {
 		    	if (httpRequest.readyState === 4 && httpRequest.status === 200) {
 		    		document.getElementById("author").value = "";
+		    		document.getElementById("email").value = "";
 		    		document.getElementById("comment").value = "";
 		    		document.getElementById("comment-result").innerHTML = httpRequest.responseText;
 		    	}
@@ -44,7 +46,7 @@
 
 		    httpRequest.open("POST", "addBlogComment.php");
 		    httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		    httpRequest.send("author=" + commentAuthor + "&comment=" + comment + "&article=" + articleNumber);
+		    httpRequest.send("author=" + commentAuthor + "&email=" + commentEmail + "&comment=" + comment + "&article=" + articleNumber);
 		}
 
 	});

@@ -5,14 +5,16 @@ class Comment
 	private $mId;
 	private $mArticleFk;
 	private $mName;
+	private $mGravatarHash;
 	private $mComment;
 	private $mDate;
 
-	public function __construct($id, $articleFk, $name, $comment, $date)
+	public function __construct($id, $articleFk, $name, $gravatarHash, $comment, $date)
 	{
 		$this->mId = $id;
 		$this->mArticleFk = $articleFk;
 		$this->mName = $name;
+		$this->mGravatarHash = $gravatarHash;
 		$this->mComment = $comment;
 
 		if ($date instanceof DateTime)
@@ -38,6 +40,11 @@ class Comment
 	public function getName()
 	{
 		return $this->mName;
+	}
+
+	public function getGravatarHash()
+	{
+		return $this->mGravatarHash;
 	}
 
 	public function getComment()

@@ -264,6 +264,11 @@ p.pete {
     font-size: initial;
 }
 
+#article-share form small {
+    margin: 0;
+    padding: 0;
+}
+
 #article-share form button {
     line-height: 1.5;
     cursor: pointer;
@@ -498,7 +503,30 @@ p.pete {
     padding-top: 10px;
 }
 
+.comment img {
+    width: 80px !important;
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+.comment-container {
+    float: left;
+    width: 80%;
+}
+
 .comment h5 {
+    display: inline-block;
+}
+
+.comment p.comment-meta:before {
+    font-family: "FontAwesome";
+    content: "\f017";
+}
+
+.comment p.comment-meta {
+    float: right;
+    margin-top: 5px;
+    color: #BE3C3C;
     display: inline-block;
 }
 
@@ -513,22 +541,12 @@ p.pete {
     clear: both;
 }
 
-.comment p.comment-meta:before {
-    font-family: "FontAwesome";
-    content: "\f017";
-}
-
-.comment p.comment-meta {
-    float: right;
-    margin-top: 8px;
-    color: #BE3C3C;
-}
-
 .comment:after {
     content: "";
     display: block;
     background: url('../assets/header-break.png') repeat-x scroll 0 50% rgba(0, 0, 0, 0);
     height: 2px;
+    clear: both;
 }
 
 

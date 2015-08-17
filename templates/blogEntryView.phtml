@@ -119,17 +119,20 @@
                 <div id="comments" class="comments-shrunk">
                     <?php foreach($this->article->getComments() as $comment): ?>
                         <article class="comment">
-                            <h5>
-                                <?=htmlspecialchars($comment->getName()); ?>
-                            </h5>
-                            <p class="comment-meta">
-                                <time datetime="<?=$comment->getHtmlDate(); ?>">
-                                    <?=$comment->getNiceDate(); ?>
-                                </time>
-                            </p>
-                            <p class="comment-text">
-                                <?=htmlspecialchars($comment->getComment()); ?>
-                            </p>
+                            <img src="http://www.gravatar.com/avatar/<?=$comment->getGravatarHash(); ?>?d=monsterid" alt="gravatar" />
+                            <div class="comment-container">
+                                <h5>
+                                    <?=htmlspecialchars($comment->getName()); ?>
+                                </h5>
+                                <p class="comment-meta">
+                                    <time datetime="<?=$comment->getHtmlDate(); ?>">
+                                        <?=$comment->getNiceDate(); ?>
+                                    </time>
+                                </p>
+                                <p class="comment-text">
+                                    <?=htmlspecialchars($comment->getComment()); ?>
+                                </p>
+                            </div>
                         </article>
                     <?php endforeach; ?>
                 </div>
@@ -145,11 +148,13 @@
                 </ul>
 
                 <h5>Get involved</h5>
-                <form action="addBlogComment.php" method="POST">
-                    <input type="text" id="author" name="author" placeholder="your name" maxlength="50" required />
-                    <textarea id="comment" name="comment" placeholder="comment" rows="5" required></textarea>
+                <form method="POST">
+                    <input type="text" id="author" name="author" placeholder="your name" maxlength="20" required />
+                    <input type="email" id="email" name="email" placeholder="your email *" maxlength="50" />
+                    <textarea id="comment" name="comment" placeholder="comment..." rows="5" required></textarea>
                     <button type="submit" id="post-comment-btn">Post</button>
                 </form>
+                <small>* Optional for <a href="https://en.gravatar.com/">gravatars</a>. We will never store or display it</small>
                 <p id="comment-result"></p>
             </aside>
 

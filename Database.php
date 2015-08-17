@@ -320,11 +320,11 @@ class Database
 		}
 		else
 		{
-			mysqli_stmt_bind_result($stmt, $idCol, $articleCol, $nameCol, $commentCol, $dateCol);
+			mysqli_stmt_bind_result($stmt, $idCol, $articleCol, $nameCol, $gravatarHashCol, $commentCol, $dateCol);
 
 	        while (mysqli_stmt_fetch($stmt))
 	        {
-	        	$comment = new Comment($idCol, $articleCol, $nameCol, $commentCol, 
+	        	$comment = new Comment($idCol, $articleCol, $nameCol, $gravatarHashCol, $commentCol, 
 	        		date_create_from_format('Y-m-d H:i:s', $dateCol));
 	        	array_push($comments, $comment);
 	        }
@@ -373,14 +373,15 @@ class Database
 	{
 		$created = false;
 
-		$insert = "INSERT INTO comments (article, name, comment, date) 
-					VALUES (?, ?, ?, ?)";
+		$insert = "INSERT INTO comments (article, name, gravatar_hash, comment, date) 
+					VALUES (?, ?, ?, ?, ?)";
 
 		$stmt = mysqli_prepare($this->mConnection, $insert);
-		mysqli_stmt_bind_param($stmt, 'ssss', $article, $name, $commentText, $date);
+		mysqli_stmt_bind_param($stmt, 'sssss', $article, $name, $gravatarHash, $commentText, $date);
 
 		$article = $comment->getArticle();
 		$name = $comment->getName();
+		$gravatarHash = $comment->getGravatarHash();
 		$commentText = $comment->getComment();
 		$date = $comment->getDate();
 

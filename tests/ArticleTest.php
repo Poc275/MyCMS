@@ -67,8 +67,8 @@ class ArticleTest extends PHPUnit_Framework_TestCase
 								"chicken-katsu-curry");
 
 
-		array_push($comments, new Comment(1, 10, "Steve", "Nice recipe!", $date));
-		array_push($comments, new Comment(2, 10, "Paul", "Agree!", $date));
+		array_push($comments, new Comment(1, 10, "Steve", "14f944f92cmls92", "Nice recipe!", $date));
+		array_push($comments, new Comment(2, 10, "Paul", "14f944f92cmls92", "Agree!", $date));
 		$article->setComments($comments);
 
 		$article->setNextArticleUrl("next-article-url");
