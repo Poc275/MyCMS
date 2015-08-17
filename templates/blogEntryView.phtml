@@ -69,11 +69,22 @@
                     </li>
 
                     <li id="article-tags">
-                        <?php foreach($this->article->getTagsAsArray() as $tag): ?>
-                            <a href="tags/<?=$tag ?>">
-                                <?=$tag ?>
-                            </a>/
-                        <?php endforeach; ?>
+
+                        <?php
+                            $tags = $this->article->getTagsAsArray();
+                            $tagCount = count($tags);
+
+                            for($i = 0; $i < $tagCount; $i++)
+                            {
+                                echo "<a href='tags/" . $tags[$i] . "'> " . $tags[$i] . "</a>";
+
+                                if ($i != $tagCount - 1)
+                                {
+                                    echo " //";
+                                }
+                            }
+                        ?>
+
                     </li>
                 </ul>
 
