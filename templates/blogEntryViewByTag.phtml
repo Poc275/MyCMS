@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <base href="http://localhost:8080/a-food-odyssey/" />
+        <title>A Food Odyssey - Articles Tagged '<?php echo htmlspecialchars($_GET["tag"]); ?>'</title>
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/article-style.css">
+        <link rel="stylesheet" href="css/home-page-style.css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,800' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400italic,400' rel='stylesheet' type='text/css'>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    </head>
+
+
+    <body onload="printTagName('<?php echo htmlspecialchars($_GET["tag"]); ?>');">
+
+        <div class="grid-container">
+            <header id="site-header">
+                <h1>A Food <i>Odyssey</i></h1>
+                <!-- <p id="tagline">Amateurs trawl through the world of food...</p> -->
+                <nav>
+                    <ul>
+                        <li><a href="index.php"><span>THE</span> Archives</a></li>
+                        <li><a href="the-lexicon.html"><span>THE</span> Lexicon</a></li>
+                        <li><a href="the-soundtrack.html"><span>THE</span> Soundtrack</a></li>
+                        <li><a href="#"><span>THE</span> Lowdown</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+
+
+        <header id="tag-page-header">
+            <canvas width="800" height="350">
+                <!-- no canvas support - placeholder required -->
+                <video autoplay loop poster="#" id="home-page-vid">
+                    <source src="vid/cropped.mp4" type="video/mp4">
+                </video>
+
+                <div id="header-text">
+                    <h1>A Food Odyssey</h1>
+                </div>
+            </canvas>
+
+        </header>
+
+
+        <div id="grid-articles">
+            <?php foreach($this->articles as $article): ?>
+
+            <a class="no-decoration" href="articles/<?=$article->getUrl(); ?>" 
+                style="background-image: url('img/<?php echo $article->getBannerImagePath(); ?>')">
+
+                <article>
+                    <div class="article-info">
+                        <h3><?=$article->getTitle(); ?></h3>
+
+                        <p><?=$article->getSummary(); ?></p>
+                    </div>
+                </article>
+
+            </a>
+
+            <?php endforeach; ?>
+        </div>
+
+
+        <footer>
+            <div id="chef-hat"></div>
+            <p>A Food Odyssey is a journey by <a href="http://www.pjfreeman.co.uk/">Phil Freeman</a> &amp; 
+                <a href="http://poc275.co.uk">Peter O'Connor</a>
+            </p>
+            <address id="footer-social">
+                <ul id="footer-logos">
+                    <li><a href="mailto:poc275@gmail.com?Subject=A%20Food%20Odyssey" title="send us an email" class="no-decoration"><i class="fa fa-envelope-o fa-4x"></i></a></li>
+                    <li><a href="rss.xml" title="follow our blog" class="no-decoration"><i class="fa fa-rss fa-4x"></i></a></li>
+                </ul>
+            </address>
+
+        </footer>
+
+        <script type="text/javascript" src="js/CanvasTextPrinting.js"></script>
+
+    </body>
+
+</html>

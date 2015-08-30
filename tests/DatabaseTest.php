@@ -9,6 +9,11 @@ const FIRST_ARTICLE_ID = 1;
 const LAST_ARTICLE_ID = 19;
 const MID_ARTICLE_ID = 8;
 
+// get articles by tag name test
+const NUM_BEEF_TAGS = 3;
+const FIRST_BEEF_TAG = 8;
+
+
 class DBTest extends PHPUnit_Framework_TestCase
 {
 	protected function setUp()
@@ -193,6 +198,19 @@ class DBTest extends PHPUnit_Framework_TestCase
 		$this->assertInternalType('array', $articles);
 		$this->assertEquals(3, count($articles));
 		$this->assertEquals("Spicy Chicken and zesty noodles", $articles[0]->getTitle());
+
+		$db->closeConnection();
+	}
+
+	public function testGetArticlesByTagName()
+	{
+		$db = new Database;
+		$db->openReadOnlyConnection();
+
+		$articles = $db->getArticlesByTagName("beef");
+		$this->assertInternalType('array', $articles);
+		$this->assertEquals(NUM_BEEF_TAGS, count($articles));
+		$this->assertEquals(FIRST_BEEF_TAG, $articles[0]->getId());
 
 		$db->closeConnection();
 	}
