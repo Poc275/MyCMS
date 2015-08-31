@@ -36,15 +36,11 @@
         <header id="tag-page-header">
             <canvas width="800" height="350">
                 <!-- no canvas support - placeholder required -->
-                <video autoplay loop poster="#" id="home-page-vid">
-                    <source src="vid/cropped.mp4" type="video/mp4">
-                </video>
-
                 <div id="header-text">
-                    <h1>A Food Odyssey</h1>
+                    <h1>Today's Special:</h1>
+                    <h2><?php echo htmlspecialchars($_GET["tag"]); ?></h2>
                 </div>
             </canvas>
-
         </header>
 
 

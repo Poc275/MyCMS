@@ -21,9 +21,6 @@ function printTagName(tag) {
 
   ctx.textAlign = "left";
 
-  var chalkSound = new Audio("assets/chalk-sound.ogg");
-  chalkSound.play();
-
   (function loop() {
     // ctx.clearRect(x, 0, 60, 50);
     ctx.setLineDash([dashLen - dashOffset, dashOffset - speed]);                  // create a long dash mask
@@ -39,10 +36,6 @@ function printTagName(tag) {
       ctx.rotate(Math.random() * 0.005);                                          // random rotation
       
       if (i < txt.length) requestAnimationFrame(loop);
-      else {
-        chalkSound.pause();
-        chalkSound.src = '';
-      }
     }
 
   })();
