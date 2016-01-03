@@ -32,7 +32,8 @@ if ($db->openReadOnlyConnection())
 		  						'articleSummary'=>$article->getSummary(),
 		  						'articleTags'=>$article->getTags(),
 		  						'articleBannerImage'=>$article->getBannerImagePath(),
-		  						'articleUrl'=>$article->getUrl());
+		  						'articleUrl'=>$article->getUrl(),
+		  						'articleDate'=>$article->getNicePubDate());
 
 		array_push($output, $articleArray);
 	}

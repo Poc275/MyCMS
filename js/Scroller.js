@@ -44,16 +44,20 @@ function getMoreArticles(offset) {
     		var responseJSON = JSON.parse(httpRequest.responseText);
 
     		for (var i = 0; i < responseJSON.length; i++) {
-   				var bgImageUrl = "url('img/" + responseJSON[i].articleBannerImage + "')";
+   				var imageUrl = "img/" + responseJSON[i].articleBannerImage;
    				var url = 'articles/' + responseJSON[i].articleUrl;
+
+          var newArticleTag = document.createElement('article');
 
    				var newAnchorTag = document.createElement('a');
    				newAnchorTag.setAttribute('href', url);
-   				newAnchorTag.style.backgroundImage = bgImageUrl;
+   				// newAnchorTag.style.backgroundImage = bgImageUrl;
    				newAnchorTag.className = "no-decoration";
 
-   				var newArticleTag = document.createElement('article');
-
+          var newImageTag = document.createElement('img');
+          newImageTag.setAttribute('src', imageUrl);
+          newImageTag.setAttribute('alt', responseJSON[i].articleTitle);
+   				
    				var newDivTag = document.createElement('div');
    				newDivTag.className = "article-info";
 
@@ -65,14 +69,23 @@ function getMoreArticles(offset) {
    				var paraText = document.createTextNode(responseJSON[i].articleSummary);
    				newParaTag.appendChild(paraText);
 
+          var newSmallTag = document.createElement('small');
+          var newClockIconTag = document.createElement('i');
+          newClockIconTag.className = "fa fa-clock-o";
+          var smallText = document.createTextNode(' ' + responseJSON[i].articleDate);
+          newSmallTag.appendChild(newClockIconTag);
+          newSmallTag.appendChild(smallText);
+
    				newDivTag.appendChild(newHeaderTag);
    				newDivTag.appendChild(newParaTag);
+          newDivTag.appendChild(newSmallTag);
 
-   				newArticleTag.appendChild(newDivTag);
+   				newAnchorTag.appendChild(newImageTag);
+          newAnchorTag.appendChild(newDivTag);
 
-   				newAnchorTag.appendChild(newArticleTag);
+          newArticleTag.appendChild(newAnchorTag);
 
-   				gridArticles.appendChild(newAnchorTag);
+   				gridArticles.appendChild(newArticleTag);
     		}
     	}
     }

@@ -4,12 +4,12 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>A Food Odyssey</title>
+        <base href="http://localhost:8080/a-food-odyssey/" />
+        <title>Blog Standard Food</title>
         <link rel="stylesheet" href="css/reset.css">
         <link rel="stylesheet" href="css/article-style.css">
         <link rel="stylesheet" href="css/home-page-style.css">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,800' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400italic,400' rel='stylesheet' type='text/css'>
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
 
@@ -17,8 +17,8 @@
 
         <div class="grid-container">
             <header id="site-header">
-                <h1>A Food <i>Odyssey</i></h1>
-                <!-- <p id="tagline">Amateurs trawl through the world of food...</p> -->
+                <!-- <h1>BLOG STANDARD food</h1> -->
+                <img src="assets/bsf-logo.png" alt="blog standard food logo" />
                 <nav>
                     <ul>
                         <li><a href="index.php"><span>THE</span> Archives</a></li>
@@ -36,28 +36,27 @@
                 <source src="vid/cropped.mp4" type="video/mp4">
             </video>
             <div id="header-text">
-                <h1>A Food Odyssey</h1>
-                <p>Amateurs trawl through the world of food...</p>
+                <h1>Blog Standard Food</h1>
+                <!-- <img src="assets/bsf-logo.png" alt="blog standard food logo" /> -->
+                <p>If we can do it so can you</p>
             </div>
         </header>
 
 
         <div id="grid-articles">
             <?php foreach($this->articles as $article): ?>
-
-            <a class="no-decoration" href="articles/<?=$article->getUrl(); ?>" 
-                style="background-image: url('img/<?php echo $article->getBannerImagePath(); ?>')">
-
+            
                 <article>
-                    <div class="article-info">
-                        <h3><?=$article->getTitle(); ?></h3>
-
-                        <p><?=$article->getSummary(); ?></p>
-                    </div>
+                    <a class="no-decoration" href="articles/<?=$article->getUrl(); ?>">
+                        <img src="img/<?php echo $article->getBannerImagePath(); ?>" alt="<?php echo $article->getTitle(); ?>" />
+                        <div class="article-info">
+                            <h3><?=$article->getTitle(); ?></h3>
+                            <p><?=$article->getSummary(); ?></p>
+                            <small><i class="fa fa-clock-o"></i> <?=$article->getNicePubDate(); ?></small>
+                        </div>
+                    </a>
                 </article>
-
-            </a>
-
+            
             <?php endforeach; ?>
         </div>
 

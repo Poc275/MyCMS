@@ -650,7 +650,8 @@ footer {
     padding: 3.5em 0 1em 0;
 }
 
-footer p {
+footer p,
+footer address {
     padding-bottom: 1em;
 }
 
