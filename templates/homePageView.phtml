@@ -15,10 +15,11 @@
 
     <body>
 
-        <div class="grid-container">
-            <header id="site-header">
-                <!-- <h1>BLOG STANDARD food</h1> -->
-                <img src="assets/bsf-logo.png" alt="blog standard food logo" />
+        <header id="home-page-header">
+            <div id="title-bar">
+                <a href="index.php" class="no-decoration">
+                    <img src="assets/bsf-logo-light.png" alt="blog standard food logo" />
+                </a>
                 <nav>
                     <ul>
                         <li><a href="index.php"><span>THE</span> Archives</a></li>
@@ -27,18 +28,17 @@
                         <li><a href="#"><span>THE</span> Lowdown</a></li>
                     </ul>
                 </nav>
-            </header>
-        </div>
+            </div>
 
-
-        <header id="home-page-header">
-            <video autoplay loop poster="#" id="home-page-vid">
-                <source src="vid/cropped.mp4" type="video/mp4">
+            <video autoplay loop poster="vid/bsf-poster.jpg" id="home-page-vid">
+                <source src="vid/bsf-slideshow.mp4" type="video/mp4">
+                <source src="vid/bsf-slideshow.webm" type="video/webm">
+                <source src="vid/bsf-slideshow.ogv" type="video/ogv">
             </video>
+
             <div id="header-text">
                 <h1>Blog Standard Food</h1>
-                <!-- <img src="assets/bsf-logo.png" alt="blog standard food logo" /> -->
-                <p>If we can do it so can you</p>
+                <p>If we can cook food this good so can you...</p>
             </div>
         </header>
 
@@ -48,7 +48,12 @@
             
                 <article>
                     <a class="no-decoration" href="articles/<?=$article->getUrl(); ?>">
-                        <img src="img/<?php echo $article->getBannerImagePath(); ?>" alt="<?php echo $article->getTitle(); ?>" />
+                        <img 
+                            srcset="img/<?php echo $article->getBannerImagePath(); ?>  1000w,
+                                    img/thumbs-200w/<?php echo $article->getBannerImagePath(); ?> 200w"
+                            src="img/<?php echo $article->getBannerImagePath(); ?>"
+                            alt="<?php echo $article->getTitle(); ?>"
+                        />
                         <div class="article-info">
                             <h3><?=$article->getTitle(); ?></h3>
                             <p><?=$article->getSummary(); ?></p>
@@ -63,7 +68,7 @@
 
         <footer>
             <div id="chef-hat"></div>
-            <p>A Food Odyssey is a journey by <a href="http://www.pjfreeman.co.uk/">Phil Freeman</a> &amp; 
+            <p>Blog Standard Food is <a href="http://www.pjfreeman.co.uk/">Phil Freeman</a> &amp; 
                 <a href="http://poc275.co.uk">Peter O'Connor</a>
             </p>
             <address id="footer-social">
@@ -72,6 +77,15 @@
                     <li><a href="rss.xml" title="follow our blog" class="no-decoration"><i class="fa fa-rss fa-4x"></i></a></li>
                 </ul>
             </address>
+
+            <small>
+                <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+                </a>
+                <br />
+                <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Blog Standard Food</span> is licensed under a 
+                <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a> 2016.
+            </small>
 
         </footer>
 

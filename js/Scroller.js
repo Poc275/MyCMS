@@ -51,7 +51,6 @@ function getMoreArticles(offset) {
 
    				var newAnchorTag = document.createElement('a');
    				newAnchorTag.setAttribute('href', url);
-   				// newAnchorTag.style.backgroundImage = bgImageUrl;
    				newAnchorTag.className = "no-decoration";
 
           var newImageTag = document.createElement('img');

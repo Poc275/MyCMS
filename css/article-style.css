@@ -73,18 +73,12 @@ i {
 
 /* SITE HEADER
 ----------------------------------------------------------*/
-#site-header h1 {
-    font-family: 'Gentium Book Basic', serif;
-}
-
-#site-header h1,
-#site-header p,
 #site-header nav {
     display: inline-block;
 }
 
 nav {
-    /*float: left;*/
+    float: right;
     margin: 0.5em 0;
 }
 
@@ -95,7 +89,7 @@ nav ul > li {
 }
 
 nav ul li a span {
-    /*display: block;*/
+    display: block;
 }
 
 
@@ -629,14 +623,6 @@ a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=jpe], a[href$=png], a[href$=g
         padding-top: 3em;
         padding-bottom: 3em;
         box-sizing: border-box;
-    }
-
-    nav ul li a span {
-        display: block;
-    }
-
-    nav {
-        float: right;
     }
 }
 
