@@ -138,7 +138,32 @@ function onImageClick(event) {
 	// [![alt text here](img/Bulgogi-Cheesesteak-Sandwich.jpg "Title here")](img/Bulgogi-Cheesesteak-Sandwich.jpg "Title")
 	var mdOutput = "[![alt text here](img/" + event.target.alt + " \"Title here\")](img/" + event.target.alt + ")";
 
-	mdInputTextArea.value += mdOutput;
+	insertAtCursor(mdOutput);
 }
+
+
+// source: http://stackoverflow.com/questions/11076975/insert-text-into-textarea-at-cursor-position-javascript
+function insertAtCursor(content) {
+    var mdInputTextArea = document.getElementById("wmd-input");
+
+    //IE support
+    if (document.selection) {
+        mdInputTextArea.focus();
+        sel = document.selection.createRange();
+        sel.text = content;
+    }
+
+    //MOZILLA and others
+    else if (mdInputTextArea.selectionStart || mdInputTextArea.selectionStart == '0') {
+        var startPos = mdInputTextArea.selectionStart;
+        var endPos = mdInputTextArea.selectionEnd;
+        mdInputTextArea.value = mdInputTextArea.value.substring(0, startPos)
+            + content
+            + mdInputTextArea.value.substring(endPos, mdInputTextArea.value.length);
+    } else {
+        mdInputTextArea.value += content;
+    }
+}
+
 
 window.addEventListener('load', init, false);

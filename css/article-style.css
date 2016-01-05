@@ -73,13 +73,10 @@ i {
 
 /* SITE HEADER
 ----------------------------------------------------------*/
-#site-header nav {
-    display: inline-block;
-}
-
 nav {
     float: right;
     margin: 0.5em 0;
+    display: inline-block;
 }
 
 nav ul > li {
@@ -571,13 +568,19 @@ a[href$=jpg], a[href$=JPG], a[href$=jpeg], a[href$=jpe], a[href$=png], a[href$=g
 /*
     RESPONSIVE VIEWS
 ------------------------------------------------------------------*/
-@media screen and (min-width: 1000px) {
-    /*nav {
-        float: right;
-        padding-left: 0.5em;
-    }*/
-}
+@media screen and (max-width: 600px) {
+    nav {
+        width: 100%;
+        text-align: center;
+    }
 
+    .grid-container img,
+    #title-bar img {
+        display: none;
+    }
+
+
+}
 
 @media screen and (min-width: 1200px) {
     #article-info,
