@@ -89,6 +89,10 @@ function quickPick(pick) {
         case 'pull-quote':
             mdOutput = "<p class=\"pull-quote\"><i class=\"fa fa-quote-left fa-2x fa-pull-left\"></i>Quote goes here</p>";
             break;
+
+        case 'sound-cite':
+            mdOutput = "<span class=\"soundcite\" data-url=\"assets/sound-file.mp3\" data-start=\"0\" data-end=\"1000\" data-plays=\"1\">listen to this</span>";
+            break;
     }
 
     insertAtCursor(mdOutput);
